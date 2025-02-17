@@ -245,13 +245,67 @@ input:focus {
 
 #btn_50 {
     display: inline-block;
-    color: #252537;
+    color:white;
   
     width: 100%;
     height: 50px;
   
 
     background: #fff;
+    background-color: rgb(49, 49, 241);
+    border-radius: 25px;
+    
+    outline: none;
+    border: none;
+  
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s linear;
+    
+    margin: 7% auto;
+    letter-spacing: 0.05em;
+}
+
+.submits {
+    width: 98%;
+    display: inline-block;
+    
+    margin-left: 2%;
+}
+
+
+.frgt-pass {background: transparent;}
+
+
+.sign-up {background: #B8F2E6;}
+
+
+
+#btn_50:hover {
+    transform: translatey(3px);
+    box-shadow: none;
+    background-color: rgb(101, 237, 101);
+}
+
+
+#btn_50:hover {
+    animation: ani9 0.4s ease-in-out infinite alternate;
+    
+    background-color: rgb(101, 237, 101);
+}
+
+
+
+#btn_51 {
+    display: inline-block;
+    color:white;
+  
+    width: 100%;
+    height: 50px;
+  
+
+    background: #fff;
+    background-color: rgb(241, 62, 49);
     border-radius: 5px;
     
     outline: none;
@@ -272,24 +326,24 @@ input:focus {
     margin-left: 2%;
 }
 
-/*       Forgot Password button FAF3DD  */
+
 .frgt-pass {background: transparent;}
 
-/*     Sign Up button  */
+
 .sign-up {background: #B8F2E6;}
 
 
-/* buttons hover */
-#btn_50:hover {
+
+#btn_51:hover {
     transform: translatey(3px);
     box-shadow: none;
-    background-color: rgb(116, 243, 116);
+    background-color: rgb(235, 107, 68);
 }
 
-/* buttons hover Animation */
-#btn_50:hover {
+
+#btn_51:hover {
     animation: ani9 0.4s ease-in-out infinite alternate;
-    background-color: rgb(116, 243, 116);
+    background-color: rgb(190, 118, 70);
 }
 @keyframes ani9 {
     0% {
