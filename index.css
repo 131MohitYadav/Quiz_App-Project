@@ -283,11 +283,13 @@ input:focus {
 #btn_50:hover {
     transform: translatey(3px);
     box-shadow: none;
+    background-color: rgb(116, 243, 116);
 }
 
 /* buttons hover Animation */
 #btn_50:hover {
     animation: ani9 0.4s ease-in-out infinite alternate;
+    background-color: rgb(116, 243, 116);
 }
 @keyframes ani9 {
     0% {
