@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    
+    <title>Code Quiz</title>
+</head>
+
+<body>
+    <div class="containerNew">
+        <header>
+            <div>
+                <a href="./highscore.html">
+
+                    <button class="scores-header" id="view-high-scores">
+                        View Total Marks
+                    </button>
+                </a>
+            </div>
+
+            <div class="timer">
+                <p>
+                    Time:
+                    <span id="timer">
+                        600(10 Min.)
+                    </span>
+                    <br>
+                <p> M.M: 50</p>
+                </p>
+
+            </div>
+        </header>
+
+        <main class="quiz">
+            <div id="quiz-start">
+                <div class="landing" id="start-screen">
+                    <h1 id="top">
+                        TECHNOCRATS<a> GROUP OF</a><br>INSTITUTION
+                    </h1>
+
+                    <h1>
+                        Online Quiz Challenge
+                    </h1>
+                    <h2>Round 1 => PROGRAMMING</h2>
+                    <p>
+                        Try to answer the following
+                        code-related questions with
+                        in the time limit. In that Coding challenge each correct answer have 5 marks and no negative
+                        marking if the answer is incorrect. also including all the rules in next 2 Round. Each Round
+                        have only 10 Minutes to completed test series.
+                    <div class="Rules">
+                        <div class="Rules1">
+                            <span>NOTE:<br></span>
+                        </div>
+                        <span>1. No Other electronics allowed<br></span>
+                        <span>2. No Communication<br></span>
+                        <span>3. One Screen only<br></span>
+                        <span>4. No other browsers or unauthorized software</span>
+                    </div>
+
+                    </p>
+                    <button id="start">
+                        Start Quiz
+                    </button>
+                </div>
+            </div>
+
+            <div class="hide" id="questions">
+                <h2 id="question-words"></h2>
+                <div class="options" id="options">
+                </div>
+            </div>
+
+
+            <div class="hide" id="quiz-end">
+                <h2>All Done!</h2>
+                <p>Your final score is:
+                    <span id="score-final">
+                    </span>
+                </p>
+                <label>Please enter your name:</label>
+                    <input type="text" id="name" max="3" />
+                    <button id="submit-score">
+                        Submit
+                    </button> <br>
+
+                    <a href="AptitudeRound.html">
+                    <button id="btn">APTITUDE ROUND</button>
+                </a>
+                    <a href="ReasoningRound.html">
+                    <button id="btn1">REASONING ROUND</button>
+                    </a>
+                </p>
+            </div>
+
+            <div id="feedback" class="feedback hide">
+            </div>
+        </main>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
