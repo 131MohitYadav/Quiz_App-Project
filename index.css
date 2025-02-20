@@ -1,5 +1,10 @@
+
+
+
+
 body {
-    font-family: Georgia, 'Times New Roman', Times, serif background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+    font-family: "Libre Baskerville", serif;
+     background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
     background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -129,8 +134,8 @@ li:nth-child(odd) {
 }
 
  /* SIGN UP CSS */
-
- @import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
+/* 
+ @import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur'); */
 
  *{
     padding: 0;
