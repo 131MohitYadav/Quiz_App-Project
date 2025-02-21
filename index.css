@@ -538,12 +538,12 @@ body {
 }
 .ch1 h1{
     text-align: center;
-    color: rgb(8, 51, 157);
+    color: #01050E;
     margin-top: 10px;
     font-weight: bold;
 }
 .ch1 h3{
-    color: red;
+    color: #01050E;
     margin: 10px;
 }
 .ch1 button{
@@ -553,8 +553,7 @@ body {
 .ch1 li{
     margin: 5px;
     margin-left: 10px;
-    font-weight: bold;
-    background-color:rgb(108, 162, 244);
+    background-color:#6D7AAB;
 }
 
 .ch1,.ch2,.ch3{
@@ -562,8 +561,7 @@ body {
     height: auto;
     margin: 5px;
     margin-top: 15px;
-    border: 2px solid black;
-    background-color: rgb(108, 162, 244);
+    background-color: #6D7AAB;
     border-radius: 20px;
     border: none;
     transition: all 0.3s ease;
