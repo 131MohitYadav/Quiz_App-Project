@@ -423,9 +423,9 @@ body {
 }
 
 .btn {
-    border: 2px solid #007BFF;
+    border: 2px solid #e02810;
     background-color: transparent;
-    color: #007BFF;
+    color: #e02810;
     padding: 8px 18px;
     border-radius: 18px;
     font-size: 14px;
@@ -436,6 +436,28 @@ body {
 
 .btn:hover {
     background-color: #007BFF;
+    border: 2px solid #007BFF;
+    color: #fff;
+}
+
+
+.btn_11 {
+    border: none;
+    background-color: green;
+    color:white;
+    padding: 8px 18px;
+    border-radius: 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin-left: 150px;
+    
+}
+
+.btn_11:hover {
+    background-color: #00ff11;
+    border: none;
     color: #fff;
 }
 
@@ -516,17 +538,33 @@ body {
 }
 .ch1 h1{
     text-align: center;
-    color: red;
+    color: rgb(8, 51, 157);
     margin-top: 10px;
+    font-weight: bold;
+}
+.ch1 h3{
+    color: red;
+    margin: 10px;
+}
+.ch1 button{
+    text-align: center;
+    margin-right: 40px;
+}
+.ch1 li{
+    margin: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+    background-color:rgb(108, 162, 244);
 }
 
 .ch1,.ch2,.ch3{
     width: 400px;
-    height: 250px;
+    height: auto;
     margin: 5px;
     margin-top: 15px;
     border: 2px solid black;
-    background-color: white;
+    background-color: rgb(108, 162, 244);
     border-radius: 20px;
     border: none;
+    transition: all 0.3s ease;
 }
