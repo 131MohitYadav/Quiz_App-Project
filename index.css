@@ -500,3 +500,33 @@ body {
     font-size: 40px;
     color: red;
 }
+
+
+/* // home.css */
+
+.main{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.head{
+    text-align: center;
+    margin-top: 15px;
+    
+}
+.ch1 h1{
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+}
+
+.ch1,.ch2,.ch3{
+    width: 400px;
+    height: 250px;
+    margin: 5px;
+    margin-top: 15px;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 20px;
+    border: none;
+}
