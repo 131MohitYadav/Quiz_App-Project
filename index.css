@@ -377,7 +377,7 @@ input:focus {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: rgb(223, 209, 209);
+    
 }
 
 /* Navbar Styling */
@@ -392,11 +392,11 @@ body {
 }
 
 /* Logo Styling */
-.logo img {
+/* .logo img {
     border: 5px solid white;
     border-radius: 10px;
     width: 100px;
-}
+} */
 
 /* Navigation Links */
 .nav-links  {
