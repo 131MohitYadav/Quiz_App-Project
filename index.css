@@ -17,6 +17,7 @@ body {
     color: brown;
     text-align: center;
     margin: 10px;
+    font-size: 50px;
 
 
 }
@@ -542,6 +543,13 @@ body {
 .head{
     text-align: center;
     margin-top: 15px;
+    
+}
+.head_2{
+    margin-left: 80px;
+}
+#para_1{
+    text-align: center;
     
 }
 .ch1 h1{
