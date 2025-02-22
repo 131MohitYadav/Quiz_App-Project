@@ -548,6 +548,12 @@ body {
 .head_2{
     margin-left: 80px;
 }
+
+.head_3{
+    margin-left: 80px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
 #para_1{
     text-align: center;
     
@@ -558,11 +564,22 @@ body {
     margin-top: 10px;
     font-weight: bold;
 }
+.ch2 h1{
+    text-align: center;
+    color: #01050E;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
 .ch1 h3{
     color: #01050E;
     margin: 10px;
 }
-.ch1 button{
+.ch2 h3{
+    color: #112A46;
+    margin: 10px;
+}
+.ch1.ch2 button{
     text-align: center;
     margin-right: 40px;
 }
@@ -571,8 +588,13 @@ body {
     margin-left: 10px;
     background-color:#6D7AAB;
 }
+.ch2 li{
+    margin: 5px;
+    margin-left: 10px;
+    background-color:#ACC8E5;
+}
 
-.ch1,.ch2,.ch3{
+.ch1{
     width: 400px;
     height: auto;
     margin: 5px;
@@ -581,4 +603,15 @@ body {
     border-radius: 20px;
     border: none;
     transition: all 0.3s ease;
+}
+.ch2{
+    width: 400px;
+    height: auto;
+    margin: 5px;
+    margin-top: 15px;
+    background-color: #ACC8E5;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s ease;
+
 }
