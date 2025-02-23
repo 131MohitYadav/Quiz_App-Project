@@ -571,6 +571,14 @@ body {
     font-weight: bold;
 
 }
+
+.ch3 h1{
+    text-align: center;
+    color: #01050E;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
 .ch1 h3{
     color: #01050E;
     margin: 10px;
@@ -579,7 +587,12 @@ body {
     color: #112A46;
     margin: 10px;
 }
-.ch1.ch2 button{
+
+.ch3 h3{
+    color: #05111E;
+    margin: 10px;
+}
+.ch1.ch2.ch3 button{
     text-align: center;
     margin-right: 40px;
 }
@@ -592,6 +605,13 @@ body {
     margin: 5px;
     margin-left: 10px;
     background-color:#ACC8E5;
+}
+
+.ch3 li{
+    margin: 5px;
+    margin-left: 10px;
+    background-color:#C2BFB4;
+
 }
 
 .ch1{
@@ -613,5 +633,17 @@ body {
     border-radius: 20px;
     border: none;
     transition: all 0.3s ease;
+
+}
+.ch3 {
+    width: 400px;
+    height: auto;
+    margin: 5px;
+    margin-top: 15px;
+    background-color: #C2BFB4;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s ease;
+
 
 }
