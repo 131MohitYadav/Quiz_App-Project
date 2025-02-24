@@ -163,6 +163,10 @@ opacity: .95;
 /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
 }
 
+.overlay{
+    margin: 100px;
+}
+
 form {
     width: 450px;
     min-height: 500px;
@@ -646,4 +650,63 @@ body {
     transition: all 0.3s ease;
 
 
+}
+
+/* 
+ ADMIN LOGIN FORM CSS */
+
+ body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    margin: 100px auto;
+    width: 500px;
+    height: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+h2 {
+    color: #7c081b;
+}
+
+input {
+    width: 90%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for the User Data Display */
+#userList {
+    display: none; /* Initially hidden, shown after admin login */
+    margin-top: 20px;
+}
+
+#userData p {
+    background: #eee;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
 }

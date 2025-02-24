@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Admin Login Form -->
+<div class="container">
+    <h2>Admin Login</h2>
+    <input type="email" id="adminEmail" placeholder="Enter Admin Email" required>
+    <input type="password" id="adminPass" placeholder="Enter Admin Password" required>
+    <button onclick="adminLogin()">Admin Login</button>
+</div>
+
+<!-- Display All Users for Admin -->
+<div class="container" id="userList">
+    <h2>All Users</h2>
+    <div id="userData"></div>
+</div>
+
+<script>
+    // Admin Login Function
+    const adminLogin = () => {
+        let adminEmail = document.getElementById("adminEmail").value;
+        let adminPass = document.getElementById("adminPass").value;
+
+        // Admin Credentials (Change if needed)
+        if (adminEmail === "Yadavji@131.com" && adminPass === "mohit123") {
+            showAllUsers();
+        } else {
+            alert("Invalid Admin Credentials!");
+        }
+    };
+
+    // Display All Users for Admin
+    const showAllUsers = () => {
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let userDataDiv = document.getElementById("userData");
+        userDataDiv.innerHTML = "";
+
+        if (users.length === 0) {
+            userDataDiv.innerHTML = "<p>No users found.</p>";
+        } else {
+            users.forEach(user => {
+                userDataDiv.innerHTML += `<p>Name: ${user.name}, Email: ${user.email}</p>`;
+            });
+        }
+    };
+</script>
+
+    
+</body>
+</html>
