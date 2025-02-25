@@ -1,0 +1,39 @@
+{
+    "student": [
+      {
+        "name": "MOHIT YADAV",
+        "age": " 22",
+        "contact": "665899",
+        "city": " Bhopal",
+        "id": "987e"
+      },
+      {
+        "id": "3e09",
+        "name": "satyam kumar",
+        "age": "22",
+        "contact": "5262622",
+        "city": "Indor"
+      },
+      {
+        "name": " niharika singh",
+        "age": " 21",
+        "contact": " 5526",
+        "city": " gwl",
+        "id": "3cd5"
+      },
+      {
+        "id": "85ed",
+        "name": "ROHIT YADAV",
+        "age": "21",
+        "contact": "56165156165",
+        "city": "BHOPAL"
+      },
+      {
+        "id": "efbe",
+        "name": "Monisha",
+        "age": "45",
+        "contact": "58788",
+        "city": "chatishgar ex"
+      }
+    ]
+  }

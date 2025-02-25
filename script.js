@@ -127,7 +127,7 @@ let submitBtn = document.querySelector(
 let startBtn =
 	document.querySelector("#start");
 let nameEl =
-	document.querySelector("#tname");
+	document.querySelector("#name");
 let feedbackEl = document.querySelector(
 	"#feedback"
 );
