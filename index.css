@@ -714,3 +714,86 @@ body {
     border-radius: 5px;
     margin: 5px 0;
 }
+
+
+/* //indexx.css */
+/* Styling the body */
+body.Data_41 {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    
+    height: 100vh;
+    margin: 0;
+}
+
+/* Styling the form */
+form.Data_41 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    text-align: center;
+}
+
+/* Form heading */
+h1.head_44 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.Data_41 label{
+    font-weight: bold;
+    display: block;
+    margin: 10px;
+    padding-right: 300px;
+}
+
+/* Input fields */
+input.Data_41 {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+/* Submit button */
+input[type="submit"].Data_41 {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+input[type="submit"].Data_41:hover {
+    background-color: #218838;
+}
+
+/* Home Page button */
+button#btn_24 {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    
+}
+
+button#btn_24:hover {
+    background-color: #0056b3;
+}
