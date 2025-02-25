@@ -168,7 +168,7 @@ opacity: .95;
 }
 
 .overlay{
-    margin: 100px;
+    margin: 30px;
 }
 
 form {
@@ -679,14 +679,15 @@ body {
 }
 
 .int  {
-    width: 90%;
+    width: 100%;
     padding: 8px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    text-align: center;
 }
 
-.btn_31 button {
+.btn_31{
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -697,25 +698,15 @@ body {
     font-size: 16px;
 }
 
-.btn_31 button:hover {
+.btn_31 :hover {
     background-color: #0056b3;
 }
 
-/* Styling for the User Data Display */
-#userList {
-    display: none; /* Initially hidden, shown after admin login */
-    margin-top: 20px;
-}
 
-#userData p {
-    background: #eee;
-    padding: 8px;
-    border-radius: 5px;
-    margin: 5px 0;
-}
 
 
 /* //indexx.css */
+
 /* Styling the body */
 body.Data_41 {
     font-family: Arial, sans-serif;

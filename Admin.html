@@ -3,49 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
     <!-- Admin Login Form -->
-<form action="">
+    <form onsubmit="return adminLogin()">
+        <div class="imgcontainer">
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
 
-    <div class="imgcontainer">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
-      </div>
-    
+        <h2 class="head_4">Admin Login</h2>
+        <input type="email" class="int" id="adminEmail" placeholder="Enter Admin Email" required>
+        <input type="password" class="int" id="adminPass" placeholder="Enter Admin Password" required>
 
-    <h2 class="head_4">Admin Login</h2>
-    <input type="email" class="int" id="adminEmail" placeholder="Enter Admin Email" required>
-    <input type="password" class="int" id="adminPass" placeholder="Enter Admin Password" required>
-    <a href="database.html">
-        <button id="btn_31" onclick="adminLogin()">Admin Login</button>
-    </a>
-    <!-- <button id="btn_31" onclick="adminLogin()">Admin Login</button> -->
+        <button type="submit" class="btn_31">Admin Login</button>
+    </form>
 
-</form>
+    <script>
+        function adminLogin() {
+            let adminEmail = document.getElementById("adminEmail").value;
+            let adminPass = document.getElementById("adminPass").value;
 
-
-
-
-<script>
-    // Admin Login Function
-    const adminLogin = () => {
-        let adminEmail = document.getElementById("adminEmail").value;
-        let adminPass = document.getElementById("adminPass").value;
-
-        // Admin Credentials (Change if needed)
-        if (adminEmail === "Yadavji@131.com" && adminPass === "mohit123") {
-            showAllUsers();
-        } else {
-            alert("Invalid Admin Credentials!");
+            // Correct Admin Credentials
+            if (adminEmail === "Yadavji@131.com" && adminPass === "mohit123") {
+                window.location.href = "database.html"; // Redirect to database.html on success
+                return false; // Prevent default form submission
+            } else {
+                alert("Invalid Admin Credentials!");
+                return false; // Prevent form from redirecting
+            }
         }
-    };
+    </script>
 
-
-</script>
-
-    
 </body>
 </html>
