@@ -388,6 +388,48 @@ body {
     
 }
 
+
+
+.container_45 {
+    width: 100%;
+    
+    
+}
+
+.image-container {
+    width: 100%;
+    height: 600px; /* Adjust as needed */
+    background: url('onlin3.png') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text_2 {
+    
+    
+    color:black;
+    margin-left: 900px;
+    margin-bottom: 100px;
+    justify-content: right;
+    background:rgb(255, 255, 255); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.text_2 h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.text_2 p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 5px;
+}
+
+
 /* Navbar Styling */
 .navbar {
     display: flex;
