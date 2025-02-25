@@ -659,24 +659,23 @@ body {
 /* 
  ADMIN LOGIN FORM CSS */
 
- body {
-    font-family: Arial, sans-serif;
-    
-    background-color: #f4f4f4;
-}
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
 
-.container_40 {
-    background: white;
-    padding: 20px;
-    margin: 100px auto;
-    width: 500px;
-    height: 500px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-}
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  
 
-.head_4 h2 {
-    color: #7c081b;
+
+
+.head_4{
+    color: #150d0f;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .int  {
@@ -765,35 +764,51 @@ input.Data_41 {
 /* Button container */
 .button-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-top: 15px;
 }
 
 /* Submit button */
-input[type="submit"].Data_41 {
+.Data_44{
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 0px 20px;
+
     cursor: pointer;
     border-radius: 4px;
 }
 
-input[type="submit"].Data_41:hover {
+ .Data_44:hover{
     background-color: #218838;
 }
 
 /* Home Page button */
-button#btn_24 {
+
+
+#btn_25 {
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100px;
+    
+}
+
+#btn_25:hover {
+    background-color:rgb(86, 225, 95);
+}
+
+#btn_24 {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
     cursor: pointer;
     border-radius: 4px;
     
 }
 
-button#btn_24:hover {
+#btn_24:hover {
     background-color: #0056b3;
 }

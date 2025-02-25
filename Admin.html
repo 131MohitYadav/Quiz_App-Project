@@ -9,7 +9,13 @@
 <body>
 
     <!-- Admin Login Form -->
-<div class="container_40">
+<form action="">
+
+    <div class="imgcontainer">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      </div>
+    
+
     <h2 class="head_4">Admin Login</h2>
     <input type="email" class="int" id="adminEmail" placeholder="Enter Admin Email" required>
     <input type="password" class="int" id="adminPass" placeholder="Enter Admin Password" required>
@@ -17,13 +23,11 @@
         <button id="btn_31" onclick="adminLogin()">Admin Login</button>
     </a>
     <!-- <button id="btn_31" onclick="adminLogin()">Admin Login</button> -->
-</div>
 
-<!-- Display All Users for Admin -->
-<div class="container_40" id="userList">
-    <h2>All Users</h2>
-    <div id="userData"></div>
-</div>
+</form>
+
+
+
 
 <script>
     // Admin Login Function
@@ -39,20 +43,7 @@
         }
     };
 
-    // Display All Users for Admin
-    const showAllUsers = () => {
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-        let userDataDiv = document.getElementById("userData");
-        userDataDiv.innerHTML = "";
 
-        if (users.length === 0) {
-            userDataDiv.innerHTML = "<p>No users found.</p>";
-        } else {
-            users.forEach(user => {
-                userDataDiv.innerHTML += `<p>Name: ${user.name}, Email: ${user.email}</p>`;
-            });
-        }
-    };
 </script>
 
     
