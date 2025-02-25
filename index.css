@@ -657,11 +657,11 @@ body {
 
  body {
     font-family: Arial, sans-serif;
-    text-align: center;
+    
     background-color: #f4f4f4;
 }
 
-.container {
+.container_40 {
     background: white;
     padding: 20px;
     margin: 100px auto;
@@ -671,11 +671,11 @@ body {
     border-radius: 20px;
 }
 
-h2 {
+.head_4 h2 {
     color: #7c081b;
 }
 
-input {
+.int  {
     width: 90%;
     padding: 8px;
     margin: 10px 0;
@@ -683,7 +683,7 @@ input {
     border-radius: 5px;
 }
 
-button {
+.btn_31 button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -694,7 +694,7 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+.btn_31 button:hover {
     background-color: #0056b3;
 }
 
