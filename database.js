@@ -10,6 +10,9 @@ async function fetdata() {
         <td> ${e.contact}</td>
         <td> ${e.age}</td>
         <td> ${e.city}</td>
+         <td> ${e.test}</td>
+        <td> ${e.marks}</td>
+        
         <td><button onclick= "mydel( '${e.id}') "> Delete </button> </td>
         <td><button onclick= "myedit( '${e.id}') "> EDIT </button> </td>
  
@@ -40,7 +43,9 @@ function insertdata() {
         name:document.querySelector('#name').value,
         age:document.querySelector('#age').value,
         contact:document.querySelector('#contact').value,
-        city:document.querySelector('#city').value
+        city:document.querySelector('#city').value,
+        test:document.querySelector('#test').value,
+        marks:document.querySelector('#marks').value
     }
 
     fetch ('http://localhost:3000/student' , {
@@ -63,6 +68,9 @@ async function myedit(id) {
     <input type="text" value=" ${fdata.age}" id="age1"> <br><br>
     <input type="text" value=" ${fdata.contact}" id="contact1"> <br><br>
     <input type="text" value=" ${fdata.city}" id="city1"> <br><br>
+        <input type="text" value=" ${fdata.test}" id="test1"> <br><br>
+    <input type="text" value=" ${fdata.marks}" id="marks1"> <br><br>
+
 
     <input type="submit" onclick = "finalupdate('${fdata.id}')">
     `
@@ -76,7 +84,9 @@ function finalupdate(id) {
         name:document.querySelector('#name1').value,
         age:document.querySelector('#age1').value,
         contact:document.querySelector('#contact1').value,
-        city:document.querySelector('#city1').value
+        city:document.querySelector('#city1').value,
+        test:document.querySelector('#test1').value,
+        marks:document.querySelector('#marks1').value
     }
 
     fetch(`http://localhost:3000/student/${id}`, {

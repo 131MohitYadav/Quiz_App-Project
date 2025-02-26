@@ -810,16 +810,24 @@ input.Data_41 {
 }
 
 /* Submit button */
-.Data_44{
+ .Data_45{
     background-color: #28a745;
+    color: white;
+    border: none;
+    
+    cursor: pointer;
+    border-radius: 4px;
+} 
+
+.Data_46{
+    background-color: #2f2fdd;
     color: white;
     border: none;
     padding: 0px 20px;
 
     cursor: pointer;
     border-radius: 4px;
-}
-
+} 
  .Data_44:hover{
     background-color: #218838;
 }
@@ -833,7 +841,8 @@ input.Data_41 {
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    width: 100px;
+    padding: 0px 20px 0px 20px ;
+    
     
 }
 
