@@ -9,7 +9,9 @@
 <body>
 
     <!-- Admin Login Form -->
+     <div class="overlay_1">
     <form onsubmit="return adminLogin()">
+        
         <div class="imgcontainer">
             <img src="img_avatar2.png" alt="Avatar" class="avatar">
         </div>
@@ -20,7 +22,7 @@
 
         <button type="submit" class="btn_31">Admin Login</button>
     </form>
-
+</div>
     <script>
         function adminLogin() {
             let adminEmail = document.getElementById("adminEmail").value;
