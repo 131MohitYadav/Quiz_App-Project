@@ -425,7 +425,7 @@ body {
 }
 
 .text_2 h1 {
-    font-size: 36px;
+    font-size: 50px;
     margin-bottom: 10px;
 }
 
@@ -727,9 +727,11 @@ body {
 }
 
 .int  {
-    width: 100%;
+    width: 60%;
     padding: 8px;
     margin: 10px 0;
+    margin-left: 80px;
+    justify-content: center;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
