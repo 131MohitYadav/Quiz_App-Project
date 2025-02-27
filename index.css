@@ -625,12 +625,14 @@ body {
 }
 .head_2{
     margin-left: 80px;
+    padding-top: 20px;
 }
 
 .head_3{
     margin-left: 80px;
     margin-top: 20px;
     margin-bottom: 5px;
+    padding-top: 20px;
 }
 #para_1{
     text-align: center;
@@ -796,6 +798,40 @@ body {
     border: none;
     transition: all 0.3s ease;
 
+
+}
+
+
+.cont_10{
+    width: 98%;
+    background-color: #8a99d1;
+    height: 700px;
+    margin-top: 10px;
+    margin-left: 15px;
+    border-radius: 20px;
+    
+    
+}
+
+
+.cont_20{
+    width: 98%;
+    background-color: #94b6d9;
+    height: 400px;
+    margin-top: 10px;
+    margin-left: 15px;
+    border-radius: 20px;
+    
+    
+}
+
+.cont_30{
+    width: 98%;
+    background-color: #d2c8a7;
+    height: 700px;
+    margin-top: 10px;
+    margin-left: 15px;
+    border-radius: 20px;
 
 }
 
