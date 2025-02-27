@@ -5,7 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
+    
     <title>Code Quiz</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -36,15 +41,40 @@
         <main class="quiz">
             <div id="quiz-start">
                 <div class="landing" id="start-screen">
-
-                    <h1>
-                        Online Quiz Challenge
+                    <h1 id="top">
+                        Quizz
                     </h1>
-                    <h2>Round 3 => REASONING</h2>
 
+                    <h1 id="top_1">
+                        Online Quizz Challenge
+                    </h1>
+                    <h2 id="top_2">REASONING TEST</h2>
+                    <p>
+                        Try to answer the following
+                        code-related questions with
+                        in the time limit. In that Coding challenge each correct answer have 5 marks and no negative
+                        marking if the answer is incorrect. Each Question have only 1 Minutes to solved and Total Time have
+                        only 10 Minutes to completed test series.
+                    <div class="Rules">
+                        <div class="Rules1">
+                            <span>NOTE:<br></span>
+                        </div>
+                        <span>1. No Other electronics allowed<br></span>
+                        <span>2. No Communication<br></span>
+                        <span>3. One Screen only<br></span>
+                        <span>4. No other browsers or unauthorized software</span>
+                    </div>
+
+                    </p>
                     <button id="start">
                         Start Quiz
                     </button>
+                    <a href="Home.html">
+                        <button id="start">
+                            Home Page
+                        </button>
+                    </a>
+
                 </div>
             </div>
 
@@ -60,13 +90,28 @@
                 <p>Your final score is:
                     <span id="score-final">
                     </span>
+
                 </p>
-                <p>
-                   <label>Please enter your name:</label> 
+                <p id="pass-fail-message"></p>
+
+                <label>Please enter your name and Test name:</label>
                     <input type="text" id="name" max="3" />
-                    <button id="submit-score">
+                    <a href="indexx.html">
+                        <button id="submit-score">
+                            Submit
+                        </button> 
+                    </a>
+
+                    <!-- <button id="submit-score">
                         Submit
-                    </button>
+                    </button>  -->
+
+                    <!-- <a href="AptitudeRound.html">
+                    <button id="btn">APTITUDE ROUND</button>
+                </a>
+                    <a href="ReasoningRound.html">
+                    <button id="btn1">REASONING ROUND</button>
+                    </a> -->
                 </p>
             </div>
 
@@ -74,7 +119,7 @@
             </div>
         </main>
     </div>
-    <script src="./script2.js"></script>
+    <script src="Reas.js"></script>
 </body>
 
 </html>

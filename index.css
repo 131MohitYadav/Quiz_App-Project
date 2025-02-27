@@ -56,6 +56,8 @@ body {
 .Rules {
     text-align: left;
     padding-right: 80px;
+    margin: 20px;
+    font-weight: bold;
 }
 
 .Rules1 {
@@ -63,6 +65,7 @@ body {
     font-size: 20px;
     line-height: 1.2em;
     margin: 5px;
+    font-weight: bold;
 
 }
 
@@ -105,7 +108,8 @@ button:hover {
 
 #options{
     display: inline-block;
-    margin-right: 300px;
+    margin-right: 350px;
+    margin-top: 30px;
 
 }
 
@@ -121,7 +125,9 @@ input[type='text'] {
 
 .hide {
     display: none;
+    
 }
+
 
 #questions {
     word-wrap: break-word;  /* Ensures words break when needed */
@@ -822,7 +828,8 @@ input.Data_41 {
 .button-container {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 15px;
+    margin-top: 20px;
+    width: 100%;
 }
 
 /* Submit button */
@@ -857,7 +864,8 @@ input.Data_41 {
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    padding: 0px 20px 0px 20px ;
+    
+    padding: 10px 30px 10px 30px;
     
     
 }

@@ -1,90 +1,70 @@
 let questions = [
     {
-        prompt: `Q.1. Number of primitive data types in Java are?`,
-        options: ["6", "7", "8", "9"],
-        answer: "8",
+        prompt: `Q.1. What is the size of an \`int\` data type in C?`,
+        options: ["2 bytes", "4 bytes", "8 bytes", "Depends on the compiler"],
+        answer: "Depends on the compiler",
     },
     {
-        prompt: `Q.2. What is the size of float and double in Java?`,
-        options: ["32 and 64", "32 and 32", "64 and 32", "64 and 64"],
-        answer: "32 and 64",
+        prompt: `Q.2. What is the correct format specifier for printing a float value in C?`,
+        options: ["%d", "%c", "%f", "%lf"],
+        answer: "%f",
     },
     {
-        prompt: `Q.3. Automatic type conversion is possible in which of the possible cases?`,
-        options: ["Byte to int", "Int to long", "Long to int", "Short to int"],
-        answer: "Int to long",
+        prompt: `Q.3. Which of the following is a valid variable name in C?`,
+        options: ["1var", "_var", "var-name", "var name"],
+        answer: "_var",
     },
     {
-        prompt: `Q.4. Find the output of the following code:\n
-int Integer = 24;
-char String = 'I';
-System.out.print(Integer);
-System.out.print(String);`,
-        options: ["I", "Compile error", "Throws exception", "24 I"],
-        answer: "24 I",
-    },
-    {
-        prompt: `Q.5. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        short x = 10;
-        x = x * 5;
-        System.out.print(x);
-    }
+        prompt: `Q.4. What will be the output of the following code:\n
+#include <stdio.h>
+int main() {
+    int x = 10;
+    printf("%d", x++);
+    return 0;
 }`,
-        options: ["50", "10", "Compile error", "Exception"],
-        answer: "Compile error",
+        options: ["10", "11", "Garbage value", "Compile error"],
+        answer: "10",
     },
     {
-        prompt: `Q.6. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        byte x = 127;
-        x++;
-        x++;
-        System.out.print(x);
-    }
+        prompt: `Q.5. What does the \`sizeof\` operator return in C?`,
+        options: ["Memory address", "Size in bits", "Size in bytes", "Number of elements"],
+        answer: "Size in bytes",
+    },
+    {
+        prompt: `Q.6. Which of the following loops in C is an entry-controlled loop?`,
+        options: ["while", "do-while", "both while and for", "none"],
+        answer: "both while and for",
+    },
+    {
+        prompt: `Q.7. What is the output of the following C program?\n
+#include <stdio.h>
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    printf("%d", arr[2]);
+    return 0;
 }`,
-        options: ["-127", "127", "129", "2"],
-        answer: "-127",
+        options: ["1", "2", "3", "4"],
+        answer: "3",
     },
     {
-        prompt: `Q.7. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        int[] x = {120, 200, 016};
-        for (int i = 0; i < x.length; i++) {
-            System.out.print(x[i] + " ");
-        }
-    }
-}`,
-        options: ["120 200 016", "120 200 14", "120 200 16", "None"],
-        answer: "120 200 14",
+        prompt: `Q.8. What is the default return type of a function in C if not specified?`,
+        options: ["void", "int", "float", "double"],
+        answer: "int",
     },
     {
-        prompt: `Q.8. When an array is passed to a method, what does the method receive?`,
+        prompt: `Q.9. Which of the following statements is true about pointers in C?`,
         options: [
-            "The reference of the array",
-            "A copy of the array",
-            "Length of the array",
-            "Copy of first element",
+            "Pointers store memory addresses",
+            "Pointers can only point to integers",
+            "Pointers cannot be NULL",
+            "Pointers always store values",
         ],
-        answer: "The reference of the array",
+        answer: "Pointers store memory addresses",
     },
     {
-        prompt: `Q.9. Select the valid statement to declare and initialize an array.`,
-        options: [
-            "int[] A = {}",
-            "int[] A = {1,2,3}",
-            "int[] A = (1,2,3)",
-            "int[][] A = {1,2,3}",
-        ],
-        answer: "int[] A = {1,2,3}",
-    },
-    {
-        prompt: `Q.10. Arrays in Java are-`,
-        options: ["Object references", "Objects", "Primitive data type", "None"],
-        answer: "Objects",
+        prompt: `Q.10. What is the purpose of the \`break\` statement in C?`,
+        options: ["Stop program execution", "Exit loop or switch statement", "Skip next iteration", "None of the above"],
+        answer: "Exit loop or switch statement",
     }
 ];
 
@@ -130,7 +110,7 @@ function getQuestion() {
         let choiceBtn = document.createElement("button");
         choiceBtn.setAttribute("value", choice);
         choiceBtn.innerHTML = `${i + 1}. ${choice}`;
-		
+        
         choiceBtn.onclick = questionClick;
         choicesEl.appendChild(choiceBtn);
     });
@@ -179,13 +159,13 @@ function quizEnd() {
     if (score >= 25) { // Adjust passing score if needed
         passFailMessageEl.textContent = "🎉 You are Passed in Exam!";
         passFailMessageEl.style.color = "green";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     } else {
         passFailMessageEl.textContent = "❌ You did not pass the exam.";
         passFailMessageEl.style.color = "red";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     }
 
     questionsEl.setAttribute("class", "hide");

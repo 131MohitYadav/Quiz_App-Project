@@ -1,90 +1,75 @@
 let questions = [
     {
-        prompt: `Q.1. Number of primitive data types in Java are?`,
-        options: ["6", "7", "8", "9"],
-        answer: "8",
-    },
-    {
-        prompt: `Q.2. What is the size of float and double in Java?`,
-        options: ["32 and 64", "32 and 32", "64 and 32", "64 and 64"],
-        answer: "32 and 64",
-    },
-    {
-        prompt: `Q.3. Automatic type conversion is possible in which of the possible cases?`,
-        options: ["Byte to int", "Int to long", "Long to int", "Short to int"],
-        answer: "Int to long",
-    },
-    {
-        prompt: `Q.4. Find the output of the following code:\n
-int Integer = 24;
-char String = 'I';
-System.out.print(Integer);
-System.out.print(String);`,
-        options: ["I", "Compile error", "Throws exception", "24 I"],
-        answer: "24 I",
-    },
-    {
-        prompt: `Q.5. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        short x = 10;
-        x = x * 5;
-        System.out.print(x);
-    }
-}`,
-        options: ["50", "10", "Compile error", "Exception"],
-        answer: "Compile error",
-    },
-    {
-        prompt: `Q.6. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        byte x = 127;
-        x++;
-        x++;
-        System.out.print(x);
-    }
-}`,
-        options: ["-127", "127", "129", "2"],
-        answer: "-127",
-    },
-    {
-        prompt: `Q.7. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        int[] x = {120, 200, 016};
-        for (int i = 0; i < x.length; i++) {
-            System.out.print(x[i] + " ");
-        }
-    }
-}`,
-        options: ["120 200 016", "120 200 14", "120 200 16", "None"],
-        answer: "120 200 14",
-    },
-    {
-        prompt: `Q.8. When an array is passed to a method, what does the method receive?`,
+        prompt: `Q.1. What is the correct syntax to print "Hello, World!" in Python?`,
         options: [
-            "The reference of the array",
-            "A copy of the array",
-            "Length of the array",
-            "Copy of first element",
+            `print("Hello, World!")`,
+            `System.out.println("Hello, World!")`,
+            `console.log("Hello, World!")`,
+            `echo "Hello, World!";`
         ],
-        answer: "The reference of the array",
+        answer: `print("Hello, World!")`,
     },
     {
-        prompt: `Q.9. Select the valid statement to declare and initialize an array.`,
+        prompt: `Q.2. Which data type is used to store a whole number in Python?`,
+        options: ["int", "float", "string", "boolean"],
+        answer: "int",
+    },
+    {
+        prompt: `Q.3. What will be the output of the following Python code?\n
+x = 5
+y = 2
+print(x // y)`,
+        options: ["2.5", "2", "2.0", "Error"],
+        answer: "2",
+    },
+    {
+        prompt: `Q.4. What is the purpose of the \`len()\` function in Python?`,
         options: [
-            "int[] A = {}",
-            "int[] A = {1,2,3}",
-            "int[] A = (1,2,3)",
-            "int[][] A = {1,2,3}",
+            "To find the length of a list, string, or tuple",
+            "To count the number of loops",
+            "To initialize an array",
+            "To define a new function"
         ],
-        answer: "int[] A = {1,2,3}",
+        answer: "To find the length of a list, string, or tuple",
     },
     {
-        prompt: `Q.10. Arrays in Java are-`,
-        options: ["Object references", "Objects", "Primitive data type", "None"],
-        answer: "Objects",
+        prompt: `Q.5. Which of the following is NOT a valid Python loop?`,
+        options: ["for", "while", "do-while", "None"],
+        answer: "do-while",
+    },
+    {
+        prompt: `Q.6. What will be the output of the following Python code?\n
+arr = [10, 20, 30, 40]
+print(arr[2])`,
+        options: ["10", "20", "30", "40"],
+        answer: "30",
+    },
+    {
+        prompt: `Q.7. Which keyword is used to define a function in Python?`,
+        options: ["func", "define", "def", "function"],
+        answer: "def",
+    },
+    {
+        prompt: `Q.8. What is the default return value of a function in Python if no return statement is used?`,
+        options: ["0", "None", "False", "Undefined"],
+        answer: "None",
+    },
+    {
+        prompt: `Q.9. What will be the output of the following code?\n
+x = 5
+print(x + 1)`,
+        options: ["4", "5", "6", "Undefined"],
+        answer: "6",
+    },
+    {
+        prompt: `Q.10. What is the purpose of the \`del\` keyword in Python?`,
+        options: [
+            "To delete files",
+            "To delete an object or variable",
+            "To remove an element from a list",
+            "To destroy a function"
+        ],
+        answer: "To delete an object or variable",
     }
 ];
 
@@ -104,7 +89,7 @@ let time = questions.length * 60;
 let timerId;
 let score = 0;
 
-// Start quiz and hide frontpage
+// Start quiz and hide front page
 function quizStart() {
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
@@ -114,15 +99,15 @@ function quizStart() {
     getQuestion();
 }
 
-// Loop through questions and display properly formatted pseudocode
+// Loop through questions and display properly formatted Python code
 function getQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let promptEl = document.getElementById("question-words");
 
-    // Format the pseudocode properly
+    // Format the Python code properly
     let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
 
-    // Use <pre> and <code> to display properly formatted pseudocode
+    // Use <pre> and <code> to display properly formatted Python code
     promptEl.innerHTML = `<pre><code>${formattedPrompt}</code></pre>`;
 
     choicesEl.innerHTML = "";
@@ -130,7 +115,7 @@ function getQuestion() {
         let choiceBtn = document.createElement("button");
         choiceBtn.setAttribute("value", choice);
         choiceBtn.innerHTML = `${i + 1}. ${choice}`;
-		
+        
         choiceBtn.onclick = questionClick;
         choicesEl.appendChild(choiceBtn);
     });
@@ -179,13 +164,13 @@ function quizEnd() {
     if (score >= 25) { // Adjust passing score if needed
         passFailMessageEl.textContent = "🎉 You are Passed in Exam!";
         passFailMessageEl.style.color = "green";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     } else {
         passFailMessageEl.textContent = "❌ You did not pass the exam.";
         passFailMessageEl.style.color = "red";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     }
 
     questionsEl.setAttribute("class", "hide");

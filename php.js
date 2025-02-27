@@ -1,90 +1,86 @@
 let questions = [
     {
-        prompt: `Q.1. Number of primitive data types in Java are?`,
-        options: ["6", "7", "8", "9"],
-        answer: "8",
-    },
-    {
-        prompt: `Q.2. What is the size of float and double in Java?`,
-        options: ["32 and 64", "32 and 32", "64 and 32", "64 and 64"],
-        answer: "32 and 64",
-    },
-    {
-        prompt: `Q.3. Automatic type conversion is possible in which of the possible cases?`,
-        options: ["Byte to int", "Int to long", "Long to int", "Short to int"],
-        answer: "Int to long",
-    },
-    {
-        prompt: `Q.4. Find the output of the following code:\n
-int Integer = 24;
-char String = 'I';
-System.out.print(Integer);
-System.out.print(String);`,
-        options: ["I", "Compile error", "Throws exception", "24 I"],
-        answer: "24 I",
-    },
-    {
-        prompt: `Q.5. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        short x = 10;
-        x = x * 5;
-        System.out.print(x);
-    }
-}`,
-        options: ["50", "10", "Compile error", "Exception"],
-        answer: "Compile error",
-    },
-    {
-        prompt: `Q.6. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        byte x = 127;
-        x++;
-        x++;
-        System.out.print(x);
-    }
-}`,
-        options: ["-127", "127", "129", "2"],
-        answer: "-127",
-    },
-    {
-        prompt: `Q.7. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        int[] x = {120, 200, 016};
-        for (int i = 0; i < x.length; i++) {
-            System.out.print(x[i] + " ");
-        }
-    }
-}`,
-        options: ["120 200 016", "120 200 14", "120 200 16", "None"],
-        answer: "120 200 14",
-    },
-    {
-        prompt: `Q.8. When an array is passed to a method, what does the method receive?`,
+        prompt: `Q.1. What does PHP stand for?`,
         options: [
-            "The reference of the array",
-            "A copy of the array",
-            "Length of the array",
-            "Copy of first element",
+            "Personal Home Page",
+            "PHP: Hypertext Preprocessor",
+            "Private Hosting Protocol",
+            "Programming Home Page"
         ],
-        answer: "The reference of the array",
+        answer: "PHP: Hypertext Preprocessor",
     },
     {
-        prompt: `Q.9. Select the valid statement to declare and initialize an array.`,
+        prompt: `Q.2. Which symbol is used to declare a variable in PHP?`,
+        options: ["$", "@", "#", "&"],
+        answer: "$",
+    },
+    {
+        prompt: `Q.3. What will be the output of the following PHP code?\n
+<?php
+$x = 5;
+echo $x + 10;
+?>`,
+        options: ["5", "10", "15", "Error"],
+        answer: "15",
+    },
+    {
+        prompt: `Q.4. Which function is used to output text in PHP?`,
+        options: ["print()", "echo", "display()", "show()"],
+        answer: "echo",
+    },
+    {
+        prompt: `Q.5. What is the correct way to start a PHP script?`,
         options: [
-            "int[] A = {}",
-            "int[] A = {1,2,3}",
-            "int[] A = (1,2,3)",
-            "int[][] A = {1,2,3}",
+            "<?php",
+            "<php>",
+            "<script>",
+            "<!DOCTYPE php>"
         ],
-        answer: "int[] A = {1,2,3}",
+        answer: "<?php",
     },
     {
-        prompt: `Q.10. Arrays in Java are-`,
-        options: ["Object references", "Objects", "Primitive data type", "None"],
-        answer: "Objects",
+        prompt: `Q.6. What will be the output of the following PHP code?\n
+<?php
+$txt = "Hello World!";
+echo strlen($txt);
+?>`,
+        options: ["12", "11", "10", "Error"],
+        answer: "12",
+    },
+    {
+        prompt: `Q.7. Which of the following is NOT a valid PHP variable name?`,
+        options: [
+            "$1variable",
+            "$variable1",
+            "$_variable",
+            "$varName"
+        ],
+        answer: "$1variable",
+    },
+    {
+        prompt: `Q.8. How do you write a single-line comment in PHP?`,
+        options: [
+            "// Comment",
+            "/* Comment */",
+            "# Comment",
+            "Both // and #"
+        ],
+        answer: "Both // and #",
+    },
+    {
+        prompt: `Q.9. What does the "isset()" function do in PHP?`,
+        options: [
+            "Checks if a variable is set and not null",
+            "Checks if a variable is empty",
+            "Deletes a variable",
+            "Creates a variable"
+        ],
+        answer: "Checks if a variable is set and not null",
+    },
+    {
+        prompt: `Q.10. Which superglobal array is used to collect form data in PHP?`,
+        options: ["$_POST", "$GLOBALS", "$_SESSION", "$_CONFIG"],
+        answer: "$_POST",
     }
 ];
 
@@ -104,7 +100,7 @@ let time = questions.length * 60;
 let timerId;
 let score = 0;
 
-// Start quiz and hide frontpage
+// Start quiz and hide front page
 function quizStart() {
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
@@ -114,15 +110,15 @@ function quizStart() {
     getQuestion();
 }
 
-// Loop through questions and display properly formatted pseudocode
+// Loop through questions and display properly formatted PHP code
 function getQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let promptEl = document.getElementById("question-words");
 
-    // Format the pseudocode properly
+    // Format the PHP code properly
     let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
 
-    // Use <pre> and <code> to display properly formatted pseudocode
+    // Use <pre> and <code> to display properly formatted PHP code
     promptEl.innerHTML = `<pre><code>${formattedPrompt}</code></pre>`;
 
     choicesEl.innerHTML = "";
@@ -130,7 +126,7 @@ function getQuestion() {
         let choiceBtn = document.createElement("button");
         choiceBtn.setAttribute("value", choice);
         choiceBtn.innerHTML = `${i + 1}. ${choice}`;
-		
+        
         choiceBtn.onclick = questionClick;
         choicesEl.appendChild(choiceBtn);
     });
@@ -177,15 +173,15 @@ function quizEnd() {
 
     // Determine pass or fail message
     if (score >= 25) { // Adjust passing score if needed
-        passFailMessageEl.textContent = "🎉 You are Passed in Exam!";
+        passFailMessageEl.textContent = "🎉 You Passed the Exam!";
         passFailMessageEl.style.color = "green";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     } else {
         passFailMessageEl.textContent = "❌ You did not pass the exam.";
         passFailMessageEl.style.color = "red";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     }
 
     questionsEl.setAttribute("class", "hide");

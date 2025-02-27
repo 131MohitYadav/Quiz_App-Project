@@ -1,92 +1,107 @@
+
 let questions = [
-    {
-        prompt: `Q.1. Number of primitive data types in Java are?`,
-        options: ["6", "7", "8", "9"],
-        answer: "8",
-    },
-    {
-        prompt: `Q.2. What is the size of float and double in Java?`,
-        options: ["32 and 64", "32 and 32", "64 and 32", "64 and 64"],
-        answer: "32 and 64",
-    },
-    {
-        prompt: `Q.3. Automatic type conversion is possible in which of the possible cases?`,
-        options: ["Byte to int", "Int to long", "Long to int", "Short to int"],
-        answer: "Int to long",
-    },
-    {
-        prompt: `Q.4. Find the output of the following code:\n
-int Integer = 24;
-char String = 'I';
-System.out.print(Integer);
-System.out.print(String);`,
-        options: ["I", "Compile error", "Throws exception", "24 I"],
-        answer: "24 I",
-    },
-    {
-        prompt: `Q.5. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        short x = 10;
-        x = x * 5;
-        System.out.print(x);
-    }
-}`,
-        options: ["50", "10", "Compile error", "Exception"],
-        answer: "Compile error",
-    },
-    {
-        prompt: `Q.6. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        byte x = 127;
-        x++;
-        x++;
-        System.out.print(x);
-    }
-}`,
-        options: ["-127", "127", "129", "2"],
-        answer: "-127",
-    },
-    {
-        prompt: `Q.7. Find the output of the following program:\n
-public class Solution {
-    public static void main(String[] args) {
-        int[] x = {120, 200, 016};
-        for (int i = 0; i < x.length; i++) {
-            System.out.print(x[i] + " ");
-        }
-    }
-}`,
-        options: ["120 200 016", "120 200 14", "120 200 16", "None"],
-        answer: "120 200 14",
-    },
-    {
-        prompt: `Q.8. When an array is passed to a method, what does the method receive?`,
-        options: [
-            "The reference of the array",
-            "A copy of the array",
-            "Length of the array",
-            "Copy of first element",
-        ],
-        answer: "The reference of the array",
-    },
-    {
-        prompt: `Q.9. Select the valid statement to declare and initialize an array.`,
-        options: [
-            "int[] A = {}",
-            "int[] A = {1,2,3}",
-            "int[] A = (1,2,3)",
-            "int[][] A = {1,2,3}",
-        ],
-        answer: "int[] A = {1,2,3}",
-    },
-    {
-        prompt: `Q.10. Arrays in Java are-`,
-        options: ["Object references", "Objects", "Primitive data type", "None"],
-        answer: "Objects",
-    }
+	{
+		prompt: `  Q.1. Find the Odd one out?`,
+		options: [
+			"BEK",
+			"CFL",
+			"MPS",
+			"GJP",
+		],
+		answer: "MPS",
+	},
+
+	{
+		prompt: `Q.2. In certain code "CODE" is written as "DPEF".
+         How is "DEFENCE" is written in that code?`,
+		options: [
+			"KWMCJFL",
+			"ELDFSAP",
+			"EFGFODF",
+			"HRAOSCV",
+		],
+		answer: "EFGFODF",
+	},
+
+	{
+		prompt: `Q.3. If the letters of the word "PRODUCT" are arrange\n alphabetically, then which letter would be farthest from the second letter of word?`,
+		options: [
+			"T",
+			"R",
+			"U",
+			"P",
+		],
+		answer: "U",
+	},
+
+	{
+		prompt: `Q.4. BFNM: EIQP :: RBGJ: ?`,
+		options: ["GHJK", "WXYZ", "UEJM", "ABCD"],
+		answer: "4",
+	},
+
+	{
+		prompt: `Q.5. Hardworking: Determined :: Hapyy:?`,
+		options: [
+			"Sad",
+			"Upbeat",
+			"Lovely",
+			"Hilarious",
+		],
+		answer: "Upbeat",
+	},
+	{
+		prompt: `Q.6. Good: Ample :: Droll:?`,
+		options: [
+			"Corpulent",
+			"Quiet",
+			"Recede",
+			"Humorous",
+		],
+		answer: "Humorous",
+	},
+	{
+		prompt: `Q.7. Find the next numbers in the series : 61,52,63,94,46,....?`,
+		options: [
+			"81",
+			"18",
+			"49",
+			"35",
+		],
+		answer: "18",
+	},
+	{
+		prompt: ` Q.8.In a row of 26 girls, when Sakshi shifted four places towards the left, she \n become 10th from the left end. What wa her earlier position form the right end \n of the row?`,
+		options: [
+			"10th",
+			"11th",
+			"13th",
+			"12th",
+		],
+		answer: "13th",
+	},
+	{
+		prompt: `Q.9. Identify the wrong number in the series. 0,1,1,2,3,5,8,13,20,34?`,
+		options: [
+			"8",
+			"20",
+			"13",
+			"34",
+		],
+		answer: "20",
+	},
+	{
+		prompt: `Q.10. A box had 17 bulbs. All but five are fused How many are actually fused?`,
+		options: [
+			"9",
+			"8",
+			"12",
+			"5",
+		],
+		answer: "12",
+	}
 ];
+
 
 // Get DOM Elements
 let questionsEl = document.querySelector("#questions");
@@ -104,7 +119,7 @@ let time = questions.length * 60;
 let timerId;
 let score = 0;
 
-// Start quiz and hide frontpage
+// Start quiz and hide front page
 function quizStart() {
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
@@ -114,15 +129,15 @@ function quizStart() {
     getQuestion();
 }
 
-// Loop through questions and display properly formatted pseudocode
+// Loop through questions and display properly formatted CSS code
 function getQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let promptEl = document.getElementById("question-words");
 
-    // Format the pseudocode properly
+    // Format the CSS code properly
     let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
 
-    // Use <pre> and <code> to display properly formatted pseudocode
+    // Use <pre> and <code> to display properly formatted CSS code
     promptEl.innerHTML = `<pre><code>${formattedPrompt}</code></pre>`;
 
     choicesEl.innerHTML = "";
@@ -130,7 +145,7 @@ function getQuestion() {
         let choiceBtn = document.createElement("button");
         choiceBtn.setAttribute("value", choice);
         choiceBtn.innerHTML = `${i + 1}. ${choice}`;
-		
+        
         choiceBtn.onclick = questionClick;
         choicesEl.appendChild(choiceBtn);
     });
@@ -177,15 +192,15 @@ function quizEnd() {
 
     // Determine pass or fail message
     if (score >= 25) { // Adjust passing score if needed
-        passFailMessageEl.textContent = "🎉 You are Passed in Exam!";
+        passFailMessageEl.textContent = "🎉 You Passed the Exam!";
         passFailMessageEl.style.color = "green";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     } else {
         passFailMessageEl.textContent = "❌ You did not pass the exam.";
         passFailMessageEl.style.color = "red";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     }
 
     questionsEl.setAttribute("class", "hide");
@@ -226,3 +241,4 @@ submitBtn.onclick = saveHighscore;
 
 // Start quiz after clicking start
 startBtn.onclick = quizStart;
+

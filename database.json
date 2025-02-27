@@ -26,6 +26,42 @@
       "city": "BHIHAR",
       "test": "JAVA",
       "marks": "20"
+    },
+    {
+      "id": "9666",
+      "name": "MOHIT KUMAR",
+      "age": "20",
+      "contact": "654564549484",
+      "city": "BHOPAL",
+      "test": "JAVA",
+      "marks": "20"
+    },
+    {
+      "id": "bd1b",
+      "name": "MOHIT SINGH",
+      "age": "20",
+      "contact": "654564549484",
+      "city": "BHOPAL",
+      "test": "JAVA",
+      "marks": "20"
+    },
+    {
+      "id": "f5ce",
+      "name": "MOHIT SINGH",
+      "age": "20",
+      "contact": "654564549484",
+      "city": "BHOPAL",
+      "test": "JAVA",
+      "marks": "20"
+    },
+    {
+      "id": "c05c",
+      "name": "MOHIT YADAV",
+      "age": "20",
+      "contact": "654564549484",
+      "city": "BHOPAL",
+      "test": "JAVA",
+      "marks": "5"
     }
   ]
 }
