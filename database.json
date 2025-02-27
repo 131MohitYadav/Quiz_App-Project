@@ -71,6 +71,15 @@
       "test": " SQL ",
       "marks": " 40",
       "id": "94ed"
+    },
+    {
+      "name": "  Manish Kumar",
+      "age": "  21",
+      "contact": "  6206743012",
+      "city": "  Purnia",
+      "test": "  JAVA",
+      "marks": "  30",
+      "id": "680e"
     }
   ]
 }
