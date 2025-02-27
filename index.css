@@ -827,13 +827,39 @@ body {
 
 .cont_30{
     width: 98%;
-    background-color: #d2c8a7;
+    background-color: #d5ceb3;
     height: 700px;
     margin-top: 10px;
     margin-left: 15px;
     border-radius: 20px;
 
 }
+
+
+
+.cont_40{
+    width: 98%;
+    background-color: #88af93;
+    height: 400px;
+    margin-top: 10px;
+    margin-left: 15px;
+    border-radius: 20px;
+
+}
+
+
+.cont_50{
+    width: 98%;
+    background-color: #c0ee98;
+    height: 400px;
+    margin-top: 10px;
+    margin-left: 15px;
+    border-radius: 20px;
+
+}
+
+
+
 
 /* 
  ADMIN LOGIN FORM CSS */
