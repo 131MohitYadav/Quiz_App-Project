@@ -59,7 +59,7 @@ public class Solution {
     }
 }`,
         options: ["120 200 016", "120 200 14", "120 200 16", "None"],
-        answer: "120 200 14",
+        answer: "120 200 016",
     },
     {
         prompt: `Q.8. When an array is passed to a method, what does the method receive?`,

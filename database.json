@@ -62,6 +62,15 @@
       "city": "BHOPAL",
       "test": "JAVA",
       "marks": "5"
+    },
+    {
+      "name": " Dharm",
+      "age": " 20",
+      "contact": "587978555",
+      "city": " GWALIOR",
+      "test": " SQL ",
+      "marks": " 40",
+      "id": "94ed"
     }
   ]
 }

@@ -657,6 +657,24 @@ body {
     font-weight: bold;
 
 }
+
+
+.ch4 h1{
+    text-align: center;
+    color: #01050E;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+
+
+.ch5 h1{
+    text-align: center;
+    color: #01050E;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
 .ch1 h3{
     color: #01050E;
     margin: 10px;
@@ -670,7 +688,19 @@ body {
     color: #05111E;
     margin: 10px;
 }
-.ch1.ch2.ch3 button{
+
+.ch4 h3{
+    color: #05111E;
+    margin: 10px;
+}
+
+
+.ch5 h3{
+    color: #05111E;
+    margin: 10px;
+}
+
+.ch1.ch2.ch3.ch4 button{
     text-align: center;
     margin-right: 40px;
 }
@@ -689,6 +719,21 @@ body {
     margin: 5px;
     margin-left: 10px;
     background-color:#C2BFB4;
+
+}
+
+
+.ch4 li{
+    margin: 5px;
+    margin-left: 10px;
+    background-color:#ADDAB9;
+
+}
+
+.ch5 li{
+    margin: 5px;
+    margin-left: 10px;
+    background-color:#AEDA87;
 
 }
 
@@ -719,6 +764,34 @@ body {
     margin: 5px;
     margin-top: 15px;
     background-color: #C2BFB4;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s ease;
+
+
+}
+
+
+.ch4 {
+    width: 400px;
+    height: auto;
+    margin: 5px;
+    margin-top: 15px;
+    background-color: #ADDAB9;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s ease;
+
+
+}
+
+
+.ch5 {
+    width: 400px;
+    height: auto;
+    margin: 5px;
+    margin-top: 15px;
+    background-color: #AEDA87;
     border-radius: 20px;
     border: none;
     transition: all 0.3s ease;
