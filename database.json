@@ -1,85 +1,54 @@
 {
   "student": [
     {
-      "name": "  Monisha",
-      "age": "  45",
-      "contact": "  58788",
-      "city": "  chatishgar ",
-      "test": " java",
-      "marks": "  15",
-      "id": "baf9"
-    },
-    {
-      "id": "45b7",
-      "name": "Aman",
-      "age": "44",
-      "contact": "58788",
-      "city": "BHIHAR",
-      "test": "JAVASCRIPT",
-      "marks": "5"
-    },
-    {
-      "id": "7bfd",
-      "name": "Aman",
-      "age": "21",
-      "contact": "58798878454",
-      "city": "BHIHAR",
-      "test": "JAVA",
-      "marks": "20"
-    },
-    {
-      "id": "9666",
-      "name": "MOHIT KUMAR",
-      "age": "20",
-      "contact": "654564549484",
-      "city": "BHOPAL",
-      "test": "JAVA",
-      "marks": "20"
-    },
-    {
-      "id": "bd1b",
-      "name": "MOHIT SINGH",
-      "age": "20",
-      "contact": "654564549484",
-      "city": "BHOPAL",
-      "test": "JAVA",
-      "marks": "20"
-    },
-    {
-      "id": "f5ce",
-      "name": "MOHIT SINGH",
-      "age": "20",
-      "contact": "654564549484",
-      "city": "BHOPAL",
-      "test": "JAVA",
-      "marks": "20"
-    },
-    {
-      "id": "c05c",
-      "name": "MOHIT YADAV",
-      "age": "20",
-      "contact": "654564549484",
-      "city": "BHOPAL",
-      "test": "JAVA",
-      "marks": "5"
-    },
-    {
-      "name": " Dharm",
-      "age": " 20",
-      "contact": "587978555",
+      "name": " MOHIT YADAV",
+      "age": " 21",
+      "contact": " 987574878",
       "city": " GWALIOR",
-      "test": " SQL ",
-      "marks": " 40",
-      "id": "94ed"
+      "test": " C",
+      "marks": " 10",
+      "result": " FAIL",
+      "id": "d553"
     },
     {
-      "name": "  Manish Kumar",
-      "age": "  21",
-      "contact": "  6206743012",
-      "city": "  Purnia",
-      "test": "  JAVA",
-      "marks": "  30",
-      "id": "680e"
+      "name": "MONISHA SINGH",
+      "age": "21",
+      "contact": "6206743012",
+      "city": "BHOPAL",
+      "test": "C",
+      "marks": "30",
+      "result": "FAIL",
+      "id": "091f"
+    },
+    {
+      "name": "ROHIT YADAV",
+      "age": "19",
+      "contact": "9407348161",
+      "city": "BHOPAL",
+      "test": "JAVASCRIPT",
+      "marks": "40",
+      "result": "PASS",
+      "id": "1449"
+    },
+    {
+      "id": "a12c",
+      "name": "MOHIT YADAVf",
+      "age": "21",
+      "contact": "6206743012",
+      "city": "BHOPAL",
+      "test": "C",
+      "marks": "20",
+      "result": "FAIL"
+    },
+    {
+      "name": "MANISH KUMAR",
+      "age": "21",
+      "contact": "6206743012",
+      "city": "BHOPAL",
+      "test": "C",
+      "marks": "5",
+      "result": "FAIL",
+      "id": "810f"
     }
   ]
 }
