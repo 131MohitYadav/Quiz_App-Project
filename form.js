@@ -17,6 +17,7 @@ console.log(data)
 
 function log(){
     let logindata = {
+        loginname: document.querySelector('#loginname').value,
         loginemail: document.querySelector('#loginemail').value,
         loginpassword:document.querySelector('#loginpass').value,
     }
@@ -24,5 +25,8 @@ function log(){
         alert("User not Found")
         return false;
     }
+    
+
+
 
 }
