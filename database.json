@@ -1,26 +1,6 @@
 {
   "student": [
     {
-      "name": "ROHIT YADAV",
-      "age": "19",
-      "contact": "9407348161",
-      "city": "BHOPAL",
-      "test": "JAVASCRIPT",
-      "marks": "35",
-      "result": "PASS",
-      "id": "1449"
-    },
-    {
-      "name": "ROHIT YADAV",
-      "age": "21",
-      "contact": "6206743012",
-      "city": "BHOPAL",
-      "test": "C++",
-      "marks": "20",
-      "result": "FAIL",
-      "id": "a12c"
-    },
-    {
       "name": "MANISH KUMAR",
       "age": "21",
       "contact": "6206743012",
@@ -68,6 +48,36 @@
       "city": "BHIHAR",
       "test": "JAVA",
       "marks": "20",
+      "result": "FAIL"
+    },
+    {
+      "id": "a40d",
+      "name": "AMAN KUMAR",
+      "age": "20",
+      "contact": "987545876",
+      "city": "BIHAR",
+      "test": "PHP",
+      "marks": "30",
+      "result": "PASS"
+    },
+    {
+      "id": "6c7e",
+      "name": "AFROZ ALAM",
+      "age": "21",
+      "contact": "98754558841",
+      "city": "U.P",
+      "test": "CSS",
+      "marks": "15",
+      "result": "FAIL"
+    },
+    {
+      "id": "e219",
+      "name": "PIYUSH SAHU",
+      "age": "22",
+      "contact": "9875451245",
+      "city": "GWALIOR",
+      "test": "JAVASCRIPT",
+      "marks": "5",
       "result": "FAIL"
     }
   ]

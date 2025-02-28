@@ -20,7 +20,7 @@ let questions = [
         answer: "Declaration statements",
     },
     {
-        prompt: `Q.5. Which of the following variables takes precedence over the others if the names are the same?`,
+        prompt: `Q.5. Which of the following variables takes precedence\n over the others if the names are the same?`,
         options: ["Global variable", "Local variable", "Both of the above", "None of the above"],
         answer: "Local variable",
     },
