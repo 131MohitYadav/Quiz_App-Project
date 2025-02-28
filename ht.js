@@ -31,17 +31,7 @@ let questions = [
         answer: "<ul>",
     },
     {
-        prompt: `Q.5. What is the correct HTML for inserting an image?`,
-        options: [
-            '<img src="image.jpg" alt="MyImage">',
-            '<image src="image.jpg" alt="MyImage">',
-            '<img href="image.jpg" alt="MyImage">',
-            '<img link="image.jpg" alt="MyImage">'
-        ],
-        answer: '<img src="image.jpg" alt="MyImage">',
-    },
-    {
-        prompt: `Q.6. What does the "alt" attribute in an <img> tag do?`,
+        prompt: `Q.5. What does the "alt" attribute in an <img> tag do?`,
         options: [
             "Specifies an alternate text for an image",
             "Changes the image size",
@@ -51,12 +41,12 @@ let questions = [
         answer: "Specifies an alternate text for an image",
     },
     {
-        prompt: `Q.7. Which HTML tag is used to create a hyperlink?`,
+        prompt: `Q.6. Which HTML tag is used to create a hyperlink?`,
         options: ["<a>", "<link>", "<href>", "<url>"],
         answer: "<a>",
     },
     {
-        prompt: `Q.8. How do you create a checkbox in HTML?`,
+        prompt: `Q.7. How do you create a checkbox in HTML?`,
         options: [
             '<input type="checkbox">',
             '<checkbox>',
@@ -66,16 +56,17 @@ let questions = [
         answer: '<input type="checkbox">',
     },
     {
-        prompt: `Q.9. Which tag is used to define a table row?`,
+        prompt: `Q.8. Which tag is used to define a table row?`,
         options: ["<td>", "<tr>", "<th>", "<row>"],
         answer: "<tr>",
     },
     {
-        prompt: `Q.10. Which tag is used to define the metadata of an HTML document?`,
+        prompt: `Q.9. Which tag is used to define the metadata of an HTML document?`,
         options: ["<meta>", "<data>", "<head>", "<info>"],
         answer: "<meta>",
     }
 ];
+
 
 // Get DOM Elements
 let questionsEl = document.querySelector("#questions");
