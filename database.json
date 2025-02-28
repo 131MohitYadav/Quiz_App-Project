@@ -1,16 +1,6 @@
 {
   "student": [
     {
-      "name": "MONISHA SINGH",
-      "age": "21",
-      "contact": "6206743012",
-      "city": "BHOPAL",
-      "test": "C",
-      "marks": "30",
-      "result": "PASS",
-      "id": "091f"
-    },
-    {
       "name": "ROHIT YADAV",
       "age": "19",
       "contact": "9407348161",
@@ -69,6 +59,16 @@
       "test": "HTML",
       "marks": "30",
       "result": "PASS"
+    },
+    {
+      "id": "7264",
+      "name": "MANISH KUMAR",
+      "age": "20",
+      "contact": "98754558855",
+      "city": "BHIHAR",
+      "test": "JAVA",
+      "marks": "20",
+      "result": "FAIL"
     }
   ]
 }
