@@ -1,23 +1,13 @@
 {
   "student": [
     {
-      "name": " MOHIT YADAV",
-      "age": " 21",
-      "contact": " 987574878",
-      "city": " GWALIOR",
-      "test": " C",
-      "marks": " 10",
-      "result": " FAIL",
-      "id": "d553"
-    },
-    {
       "name": "MONISHA SINGH",
       "age": "21",
       "contact": "6206743012",
       "city": "BHOPAL",
       "test": "C",
       "marks": "30",
-      "result": "FAIL",
+      "result": "PASS",
       "id": "091f"
     },
     {
@@ -26,29 +16,49 @@
       "contact": "9407348161",
       "city": "BHOPAL",
       "test": "JAVASCRIPT",
-      "marks": "40",
+      "marks": "35",
       "result": "PASS",
       "id": "1449"
     },
     {
-      "id": "a12c",
-      "name": "MOHIT YADAVf",
+      "name": "MOHIT YADAV",
       "age": "21",
       "contact": "6206743012",
       "city": "BHOPAL",
       "test": "C",
       "marks": "20",
-      "result": "FAIL"
+      "result": "FAIL",
+      "id": "a12c"
     },
     {
       "name": "MANISH KUMAR",
       "age": "21",
       "contact": "6206743012",
       "city": "BHOPAL",
-      "test": "C",
+      "test": "C++",
       "marks": "5",
       "result": "FAIL",
       "id": "810f"
+    },
+    {
+      "name": "ROHIT YADAV",
+      "age": "19",
+      "contact": "985745788",
+      "city": "GWALIOR",
+      "test": "JAVA",
+      "marks": "15",
+      "result": "FAIL",
+      "id": "c426"
+    },
+    {
+      "id": "7ddc",
+      "name": "MOHIT YADAV",
+      "age": "21",
+      "contact": "985745788",
+      "city": "GWALIOR",
+      "test": "SQL",
+      "marks": "30",
+      "result": "PASS"
     }
   ]
 }
