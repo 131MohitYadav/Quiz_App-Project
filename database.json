@@ -21,11 +21,11 @@
       "id": "1449"
     },
     {
-      "name": "MOHIT YADAV",
+      "name": "ROHIT YADAV",
       "age": "21",
       "contact": "6206743012",
       "city": "BHOPAL",
-      "test": "C",
+      "test": "C++",
       "marks": "20",
       "result": "FAIL",
       "id": "a12c"
@@ -57,6 +57,16 @@
       "contact": "985745788",
       "city": "GWALIOR",
       "test": "SQL",
+      "marks": "30",
+      "result": "PASS"
+    },
+    {
+      "id": "678b",
+      "name": "MOHIT YADAV",
+      "age": "20",
+      "contact": "923434324234",
+      "city": "GWALIOR",
+      "test": "HTML",
       "marks": "30",
       "result": "PASS"
     }

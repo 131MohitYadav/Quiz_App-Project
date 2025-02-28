@@ -1097,13 +1097,12 @@ input.Data_41 {
   /* TABLE CSS DATABASE */
 
   /* General styling */
-/* body {
+body {
     
+    font-family: "Lora", serif;
+
     
-    
-    text-align: center;
-    
-} */
+}
 
 /* Center the table without margin-top */
 /* .table_10 {
