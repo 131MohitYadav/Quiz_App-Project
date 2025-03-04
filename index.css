@@ -920,7 +920,7 @@ body.Data_41 {
     background-color: #f4f4f4;
     display: flex;
     
-    height: 100vh;
+    height: auto;
     margin: 0;
 }
 

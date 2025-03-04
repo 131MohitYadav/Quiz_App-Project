@@ -31,26 +31,6 @@
       "result": "PASS"
     },
     {
-      "name": "MOHIT YADAV",
-      "age": "20",
-      "contact": "923434324234",
-      "city": "GWALIOR",
-      "test": "HTML",
-      "marks": "35",
-      "result": "PASS",
-      "id": "678b"
-    },
-    {
-      "id": "7264",
-      "name": "MANISH KUMAR",
-      "age": "20",
-      "contact": "98754558855",
-      "city": "BHIHAR",
-      "test": "JAVA",
-      "marks": "20",
-      "result": "FAIL"
-    },
-    {
       "id": "a40d",
       "name": "AMAN KUMAR",
       "age": "20",
