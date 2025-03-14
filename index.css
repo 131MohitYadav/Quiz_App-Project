@@ -419,6 +419,7 @@ body {
 
 
 .container_45 {
+    
     width: 100%;
     
     
@@ -432,6 +433,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .text_2 {
@@ -467,6 +469,7 @@ body {
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
+
 }
 
 /* Logo Styling */
