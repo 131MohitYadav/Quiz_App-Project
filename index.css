@@ -404,12 +404,7 @@ input:focus {
 
  /* NAVIGATION BAR CSS */
  /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    max-width: 100%;
-}
+
 
 body {
     font-family: Arial, sans-serif;
@@ -423,6 +418,7 @@ body {
     width: 100%;
     
     
+    
 }
 
 .image-container {
@@ -434,6 +430,7 @@ body {
     align-items: center;
     justify-content: center;
     
+    
 }
 
 .text_2 {
@@ -441,7 +438,7 @@ body {
     
     color:black;
     margin-left: 900px;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
     justify-content: right;
     background:rgb(255, 255, 255); /* Semi-transparent background */
     padding: 20px;
