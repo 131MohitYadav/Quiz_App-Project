@@ -50,7 +50,9 @@ body {
     width: 60%;
     transform: translate(-50%, -50%);
     padding: 10px;
-    background-color:  #ecb6c4;
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+    
 }
 
 .Rules {
