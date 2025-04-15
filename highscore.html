@@ -4,35 +4,89 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
+
+    <style>
+        body {
+            font-family: "Libre Baskerville", serif;
+     background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+        }
+
+        .scores_44 {
+            max-width: 600px;
+            margin: 130px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #e0f7fa, #ffffff);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #Score_head {
+            color: blue;
+            text-shadow: 2px 4px 2px rgb(232, 203, 203);
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        #highscores {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        #highscores li {
+            background-color: #ecf0f1;
+            padding: 10px;
+            margin: 5px auto;
+            width: 300px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Alternate background for even items */
+        #highscores li:nth-child(even) {
+            background-color: #d1f2eb;
+        }
+
+        .button_44 {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button_44:hover {
+            background-color: #2980b9;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
 
     <script src="./highScore.js"></script>
     <title>Code Quiz - High Scores</title>
 </head>
 
 <body>
-    <div class="scores">
+    <div class="scores_44">
         <h1 id="Score_head">Total Marks Overall Test</h1>
-        <ol id="highscores"></ol>
+        <ol id="highscores">
+            
+        </ol>
         <a href="Home.html">
-            <button>
-                Home Page
-            </button>
+            <button class="button_44">Home Page</button>
         </a>
-        <button id="clear">
-            Clear Scores
-        </button>
-        <!-- <a href="AptitudeRound.html">
-            <button>
-                Next Page1
-            </button>
-        </a>
-        <a href="ReasoningRound.html">
-            <button>Next Page2</button>
-        </a> -->
+        <button id="clear" class="button_44">Clear Scores</button>
     </div>
-
-
 </body>
 
 </html>
