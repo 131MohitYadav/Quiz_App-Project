@@ -453,6 +453,27 @@ body {
     
 }
 
+
+.container_455 {
+    
+    width: 100%;
+    
+    
+    
+}
+
+.image-container12 {
+    width: 100%;
+    height: 670px; /* Adjust as needed */
+    background: url('qui.png') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
 .text_2 {
     
     
