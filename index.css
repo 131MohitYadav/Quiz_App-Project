@@ -453,6 +453,7 @@ body {
     
 }
 
+/* Admin background imgage */
 
 .container_455 {
     
@@ -509,6 +510,18 @@ body {
     position: relative;
 
 }
+
+.navbaradmin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color:rgb(90, 132, 180);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+
+}
+
 
 /* Logo Styling */
 /* .logo img {
