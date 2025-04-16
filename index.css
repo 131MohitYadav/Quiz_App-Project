@@ -516,7 +516,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color:rgb(90, 132, 180);
+    background-color:rgb(29, 73, 124);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
 
@@ -531,6 +531,7 @@ body {
 } */
 
 /* Navigation Links */
+
 .nav-links  {
     list-style: none;
     display: flex;
@@ -545,11 +546,43 @@ body {
     font-weight: bold;
     transition: color 0.3s ease;
 }
+
+
+
 .nav-links li {
     list-style: none;
 }
 
 .nav-links a:hover {
+    color: red;
+}
+
+
+/* ADMIN FIELD */
+
+
+.nav-linkss  {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    font-size: 18px;
+    font-family: "Lora", serif;
+}
+
+.nav-linkss a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+
+
+.nav-linkss li {
+    list-style: none;
+}
+
+.nav-linkss a:hover {
     color: red;
 }
 

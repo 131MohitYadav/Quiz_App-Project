@@ -18,33 +18,69 @@
 
     
             
-            
-body {
-                font-family: Arial, sans-serif;
-                background: linear-gradient(to right, #00c6ff, #0072ff);
-                
-               
-                align-items: center;
-                height: 100vh;
-                
-            }
+form {
+    width: 400px;
+    margin: 80px auto;
+    background: linear-gradient(135deg, rgba(72, 0, 144, 0.8), rgba(0, 204, 255, 0.8));
+    padding: 40px 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 204, 255, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: #ffffff;
+}
 
-            form{
-                background: linear-gradient(to left, #00c6ff, #0072ff);
 
-            }
-            
-          
+
+.int {
+    width: 85%;
+    padding: 12px;
+    margin: 12px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.int::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.btn_311 {
+    width: 85%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 15px;
+    background: linear-gradient(to right, #00c3ff, #7400b8);
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn_311:hover {
+    background: linear-gradient(to right, #7400b8, #00c3ff);
+    color: #000;
+}
+
             .imgcontainer {
                 text-align: center;
                 margin-bottom: 20px;
             }
             .avatar {
-                width: 150px;
-                border-radius: 50%;
-                border: 3px solid #0072ff;
-                padding: 5px;
-            }
+    width: 140px;
+    border-radius: 50%;
+    border: 3px solid #00c3ff;
+    padding: 5px;
+    background-color: #fff;
+}
+
+            
+
+           
 
             
   </style>
@@ -63,7 +99,7 @@ body {
         </div>
 
         <!-- Navigation Links -->
-        <ul class="nav-links">
+        <ul class="nav-linkss">
             <li><a href="#">Home</a></li>
             <li><a href="#">Quizzes</a></li>
             <li><a href="#">Categories</a></li>
@@ -115,7 +151,7 @@ body {
         <input type="email" class="int" id="adminEmail" placeholder="Enter Admin Email" required>
         <input type="password" class="int" id="adminPass" placeholder="Enter Admin Password" required>
 
-        <button type="submit" class="btn_31">Admin Login</button>
+        <button type="submit" class="btn_311"> Sign In</button>
     </form>
 </div>
 </div>
@@ -218,7 +254,7 @@ body {
             let adminPass = document.getElementById("adminPass").value;
 
             // Correct Admin Credentials
-            if (adminEmail === "Yadavji@131" && adminPass === "mohit123") {
+            if (adminEmail === "Yadavji@131.com" && adminPass === "mohit123") {
                 window.location.href = "database.html"; // Redirect to database.html on success
                 return false; // Prevent default form submission
             } else {
