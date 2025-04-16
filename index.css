@@ -199,6 +199,20 @@ opacity: .95;
     margin: 30px;
 }
 
+.overlay_1{
+    margin: 10px;
+}
+.overlay_2{
+    margin: auto;
+
+}
+/* #body_img{
+    background: url('onlin3.png');
+    margin: auto;
+    
+} */
+
+
 form {
     width: 450px;
     min-height: 500px;
@@ -207,6 +221,7 @@ form {
     margin: 2% auto;
     box-shadow: 0 9px 50px hsla(20,67%,75% , 0.31);
     padding: 2%;
+    
     background-image: linear-gradient(-255deg , #E3FDF5 50% , #FFE6FA 50%);
 }
 
@@ -526,6 +541,26 @@ body {
     border: 2px solid #007BFF;
     color: #fff;
 }
+
+
+.btnnn {
+    border: none;
+    background-color: #007BFF;
+    color:white;
+    padding: 8px 18px;
+    border-radius: 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btnnn:hover {
+    background-color: #007BFF;
+    border: 2px solid #007BFF;
+    color: #fff;
+}
+
 
 
 .btn_11 {
