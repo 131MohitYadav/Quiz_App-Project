@@ -7,15 +7,33 @@ const sign = () => {
 
 
    const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+   const digitPattern = /\d/; 
+
+
     if (!userdata.name || !userdata.email || !userdata.password) {
         alert("Please fill all fields!");
+        return false ;
+    }
+
+    if (!specialCharPattern.test(userdata.name) || !digitPattern.test(userdata.name)) {
+        alert("Please enter a valid username include special character and digits!");
+        return false ;
+    }
+
+
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(userdata.email)) {
+        alert("Please enter a valid email address!");
         return false;
     }
 
-    if (!specialCharPattern.test(userdata.name)) {
-        alert("Username must include at least one special character!");
+    if (userdata.password.length < 6) {
+        alert("Password must be at least 6 characters!");
         return false;
     }
+    
+
 
 
 
