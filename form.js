@@ -5,10 +5,21 @@ const sign = () => {
         password: document.querySelector('#password').value.trim()
     };
 
+
+   const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
     if (!userdata.name || !userdata.email || !userdata.password) {
         alert("Please fill all fields!");
-        return;
+        return false;
     }
+
+    if (!specialCharPattern.test(userdata.name)) {
+        alert("Username must include at least one special character!");
+        return false;
+    }
+
+
+
+    
 
     localStorage.setItem("userdata", JSON.stringify(userdata));
     alert("Account Created Successfully! You can now log in.");
