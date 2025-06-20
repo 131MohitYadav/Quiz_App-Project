@@ -1,169 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="index.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+  <!-- Font Awesome (Latest Version) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.css">
-
-
   <style>
+    form {
+      width: 400px;
+      margin: 80px auto;
+      background: linear-gradient(135deg, rgba(72, 0, 144, 0.8), rgba(0, 204, 255, 0.8));
+      padding: 40px 25px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 204, 255, 0.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: #ffffff;
+    }
 
-    
-            
-form {
-    width: 400px;
-    margin: 80px auto;
-    background: linear-gradient(135deg, rgba(72, 0, 144, 0.8), rgba(0, 204, 255, 0.8));
-    padding: 40px 25px;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 204, 255, 0.5);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-    color: #ffffff;
-}
+    ._40 {
+      background: linear-gradient(135deg, rgba(72, 0, 144, 0.8), rgba(0, 204, 255, 0.8));
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
 
+    .int {
+      width: 85%;
+      padding: 12px;
+      margin: 12px 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 15px;
+    }
 
+    .int::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
 
-.int {
-    width: 85%;
-    padding: 12px;
-    margin: 12px 0;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    color: #fff;
-    font-size: 15px;
-}
+    .btn_311 {
+      width: 85%;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 15px;
+      background: linear-gradient(to right, #00c3ff, #7400b8);
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-.int::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
+    .btn_311:hover {
+      background: linear-gradient(to right, #7400b8, #00c3ff);
+      color: #000;
+    }
 
-.btn_311 {
-    width: 85%;
-    padding: 12px;
-    margin-top: 15px;
-    border-radius: 15px;
-    background: linear-gradient(to right, #00c3ff, #7400b8);
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+    .imgcontainer {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-.btn_311:hover {
-    background: linear-gradient(to right, #7400b8, #00c3ff);
-    color: #000;
-}
+    .avatar {
+      width: 140px;
+      border-radius: 50%;
+      border: 3px solid #00c3ff;
+      padding: 5px;
+      background-color: #fff;
+    }
 
-            .imgcontainer {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-            .avatar {
-    width: 140px;
-    border-radius: 50%;
-    border: 3px solid #00c3ff;
-    padding: 5px;
-    background-color: #fff;
-}
+    .btnnn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: #fff;
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+      margin-left: 10px;
+    }
 
-            
+    .btnnn:hover {
+      background: #00c3ff;
+      color: #fff;
+    }
 
-           
+    .navbaradmin {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #111;
+      color: white;
+      flex-wrap: wrap;
+    }
 
-            
+    .nav-linkss {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+    }
+
+    .nav-linkss li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .menu-icon {
+      display: none;
+      cursor: pointer;
+    }
+
+    .footer-containerr {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 30px;
+      color: #fff;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section ul li a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background: #000;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    .social-media a {
+      margin-right: 15px;
+      color: white;
+    }
   </style>
 </head>
+
 <body>
+  <input type="checkbox" id="check">
 
+  <!-- Navbar -->
+  <nav class="navbaradmin">
+    <div class="logo">
+      <h1>Quizz</h1>
+    </div>
 
+    <ul class="nav-linkss">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Quizzes</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Challenges</a></li>
+      <li><a href="#">Profiles</a></li>
+    </ul>
 
-    <input type="checkbox" id="check">
-    
-    <nav class="navbaradmin">
-        
-        <!-- Logo -->
-        <div class="logo">
-            <h1>Quizz</h1>
-        </div>
+    <div class="actions">
+      <a href="index.html" class="btnnn">Sign Up Here</a>
+    </div>
 
-        <!-- Navigation Links -->
-        <ul class="nav-linkss">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Quizzes</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Challenges</a></li>
-            <!-- <li><a href="highscore.html">Leaderboard</a></li> -->
-            <li><a href="#">Profiles</a></li>
-            
-        </ul>
+    <label for="check" class="menu-icon">
+      <i class="fa-solid fa-bars-staggered"></i>
+    </label>
+  </nav>
 
-        <!-- Action Buttons & Icons -->
-        <div class="actions">
-            <a  href="index.html"
-            <button class="btnnn">Sign Up Here</button>
-    </a>
-<!--     
-    <a href="Admin.html">
-        <button class="btn">ADMIN LOGIN</button>
-            
-    </a> -->
-            <!-- <button class="btn">ADMIN LOGIN</button> -->
-            
-            
-        </div>
-
-        <!-- Mobile Menu Toggle -->
-        <label for="check" class="menu-icon">
-            <i class="fa-solid fa-bars-staggered"></i>
-        </label>
-
-    </nav>
-
-
-
-
-
-    
-    <div class="container_455">
-      <div class="image-container12">
-
-    <!-- Admin Login Form -->
-     <div class="overlay_1">
-    <form onsubmit="return adminLogin()">
-        
-        <div class="imgcontainer">
+  <!-- Admin Login Form -->
+  <div class="container_455">
+    <div class="image-container12">
+      <div class="overlay_1">
+        <form onsubmit="return adminLogin()">
+          <div class="imgcontainer">
             <img src="img_avatar2.png" alt="Avatar" class="avatar">
-        </div>
+          </div>
+          <h2 class="head_4">Admin Login</h2>
+          <input type="email" class="int" id="adminEmail" placeholder="Enter Admin Email" required>
+          <input type="password" class="int" id="adminPass" placeholder="Enter Admin Password" required>
+          <button type="submit" class="btn_311">Sign In</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-        <h2 class="head_4">Admin Login</h2> 
-        <input type="email" class="int" id="adminEmail" placeholder="Enter Admin Email" required>
-        <input type="password" class="int" id="adminPass" placeholder="Enter Admin Password" required>
+  <hr>
 
-        <button type="submit" class="btn_311"> Sign In</button>
-    </form>
-</div>
-</div>
-</div>
-
-
-
-<hr>
-<!-- FOOTER  -->
-
-<footer class="_40">
-    <div class="footer-container">
+  <!-- Footer -->
+  <footer class="_40">
+    <div class="footer-containerr">
       <div class="footer-section">
         <h3>Quizzes</h3>
         <ul>
@@ -226,6 +280,7 @@ form {
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
       <div class="language-selector">
         <a href="#">Select Language</a>
@@ -240,29 +295,21 @@ form {
       </div>
     </div>
   </footer>
-  
 
+  <script>
+    function adminLogin() {
+      let adminEmail = document.getElementById("adminEmail").value;
+      let adminPass = document.getElementById("adminPass").value;
 
-
-
-
-
-
-    <script>
-        function adminLogin() {
-            let adminEmail = document.getElementById("adminEmail").value;
-            let adminPass = document.getElementById("adminPass").value;
-
-            // Correct Admin Credentials
-            if (adminEmail === "Yadavji@131.com" && adminPass === "mohit123") {
-                window.location.href = "database.html"; // Redirect to database.html on success
-                return false; // Prevent default form submission
-            } else {
-                alert("Invalid Admin Credentials!");
-                return false; // Prevent form from redirecting
-            }
-        }
-    </script>
-
+      // Admin login validation
+      if (adminEmail === "Yadavji@131.com" && adminPass === "mohit123") {
+        window.location.href = "database.html";
+        return false;
+      } else {
+        alert("Invalid Admin Credentials!");
+        return false;
+      }
+    }
+  </script>
 </body>
 </html>
