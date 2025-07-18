@@ -13,9 +13,8 @@ async function fetdata() {
             <td>${student.test}</td>
             <td>${student.marks}</td>
             <td>${student.result}</td>
- <td><button style="background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;" onclick="mydel('${student.id}')">Delete</button></td>
-        <td><button style="background-color: green; color: white; border: none; padding: 5px 10px; cursor: pointer;" onclick="myedit('${student.id}')">Edit</button></td>
-    </tr>
+            <td><button style="background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;" onclick="mydel('${student.id}')">Delete</button></td>
+            <td><button style="background-color: green; color: white; border: none; padding: 5px 10px; cursor: pointer;" onclick="myedit('${student.id}')">Edit</button></td>
         </tr>
     `).join("");
 
@@ -47,7 +46,9 @@ function mydel(id) {
 }
 
 // Function to insert new data
-function insertdata() {
+function insertdata(event) {
+    event.preventDefault();
+    
     let newStudent = {
         name: document.querySelector('#name').value,
         age: document.querySelector('#age').value,
@@ -63,10 +64,18 @@ function insertdata() {
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(newStudent)
     }).then(() => {
-        alert("Student data inserted successfully!"); // Normal alert for insertion success
-        fetdata(); // Refresh data
+        Swal.fire({
+            title: "Success!",
+            text: "Student data inserted successfully!",
+            icon: "success",
+            timer: 1500,
+            showConfirmButton: false
+        }).then(() => {
+            window.location.href = "Home.html";
+        });
+    }).catch(error => {
+        Swal.fire("Error!", "Failed to submit data: " + error.message, "error");
     });
-    
 }
 
 // Function to edit data
