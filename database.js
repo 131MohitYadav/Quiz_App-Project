@@ -66,6 +66,7 @@ function insertdata() {
         alert("Student data inserted successfully!"); // Normal alert for insertion success
         fetdata(); // Refresh data
     });
+    
 }
 
 // Function to edit data
