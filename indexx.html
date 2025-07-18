@@ -142,50 +142,47 @@
          font-weight: bold;
          margin: 15px;
     }
-
-
   </style>
 </head>
 
 <body class="data_4">
-
-  <form class="data_4 form-wrapper" action="Home.html" onsubmit="insertdata()">
+  <form class="data_4 form-wrapper" onsubmit="event.preventDefault(); insertdata()">
     <h1 class="data_4">QUIZ FORM DATA</h1>
     <div class="note">THIS FORM IS FOR WARRIORS ONLY. FILL IT WITH HONESTY.</div>
 
     <div class="form-row data_4">
       <label for="name">FULL NAME</label>
-      <input type="text" id="name" placeholder="e.g. Mohit Yadav">
+      <input type="text" id="name" placeholder="e.g. Mohit Yadav" required>
     </div>
 
     <div class="form-row data_4">
       <label for="age">AGE</label>
-      <input type="text" id="age" placeholder="e.g. 21">
+      <input type="text" id="age" placeholder="e.g. 21" required>
     </div>
 
     <div class="form-row data_4">
       <label for="contact">MOBILE NUMBER</label>
-      <input type="text" id="contact" placeholder="e.g. 9876543210">
+      <input type="text" id="contact" placeholder="e.g. 9876543210" required>
     </div>
 
     <div class="form-row data_4">
       <label for="city">CITY</label>
-      <input type="text" id="city" placeholder="e.g. Bhopal">
+      <input type="text" id="city" placeholder="e.g. Bhopal" required>
     </div>
 
     <div class="form-row data_4">
       <label for="test">QUIZ/TEST NAME</label>
-      <input type="text" id="test" placeholder="e.g. JavaScript Basics">
+      <input type="text" id="test" placeholder="e.g. JavaScript Basics" required>
     </div>
 
     <div class="form-row data_4">
       <label for="marks">SCORE / MARKS</label>
-      <input type="text" id="marks" placeholder="e.g. 25/50">
+      <input type="text" id="marks" placeholder="e.g. 25/50" required>
     </div>
 
     <div class="form-row data_4">
       <label for="result">RESULT STATUS</label>
-      <input type="text" id="result" placeholder="e.g. Passed / Failed">
+      <input type="text" id="result" placeholder="e.g. Passed / Failed" required>
     </div>
 
     <div class="button-container data_4">

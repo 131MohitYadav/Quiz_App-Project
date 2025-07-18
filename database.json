@@ -1,64 +1,14 @@
 {
   "student": [
     {
-      "name": "MANISH KUMAR",
-      "age": "21",
-      "contact": "6206743012",
-      "city": "BHOPAL",
-      "test": "C++",
-      "marks": "5",
-      "result": "FAIL",
-      "id": "810f"
-    },
-    {
-      "name": "ROHIT YADAV",
-      "age": "19",
-      "contact": "985745788",
-      "city": "GWALIOR",
-      "test": "JAVA",
-      "marks": "15",
-      "result": "FAIL",
-      "id": "c426"
-    },
-    {
-      "id": "7ddc",
-      "name": "MOHIT YADAV",
-      "age": "21",
-      "contact": "985745788",
-      "city": "GWALIOR",
-      "test": "SQL",
-      "marks": "30",
-      "result": "PASS"
-    },
-    {
-      "id": "a40d",
-      "name": "AMAN KUMAR",
+      "id": "67cd",
+      "name": "MOHIT K",
       "age": "20",
-      "contact": "987545876",
-      "city": "BIHAR",
-      "test": "PHP",
-      "marks": "30",
-      "result": "PASS"
-    },
-    {
-      "id": "6c7e",
-      "name": "AFROZ ALAM",
-      "age": "21",
-      "contact": "98754558841",
-      "city": "U.P",
-      "test": "CSS",
-      "marks": "15",
-      "result": "FAIL"
-    },
-    {
-      "id": "e219",
-      "name": "PIYUSH SAHU",
-      "age": "22",
-      "contact": "9875451245",
-      "city": "GWALIOR",
-      "test": "JAVASCRIPT",
-      "marks": "5",
-      "result": "FAIL"
+      "contact": "98585475",
+      "city": "TEKANPUR",
+      "test": "PYTHON",
+      "marks": "15/50",
+      "result": "FAILED"
     }
   ]
 }
