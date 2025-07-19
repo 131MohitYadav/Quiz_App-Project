@@ -18,7 +18,7 @@
     body.data_4 {
       background: linear-gradient(to bottom right, #e0f7fa, #ffffff, #5f9ecb);
       margin: 0;
-      padding: 40px 20px;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -30,10 +30,11 @@
       border-radius: 16px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
       max-width: 900px;
-      width: 100%;
+      width: 90%;
       padding: 40px;
       box-sizing: border-box;
       transition: transform 0.3s ease;
+      margin: 20px;
     }
 
     .form-wrapper:hover {
@@ -134,6 +135,11 @@
       .data_4 label {
         margin-bottom: 4px;
       }
+      
+      .form-wrapper {
+        width: 85%;
+        padding: 30px 20px;
+      }
     }
 
     .note{
@@ -146,7 +152,7 @@
 </head>
 
 <body class="data_4">
-  <form class="data_4 form-wrapper" onsubmit="insertdata(event)">
+  <form class="data_4 form-wrapper" onsubmit="submitForm(event)">
     <h1 class="data_4">QUIZ FORM DATA</h1>
     <div class="note">THIS FORM IS FOR WARRIORS ONLY. FILL IT WITH HONESTY.</div>
 
@@ -190,6 +196,26 @@
     </div>
   </form>
 
+  <script>
+    function submitForm(event) {
+      event.preventDefault(); // Prevent the default form submission
+      
+      // Show success alert
+      Swal.fire({
+        title: 'Success!',
+        text: 'Student data submitted successfully',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Redirect to Home.html after the alert is closed
+          window.location.href = 'Home.html';
+        }
+      });
+      
+    }
+  </script>
+  
   <script src="database.js"></script>
 </body>
 </html>
