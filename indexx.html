@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quiz App | Candidate Record</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -26,7 +25,7 @@
     }
 
     .form-wrapper {
-      background: linear-gradient(to bottom right, #e0f7fa, #ffffff, #5f9ecb);
+      background: white;
       border-radius: 16px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
       max-width: 900px;
@@ -164,11 +163,16 @@
          font-weight: bold;
          margin: 15px;
     }
+
+    #btn_25[disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 
 <body class="data_4">
-  <form class="data_4 form-wrapper" onsubmit="insertdata(event)">
+  <form class="data_4 form-wrapper" id="quizForm">
     <h1 class="data_4">QUIZ FORM DATA</h1>
     <div class="note">THIS FORM IS FOR WARRIORS ONLY. FILL IT WITH HONESTY.</div>
 
@@ -214,5 +218,11 @@
   </form>
 
   <script src="database.js"></script>
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      insertdata();
+    });
+  </script>
 </body>
 </html>

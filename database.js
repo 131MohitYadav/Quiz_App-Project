@@ -16,7 +16,7 @@ async function fetdata() {
                     <td>${student.test}</td>
                     <td>${student.marks}</td>
                     <td>${student.result}</td>
-                    <td><button class="delete-btn" onclick="mydel('${student.id}')">Delete</button></td>
+                    <td><button class="delete-btn" style="background-color:red" onclick="mydel('${student.id}')">Delete</button></td>
                     <td><button class="edit-btn" onclick="myedit('${student.id}')">Edit</button></td>
                 </tr>
             `).join("");
@@ -60,35 +60,45 @@ async function mydel(id) {
     }
 }
 
-// Function to insert new data (with redirect)
+// Function to insert new data
 async function insertdata() {
+    const btn = document.getElementById('btn_25');
     try {
+        // Disable button during submission
+        btn.disabled = true;
+        btn.value = 'Submitting...';
+
         const newStudent = {
-            name: document.getElementById('name').value,
-            age: document.getElementById('age').value,
-            contact: document.getElementById('contact').value,
-            city: document.getElementById('city').value,
-            test: document.getElementById('test').value,
-            marks: document.getElementById('marks').value,
-            result: document.getElementById('result').value
+            name: document.getElementById('name').value.trim(),
+            age: document.getElementById('age').value.trim(),
+            contact: document.getElementById('contact').value.trim(),
+            city: document.getElementById('city').value.trim(),
+            test: document.getElementById('test').value.trim(),
+            marks: document.getElementById('marks').value.trim(),
+            result: document.getElementById('result').value.trim()
         };
 
-        // Validate required fields
-        if (!newStudent.name || !newStudent.contact) {
-            throw new Error('Name and Mobile Number are required fields');
-        }
+        // Validate all fields
+        if (!newStudent.name) throw new Error('Full Name is required');
+        if (!newStudent.contact) throw new Error('Mobile Number is required');
+        if (!/^\d{10}$/.test(newStudent.contact)) throw new Error('Mobile Number must be 10 digits');
+        if (!newStudent.age || isNaN(newStudent.age)) throw new Error('Age must be a number');
 
         const response = await fetch('http://localhost:3000/student', {
             method: 'POST',
             headers: { 
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(newStudent)
         });
 
-        if (!response.ok) throw new Error('Failed to submit data');
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.message || 'Submission failed');
+        }
 
-        // Show success message and redirect
         await Swal.fire({
             title: 'Success!',
             text: 'Data submitted successfully!',
@@ -98,15 +108,23 @@ async function insertdata() {
             timerProgressBar: true
         });
 
+        // Reset form
+        document.getElementById('quizForm').reset();
+        
+        // Redirect after success
         window.location.href = "Home.html";
         
     } catch (error) {
-        console.error('Submission error:', error);
+        console.error('Error:', error);
         Swal.fire({
             title: 'Error!',
             text: error.message,
             icon: 'error'
         });
+    } finally {
+        // Re-enable button
+        btn.disabled = false;
+        btn.value = 'Submit';
     }
 }
 
