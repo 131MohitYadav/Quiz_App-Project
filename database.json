@@ -19,6 +19,16 @@
       "test": "JAVA BASIC",
       "marks": "15/50",
       "result": "FAILED"
+    },
+    {
+      "id": "a13b",
+      "name": "Mohit Yadav",
+      "age": "25",
+      "contact": "8873737323",
+      "city": "Gurugram",
+      "test": "Java",
+      "marks": "15/50",
+      "result": "Fail"
     }
   ]
 }
