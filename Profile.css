@@ -59,3 +59,8 @@ body{
     font-weight: bold;
 }
 
+.stats{
+    display: flex;
+    justify-content: space-between;
+    margin: 35px 0;
+}
