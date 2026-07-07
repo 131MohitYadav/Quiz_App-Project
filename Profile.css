@@ -64,3 +64,21 @@ body{
     justify-content: space-between;
     margin: 35px 0;
 }
+
+.box{
+    background: #f4f6ff;
+    width: 110px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.box:hover{
+    transform: translateY(-6px);
+}
+
+.box h3{
+    color: #ff4b2b;
+    font-size: 28px;
+}
