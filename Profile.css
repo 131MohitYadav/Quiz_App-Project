@@ -29,3 +29,33 @@ body{
     box-shadow: 0 10px 30px rgba(0,0,0);
 }
 
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.profile-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+
+}
+
+.profile-info h2{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.profile-info p{
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.rank{
+    background: #ffeaa7;
+    color: #444;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
