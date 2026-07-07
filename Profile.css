@@ -13,5 +13,11 @@ body{
 .profile-section{
     width: 90%;
     margin:60px auto;
-    
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+
 }
+
