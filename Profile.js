@@ -16,3 +16,12 @@ function editProfile(){
     }
     alert("Profile Updated Successfully");
 }
+
+
+function logout(){
+    let confirmLogout = confirm("Do you want to Logout?");
+    if ( confirmLogout){
+        alert("Logged Out Successfully");
+        window.location.href = "login.html";
+    }
+}
