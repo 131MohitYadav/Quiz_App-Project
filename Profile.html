@@ -1,81 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Profile.css">
-    <title>Document</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>User Profile</title>
+
+<link rel="stylesheet" href="Profile.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
+
 <body>
 
+<div class="container">
 
-    <section class="profile-section">
-        <div class = "profile-card">
+<div class="left">
 
-            <div  class = "profile-header">
-                <img src = "https://i.pravatar.cc/150?img=12" class = "profile-img" >
+<div class="top">
 
+<img src="profile.png" id="photo">
 
-                <div class="profile-info">
-                    <h2 id="username">Mohit Yadav</h2>
-                    <p id="email">mohit@gmail.com</p>
+<h2 id="name">Loading...</h2>
 
-                    <span class ="rank">👑 Gold Member</span>
+<p id="email"></p>
 
-                    
-                </div>
-        </div>
-
-        <div class = "stats">
-            <div class="box">
-                <h3 id = "score">1250</h3>
-                <p>Total Score</p>
-            </div>
-
-            <div class="box">
-                <h3 id="quiz">38</h3>
-                <p>Quiz Completed</p>
-            </div>
-
-            <div class="box">
-                <h3 id="badge">12</h3>
-                <p>Badges</p>
-            </div>
-
-        </div>
-
-
-        <div class="progress-area">
-            <h3>Learning Progress</h3>
-
-            <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-
-            <span id="progressText">75%</span>
-        </div>
-
-        <div class="buttons">
-            <button onclick="editProfile()">Edit Profile</button>
-            <button class="logout" onclick="logout()">Logout</button>
-
-        </div>
-    </div>
-
-    <div class="activity-card">
-    <h2>Recent Activity</h2>
-
-    <ul>
-     <li>✅ Java Quiz Completed</li>
-            <li>🏅 Earned Python Badge</li>
-            <li>🔥 5 Days Streak</li>
-            <li>⭐ Scored 95% in HTML Quiz</li>
-    </ul>
-
-    </section>
+<span id="rank"></span>
 
 </div>
+
+<div class="stats">
+
+<div class="box">
+
+<h2 id="score"></h2>
+
+<p>Total Score</p>
+
+</div>
+
+<div class="box">
+
+<h2 id="quiz"></h2>
+
+<p>Quiz</p>
+
+</div>
+
+<div class="box">
+
+<h2 id="percentage"></h2>
+
+<p>Percentage</p>
+
+</div>
+
+</div>
+
+<div class="details">
+
+<h3>User Details</h3>
+
+<table>
+
+<tr>
+
+<td><i class="fa-solid fa-user"></i> Age</td>
+
+<td id="age"></td>
+
+</tr>
+
+<tr>
+
+<td><i class="fa-solid fa-phone"></i> Mobile</td>
+
+<td id="mobile"></td>
+
+</tr>
+
+<tr>
+
+<td><i class="fa-solid fa-location-dot"></i> City</td>
+
+<td id="city"></td>
+
+</tr>
+
+<tr>
+
+<td><i class="fa-solid fa-award"></i> Result</td>
+
+<td id="result"></td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="progress-area">
+
+<h3>Learning Progress</h3>
+
+<div class="progress">
+
+<div id="bar"></div>
+
+</div>
+
+<span id="progressText"></span>
+
+</div>
+
+<div class="buttons">
+
+<button onclick="editProfile()">
+
+Edit Profile
+
+</button>
+
+<button onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<h2>Recent Activity</h2>
+
+<div class="activity">
+
+✔ HTML Quiz Completed
+
+</div>
+
+<div class="activity">
+
+🏆 Highest Score : 98
+
+</div>
+
+<div class="activity">
+
+🔥 15 Days Streak
+
+</div>
+
+<div class="activity">
+
+⭐ Gold Member
+
+</div>
+
+<div class="activity">
+
+💯 Java Quiz Completed
+
+</div>
+
+<div class="activity">
+
+🎖 C++ Quiz Completed
+
+</div>
+
+</div>
+
+</div>
+
 <script src="Profile.js"></script>
-    
+
 </body>
 </html>

@@ -1,27 +1,57 @@
-let progress = 75;
+const user = JSON.parse(localStorage.getItem("profile"));
 
-document.getElementById("progressBar").style.width = progress + "%";
-document.getElementById("progressText").innerHTML = progress + "%";
+if(user){
+
+document.getElementById("name").innerHTML=user.name;
+
+document.getElementById("email").innerHTML=user.name.toLowerCase().replace(/\s/g,'')+"@gmail.com";
+
+document.getElementById("age").innerHTML=user.age;
+
+document.getElementById("mobile").innerHTML=user.mobile;
+
+document.getElementById("city").innerHTML=user.city;
+
+document.getElementById("quiz").innerHTML=user.quiz;
+
+document.getElementById("score").innerHTML=user.score;
+
+document.getElementById("result").innerHTML=user.result;
+
+document.getElementById("percentage").innerHTML=user.score+"%";
+
+document.getElementById("progressText").innerHTML=user.score+"%";
+
+document.getElementById("bar").style.width=user.score+"%";
+
+let marks=parseInt(user.score);
+
+if(marks>=90){
+
+document.getElementById("rank").innerHTML="👑 Gold Member";
+
+}
+else if(marks>=70){
+
+document.getElementById("rank").innerHTML="🥈 Silver Member";
+
+}
+else{
+
+document.getElementById("rank").innerHTML="🥉 Bronze Member";
+
+}
+
+}
+
+function logout(){
+
+window.location="index.html";
+
+}
 
 function editProfile(){
 
-    let neName = prompt("Enter Your Name");
-    if ( newName != null && newName != ""){
-        document.getElementById("username").innerHTML = newName;
-    }
+window.location="form.html";
 
-    let newEmail = prompt("Enter Your Email");
-    if ( newEmail != null && newEmail != ""){
-        document.getElementById("email").innerHTML = newEmail;
-    }
-    alert("Profile Updated Successfully");
-}
-
-
-function logout(){
-    let confirmLogout = confirm("Do you want to Logout?");
-    if ( confirmLogout){
-        alert("Logged Out Successfully");
-        window.location.href = "login.html";
-    }
 }
