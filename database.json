@@ -29,6 +29,16 @@
       "test": "Java",
       "marks": "15/50",
       "result": "Fail"
+    },
+    {
+      "id": "f8e4",
+      "name": "Mohit Yadav",
+      "age": "25",
+      "contact": "4565676545",
+      "city": "Tekanpur",
+      "test": "Java",
+      "marks": "0/50",
+      "result": "Fail"
     }
   ]
 }
