@@ -136,6 +136,10 @@ quizEnded
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
+
+	// Hide any previous screen
+	let endScreenEl = document.getElementById("quiz-end");
+	endScreenEl.setAttribute("class","hide");
     getQuestion();
 }
 
