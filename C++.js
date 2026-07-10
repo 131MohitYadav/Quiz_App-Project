@@ -247,7 +247,20 @@ function clockTick() {
     time--;
     timerEl.textContent = time;
     if (time <= 0) {
-        quizEnd();
+        // set timer to 0
+        timerEl.textContent = "0";
+        // check if quiz already ended
+        if(!quizEnded){
+            // show "time's up !" message
+            feedbackEl.textContent = "⏰ Time's Up!";
+            feedbackEl.setAttribute("class", "feedback");
+            setTimeout(function() {
+                feedbackEl.setAttribute("class", "feedback hide");
+
+            }, 2000);
+              quizEnd();
+        }
+      
     }
 }
 
@@ -260,6 +273,10 @@ function saveHighscore() {
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores));
         alert("Your Score has been Submitted");
+
+    } else{
+        // alert if name is empty
+        alert ( "Please enter your name before submitting!");
     }
 }
 
@@ -277,3 +294,10 @@ submitBtn.onclick = saveHighscore;
 
 // Start quiz after clicking start
 startBtn.onclick = quizStart;
+
+// Restart button functionality
+if ( reStartBtn){
+    reStartBtn.onclick = function() {
+        redirectToHome();
+    }
+}
