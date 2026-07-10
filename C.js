@@ -200,7 +200,26 @@ function quizEnd() {
     },5000);
 }
 
+// New function - Redirect to. home page
 
+function redirectToHome(){
+    // hide quie-end screen 
+    let endScreenEl = document.getElementById("quiz-end");
+    endScreenEl.setAttribute("class", "hide");
+
+    // show start screen
+    let landingScreenEl = document.getElementById("start-screen");
+    landingScreenEl.removeAttribute("class");
+
+    // REset timer dislplay
+    timerEl.textContent = questions.length * 60;
+
+    // Reset feedback 
+    feedbackEl.setAttribute("class", "feedback hide");
+    
+    //Reset quiz ended flag
+    quizEnded = false;
+}
 
 
 
@@ -210,7 +229,20 @@ function clockTick() {
     time--;
     timerEl.textContent = time;
     if (time <= 0) {
-        quizEnd();
+        // Set timer to 0
+        timerEl.textContent = "0";
+        // Check if quiz already ended
+        if(!quizEnded){
+            // Show"Time's up! message
+            feedbackEl.textContent = "⏰ Time's Up!";
+            feedbackEl.style.color = "red";
+            feedback.setAttribute("class", "feedback");
+            setTimeout(function() {
+                feedbackEl.setAttribute("class", "feedback hide");
+            }, 2000);
+             quizEnd();
+        }
+       
     }
 }
 
@@ -223,6 +255,9 @@ function saveHighscore() {
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores));
         alert("Your Score has been Submitted");
+    } else {
+     // alert if name is empty
+     alert("Please enter your name before submitting!");
     }
 }
 
@@ -231,7 +266,7 @@ function checkForEnter(event) {
     if (event.key === "Enter") {
         saveHighscore();
         alert("Your Score has been Submitted");
-    }
+    } 
 }
 nameEl.onkeyup = checkForEnter;
 
@@ -240,3 +275,10 @@ submitBtn.onclick = saveHighscore;
 
 // Start quiz after clicking start
 startBtn.onclick = quizStart;
+
+// restart button functionality
+if (reStartBtn) {
+    reStartBtn.onclick = function() {
+        redirectToHome();
+    };
+}
