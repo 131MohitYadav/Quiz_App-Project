@@ -289,7 +289,10 @@ function saveHighscore() {
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores));
         alert("Your Score has been Submitted");
-    }
+    } else{
+		// alert if name is empty
+		alert("Please enter your name before submitting!");
+	}
 }
 
 // Save score after pressing enter
@@ -307,3 +310,9 @@ submitBtn.onclick = saveHighscore;
 // Start quiz after clicking start
 startBtn.onclick = quizStart;
 
+// Restart button functionality
+if (reStartBtn){
+	reStartBtn.onclick = function() {
+		redirectToHome();
+	}
+}
