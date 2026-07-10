@@ -140,6 +140,7 @@ quizEnded
 	// Hide any previous screen
 	let endScreenEl = document.getElementById("quiz-end");
 	endScreenEl.setAttribute("class","hide");
+
     getQuestion();
 }
 
@@ -167,6 +168,10 @@ function getQuestion() {
 
 // Check for right answer and handle wrong answer (deduct time)
 function questionClick() {
+
+// Prevent answering if quiz has ended
+if (quizEnded) return;
+
     if (this.value !== questions[currentQuestionIndex].answer) {
         // Deduct time for wrong answers
         time -= 10;
