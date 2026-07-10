@@ -155,6 +155,10 @@ function getQuestion() {
 
 // Check for right answer and handle wrong answer (deduct time)
 function questionClick() {
+
+    // Prevent answring if quiz has ended
+    if (quizEnded) return;
+
     if (this.value !== questions[currentQuestionIndex].answer) {
         // Deduct time for wrong answers
         time -= 10;
@@ -183,6 +187,10 @@ function questionClick() {
 
 // End quiz by hiding questions and showing final score
 function quizEnd() {
+    // prevent multiple calls
+    if (quizEnded) return;
+    quizEnded = true;
+
     clearInterval(timerId);
     let endScreenEl = document.getElementById("quiz-end");
     endScreenEl.removeAttribute("class");
@@ -206,6 +214,32 @@ function quizEnd() {
     }
 
     questionsEl.setAttribute("class", "hide");
+
+    // auto-redirect to home page after 5 seconds
+    setTimeout(function() {
+        redirectToHome();
+    }, 5000);
+}
+
+
+// New FUnction - redirect to home page 
+function redirectToHome(){
+    // hide quiz-end screen
+    let endScreenEl = document.getElementById("quiz-end");
+    endScreenEl.setAttribute("class", "hide");
+
+    // show start screen
+    let landingScreenEl = document.getElementById("start-screen");
+    landingScreenEl.removeAttribute("class");
+
+    // reset timer display
+    timerEl.textContent = questions.length * 60;
+
+    // reset feedback
+    feedbackEl.setAttribute("class", "feedback hide");
+
+    // Reset quiz ended flag
+    quizEnded = false;
 }
 
 // End quiz if timer reaches 0
