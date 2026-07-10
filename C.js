@@ -84,13 +84,28 @@ let time = questions.length * 60;
 let timerId;
 let score = 0;
 
+// flag to prevent multiple end calls
+let quizEnded = false;
+
 // Start quiz and hide frontpage
 function quizStart() {
+    // Reset quiz state
+    currentQuestionIndex = 0;
+    time = questions.length * 60;
+    score = 0;
+    quizEnded = false;
+
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
+
+
+    //Hide any previous end screen
+    let endScreenEl = document.getElementById("quiz-end");
+    endScreenEl.setAttribute("class", "hide");
+
     getQuestion();
 }
 
@@ -118,6 +133,10 @@ function getQuestion() {
 
 // Check for right answer and handle wrong answer (deduct time)
 function questionClick() {
+
+    // prevent answering if quiz has ended
+    if (quizEnded) return;
+
     if (this.value !== questions[currentQuestionIndex].answer) {
         // Deduct time for wrong answers
         time -= 10;
@@ -146,7 +165,12 @@ function questionClick() {
 
 // End quiz by hiding questions and showing final score
 function quizEnd() {
+    // Prevent multiple calls
+    if (quizEnded) return;
+    quizEnded = true;
+
     clearInterval(timerId);
+
     let endScreenEl = document.getElementById("quiz-end");
     endScreenEl.removeAttribute("class");
 
@@ -169,7 +193,17 @@ function quizEnd() {
     }
 
     questionsEl.setAttribute("class", "hide");
+
+    // auto- redirect to home page after 5 seconds
+    setTimeout(function() {
+        redirectToHome();
+    },5000);
 }
+
+
+
+
+
 
 // End quiz if timer reaches 0
 function clockTick() {
