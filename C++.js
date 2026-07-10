@@ -103,13 +103,31 @@ let time = questions.length * 60;
 let timerId;
 let score = 0;
 
+// flag t  prevent multiple end calls
+let quizEnded = false;
+
+
+
 // Start quiz and hide front page
 function quizStart() {
+
+    // reset to quiz state
+    currentQuestionIndex = 0;
+    time = questions.length * 60;
+    score = 0;
+    quizEnded = false;
+
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
+
+    // hide any previous end screen
+    let endScreenEl = document.getElementById("quiz-end");
+    endScreenEl.setAttribute("class" , "hide");
+
+
     getQuestion();
 }
 
