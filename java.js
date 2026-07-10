@@ -103,14 +103,26 @@ let currentQuestionIndex = 0;
 let time = questions.length * 60;
 let timerId;
 let score = 0;
+let quizEnded = false; // Flag to prevent multiple end calls
 
 // Start quiz and hide frontpage
 function quizStart() {
+    // Reset quiz state
+    currentQuestionIndex = 0;
+    time = questions.length * 60;
+    score = 0;
+    quizEnded = false;
+    
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
+    
+    // Hide any previous end screen
+    let endScreenEl = document.getElementById("quiz-end");
+    endScreenEl.setAttribute("class", "hide");
+    
     getQuestion();
 }
 
@@ -130,7 +142,7 @@ function getQuestion() {
         let choiceBtn = document.createElement("button");
         choiceBtn.setAttribute("value", choice);
         choiceBtn.innerHTML = `${i + 1}. ${choice}`;
-		
+        
         choiceBtn.onclick = questionClick;
         choicesEl.appendChild(choiceBtn);
     });
@@ -138,6 +150,9 @@ function getQuestion() {
 
 // Check for right answer and handle wrong answer (deduct time)
 function questionClick() {
+    // Prevent answering if quiz has ended
+    if (quizEnded) return;
+    
     if (this.value !== questions[currentQuestionIndex].answer) {
         // Deduct time for wrong answers
         time -= 10;
@@ -156,6 +171,7 @@ function questionClick() {
     setTimeout(function () {
         feedbackEl.setAttribute("class", "feedback hide");
     }, 2000);
+    
     currentQuestionIndex++;
     if (currentQuestionIndex === questions.length) {
         quizEnd();
@@ -166,7 +182,12 @@ function questionClick() {
 
 // End quiz by hiding questions and showing final score
 function quizEnd() {
+    // Prevent multiple calls
+    if (quizEnded) return;
+    quizEnded = true;
+    
     clearInterval(timerId);
+    
     let endScreenEl = document.getElementById("quiz-end");
     endScreenEl.removeAttribute("class");
 
@@ -176,19 +197,44 @@ function quizEnd() {
     let passFailMessageEl = document.getElementById("pass-fail-message");
 
     // Determine pass or fail message
-    if (score >= 25) { // Adjust passing score if needed
+    if (score >= 25) {
         passFailMessageEl.textContent = "🎉 You are Passed in Exam!";
         passFailMessageEl.style.color = "green";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     } else {
         passFailMessageEl.textContent = "❌ You did not pass the exam.";
         passFailMessageEl.style.color = "red";
-		passFailMessageEl.style.fontWeight = "bold"
-		passFailMessageEl.style.fontSize = "22px"
+        passFailMessageEl.style.fontWeight = "bold";
+        passFailMessageEl.style.fontSize = "22px";
     }
 
     questionsEl.setAttribute("class", "hide");
+    
+    // Auto-redirect to home page after 5 seconds
+    setTimeout(function() {
+        redirectToHome();
+    }, 5000);
+}
+
+// Function to redirect to home page
+function redirectToHome() {
+    // Hide quiz-end screen
+    let endScreenEl = document.getElementById("quiz-end");
+    endScreenEl.setAttribute("class", "hide");
+    
+    // Show start screen
+    let landingScreenEl = document.getElementById("start-screen");
+    landingScreenEl.removeAttribute("class");
+    
+    // Reset timer display
+    timerEl.textContent = questions.length * 60;
+    
+    // Reset feedback
+    feedbackEl.setAttribute("class", "feedback hide");
+    
+    // Reset quiz ended flag
+    quizEnded = false;
 }
 
 // End quiz if timer reaches 0
@@ -196,7 +242,18 @@ function clockTick() {
     time--;
     timerEl.textContent = time;
     if (time <= 0) {
-        quizEnd();
+        timerEl.textContent = "0";
+        // If time runs out, automatically end the quiz
+        if (!quizEnded) {
+            // Show a message that time is up
+            feedbackEl.textContent = "⏰ Time's Up!";
+            feedbackEl.style.color = "red";
+            feedbackEl.setAttribute("class", "feedback");
+            setTimeout(function() {
+                feedbackEl.setAttribute("class", "feedback hide");
+            }, 2000);
+            quizEnd();
+        }
     }
 }
 
@@ -209,6 +266,8 @@ function saveHighscore() {
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores));
         alert("Your Score has been Submitted");
+    } else {
+        alert("Please enter your name before submitting!");
     }
 }
 
@@ -216,7 +275,6 @@ function saveHighscore() {
 function checkForEnter(event) {
     if (event.key === "Enter") {
         saveHighscore();
-        alert("Your Score has been Submitted");
     }
 }
 nameEl.onkeyup = checkForEnter;
@@ -226,3 +284,10 @@ submitBtn.onclick = saveHighscore;
 
 // Start quiz after clicking start
 startBtn.onclick = quizStart;
+
+// Restart button functionality
+if (reStartBtn) {
+    reStartBtn.onclick = function() {
+        redirectToHome();
+    };
+}
