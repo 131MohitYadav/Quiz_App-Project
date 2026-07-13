@@ -278,3 +278,10 @@ submitBtn.onclick = saveHighscore;
 
 // Start quiz after clicking start
 startBtn.onclick = quizStart;
+
+// Restart button fucntionality
+if(reStartBtn){
+    reStartBtn.onclick = function(){
+        redirectToHome();
+    }
+}
