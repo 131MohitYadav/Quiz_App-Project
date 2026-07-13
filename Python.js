@@ -89,13 +89,29 @@ let time = questions.length * 60;
 let timerId;
 let score = 0;
 
+// flag to prevent mutitple end calls
+let quizEnded = false;
+
 // Start quiz and hide front page
 function quizStart() {
+
+    // Reset quiz state
+    currentQuestionIndex = 0;
+    time = questions.length * 60;
+    score = 0;
+    quizEnded = false;
+
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
+
+    // Hide any prevosu end screen
+    let endScreenEl = document.getElementById("quiz-end");
+    endScreenEl.setAttribute("class", "hide");
+
+
     getQuestion();
 }
 
@@ -123,6 +139,11 @@ function getQuestion() {
 
 // Check for right answer and handle wrong answer (deduct time)
 function questionClick() {
+    // prevent answring if qiz has ended
+    if(quizEnded) return;
+
+
+    
     if (this.value !== questions[currentQuestionIndex].answer) {
         // Deduct time for wrong answers
         time -= 10;
