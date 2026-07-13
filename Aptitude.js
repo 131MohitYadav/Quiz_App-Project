@@ -197,3 +197,86 @@ function updateQuestionTimerDisplay(){
 }
 
 
+// STEP 8 -> START QUESTION TIMER
+// Starts 60 second countdown, auto-moves to next question when time expire
+
+function startQuestionTimer(){
+	// clear existing timer
+	if(questionTimerId){
+		clearInterval(questionTimerId);
+		questionTimerId = null;
+	}
+	questionTimeLeft = MAX_QUESTION_TIME;
+	updateQuestionTimerDisplay();
+
+	questionTimerId = setInterval(function() {
+		questionTimeLeft--;
+		updateQuestionTimerDisplay();
+
+		// Auto- move when 1 minute expire
+		if ( questionTimeLeft <= 0){
+			if (!quizEnded && !isWaitingForNext){
+				feedbackEl.textContent = "Time's up for this question!";
+				feedbackEl.style.color = "orange";
+				feedbackEl.setAttribute("class", "feedback");
+
+				isWaitingForNext = true;
+
+				// disable buttons
+				let allButtons = choicesEl.querySelectorAll('button');
+				allButtons.forEach(btn => {
+					btn.disabled = true;
+					btn.style.cursor = 'not-allowed';
+					btn.style.opacity = '0.6';
+				});
+
+				// No points for unanswered question
+				setTimeout(function(){
+					feedbackEl.setAttribute("class", "feedback hide");
+
+					currentQuestionIndex++;
+					if(currentQuestionIndex == shuffledQuestions.length){
+						
+
+						quizEnd();
+
+					}
+					else{
+						getQuestion();
+						startQuestionTimer(); // Restart timer for next question
+					}
+				}, 1500);
+				
+			}
+		}
+	}, 1000);
+}
+
+
+// STEP 9 -> QUIZ START - RESET STATE
+// Reset all variabls and hides previous end screen
+
+function quizStart(){
+	// reset all state
+	currentQuestionIndex = 0;
+	time = totalTime;
+	score = 0;
+	quizEnded = false;
+	isWaitingForNext = false;
+
+	getRandomQuestions(); // shuffle questions
+
+	timerId = setInterval(clockTick, 1000);
+	updateTimerDisplay();
+
+	let landingScreenEl = document.getElementById("start-screen");
+	landingScreenEl.setAttribute("class", "hide");
+	questionsEl.removeAttribute("class");
+
+	//Hide any previous end screen
+	let endScreenEl = document.getElementById("quiz-end");
+	endScreenEl.setAttribute("class", "hide");
+
+	getQuestion();
+	startQuestionTimer(); // start 1-minute timer for first question
+}
