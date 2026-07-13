@@ -100,21 +100,42 @@ let reStartBtn = document.querySelector("#restart");
 
 // Quiz's initial state
 let currentQuestionIndex = 0;
-let time = questions.length * 60;
+// 🔥 MODIFIED: 10 minutes = 600 seconds
+let totalTime = 600; // 10 minutes
+let time = totalTime;
 let timerId;
 let score = 0;
-let quizEnded = false; // Flag to prevent multiple end calls
+let quizEnded = false;
+
+// 🔥 NEW: Function to format time as HH:MM:SS
+function formatTime(seconds) {
+    
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    // Format with leading zeros
+    //const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(secs).padStart(2, '0');
+    
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+// 🔥 NEW: Function to update timer display
+function updateTimerDisplay() {
+    timerEl.textContent = formatTime(time);
+}
 
 // Start quiz and hide frontpage
 function quizStart() {
     // Reset quiz state
     currentQuestionIndex = 0;
-    time = questions.length * 60;
+    time = totalTime; // Reset to 10 minutes
     score = 0;
     quizEnded = false;
     
     timerId = setInterval(clockTick, 1000);
-    timerEl.textContent = time;
+    updateTimerDisplay(); // Show formatted time
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
@@ -159,7 +180,7 @@ function questionClick() {
         if (time < 0) {
             time = 0;
         }
-        timerEl.textContent = time;
+        updateTimerDisplay();
         feedbackEl.textContent = `Wrong! The correct answer was ${questions[currentQuestionIndex].answer}.`;
         feedbackEl.style.color = "red";
     } else {
@@ -228,7 +249,8 @@ function redirectToHome() {
     landingScreenEl.removeAttribute("class");
     
     // Reset timer display
-    timerEl.textContent = questions.length * 60;
+    time = totalTime;
+    updateTimerDisplay();
     
     // Reset feedback
     feedbackEl.setAttribute("class", "feedback hide");
@@ -240,9 +262,10 @@ function redirectToHome() {
 // End quiz if timer reaches 0
 function clockTick() {
     time--;
-    timerEl.textContent = time;
+    updateTimerDisplay(); // Update display with formatted time
+    
     if (time <= 0) {
-        timerEl.textContent = "0";
+        timerEl.textContent = "00:00:00";
         // If time runs out, automatically end the quiz
         if (!quizEnded) {
             // Show a message that time is up
