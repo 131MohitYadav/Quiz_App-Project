@@ -90,6 +90,7 @@ let time = questions.length * 60;
 let timerId;
 let score = 0;
 
+
 // Start quiz and hide front page
 function quizStart() {
     timerId = setInterval(clockTick, 1000);
