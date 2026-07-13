@@ -68,6 +68,7 @@ let questions = [
 ];
 
 
+
 // Get DOM Elements
 let questionsEl = document.querySelector("#questions");
 let timerEl = document.querySelector("#timer");
@@ -84,25 +85,40 @@ let time = questions.length * 60;
 let timerId;
 let score = 0;
 
+// Flag to prevent multiple end calls
+let quizEnded = false;
+
 // Start quiz and hide front page
 function quizStart() {
+// Reset quiz state
+currentQuestionIndex = 0;
+time = questions.length * 60;
+score = 0;
+quizEnded
+
+
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
+
+	// Hide any previous screen
+	let endScreenEl = document.getElementById("quiz-end");
+	endScreenEl.setAttribute("class","hide");
+
     getQuestion();
 }
 
-// Loop through questions and display properly formatted HTML code
+// Loop through questions and display properly formatted CSS code
 function getQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let promptEl = document.getElementById("question-words");
 
-    // Format the HTML code properly
+    // Format the CSS code properly
     let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
 
-    // Use <pre> and <code> to display properly formatted HTML code
+    // Use <pre> and <code> to display properly formatted CSS code
     promptEl.innerHTML = `<pre><code>${formattedPrompt}</code></pre>`;
 
     choicesEl.innerHTML = "";
@@ -118,6 +134,10 @@ function getQuestion() {
 
 // Check for right answer and handle wrong answer (deduct time)
 function questionClick() {
+
+// Prevent answering if quiz has ended
+if (quizEnded) return;
+
     if (this.value !== questions[currentQuestionIndex].answer) {
         // Deduct time for wrong answers
         time -= 10;
@@ -146,6 +166,10 @@ function questionClick() {
 
 // End quiz by hiding questions and showing final score
 function quizEnd() {
+	// Prevent multiple calls
+	if (quizEnded) return;
+	quizEnded = true;
+
     clearInterval(timerId);
     let endScreenEl = document.getElementById("quiz-end");
     endScreenEl.removeAttribute("class");
@@ -169,14 +193,56 @@ function quizEnd() {
     }
 
     questionsEl.setAttribute("class", "hide");
+
+	// Auto- redirect to home page after 5 seconds
+	setTimeout(function(){
+		redirectToHome();
+	}, 5000);
 }
+
+// New function = Redirect to home page
+function redirectToHome(){
+	// Hide quiz-end screen
+	let endScreenEl = document.getElementById("quiz-end");
+	endScreenEl.setAttribute("class", "hide");
+
+	// show start screen
+	let landingScreenEl = document.getElementById("start-screen");
+
+	// reset timer display
+	timerEl.textContent = questions.length * 60;
+
+	// Reset feedback
+	feedbackEl.setAttribute("class", "feedback hide");
+
+	// Reset quiz ended flag
+	quizEnded = false;
+
+
+	
+} 
+
+
 
 // End quiz if timer reaches 0
 function clockTick() {
     time--;
     timerEl.textContent = time;
     if (time <= 0) {
-        quizEnd();
+		// set timer to 0
+		timerEl.textContent = "0";
+		// check if quiz already ended
+		if(!quizEnded){
+			// show "time's UP!" message
+			feedbackEl.textContent =  "⏰ Time's Up!";
+			feedbackEl.style.color = "red";
+			feedbackEl.setAttribute("class" , "feedback");
+			setTimeout(function(){
+				feedbackEl.setAttribute("class", "feedback hide");
+			}, 2000);
+			quizEnd();
+		}
+        
     }
 }
 
@@ -189,7 +255,10 @@ function saveHighscore() {
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores));
         alert("Your Score has been Submitted");
-    }
+    } else{
+		// alert if name is empty
+		alert("Please enter your name before submitting!");
+	}
 }
 
 // Save score after pressing enter
@@ -206,3 +275,10 @@ submitBtn.onclick = saveHighscore;
 
 // Start quiz after clicking start
 startBtn.onclick = quizStart;
+
+// Restart button functionality
+if (reStartBtn){
+	reStartBtn.onclick = function() {
+		redirectToHome();
+	}
+}
