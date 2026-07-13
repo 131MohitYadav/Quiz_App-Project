@@ -1,21 +1,21 @@
 let questions = [
     {
-        prompt: `Q.1. Number of primitive data types in Java are?`,
+        prompt: `Number of primitive data types in Java are?`,
         options: ["6", "7", "8", "9"],
         answer: "8",
     },
     {
-        prompt: `Q.2. What is the size of float and double in Java?`,
+        prompt: `What is the size of float and double in Java?`,
         options: ["32 and 64", "32 and 32", "64 and 32", "64 and 64"],
         answer: "32 and 64",
     },
     {
-        prompt: `Q.3. Automatic type conversion is possible in which of the possible cases?`,
+        prompt: `Automatic type conversion is possible in which of the possible cases?`,
         options: ["Byte to int", "Int to long", "Long to int", "Short to int"],
         answer: "Int to long",
     },
     {
-        prompt: `Q.4. Find the output of the following code:\n
+        prompt: `Find the output of the following code:\n
 int Integer = 24;
 char String = 'I';
 System.out.print(Integer);
@@ -24,7 +24,7 @@ System.out.print(String);`,
         answer: "24 I",
     },
     {
-        prompt: `Q.5. Find the output of the following program:\n
+        prompt: `Find the output of the following program:\n
 public class Solution {
     public static void main(String[] args) {
         short x = 10;
@@ -36,7 +36,7 @@ public class Solution {
         answer: "Compile error",
     },
     {
-        prompt: `Q.6. Find the output of the following program:\n
+        prompt: `Find the output of the following program:\n
 public class Solution {
     public static void main(String[] args) {
         byte x = 127;
@@ -49,7 +49,7 @@ public class Solution {
         answer: "-127",
     },
     {
-        prompt: `Q.7. Find the output of the following program:\n
+        prompt: `Find the output of the following program:\n
 public class Solution {
     public static void main(String[] args) {
         int[] x = {120, 200, 016};
@@ -62,7 +62,7 @@ public class Solution {
         answer: "120 200 016",
     },
     {
-        prompt: `Q.8. When an array is passed to a method, what does the method receive?`,
+        prompt: `When an array is passed to a method, what does the method receive?`,
         options: [
             "The reference of the array",
             "A copy of the array",
@@ -72,7 +72,7 @@ public class Solution {
         answer: "The reference of the array",
     },
     {
-        prompt: `Q.9. Select the valid statement to declare and initialize an array.`,
+        prompt: `Select the valid statement to declare and initialize an array.`,
         options: [
             "int[] A = {}",
             "int[] A = {1,2,3}",
@@ -82,7 +82,7 @@ public class Solution {
         answer: "int[] A = {1,2,3}",
     },
     {
-        prompt: `Q.10. Arrays in Java are-`,
+        prompt: `Arrays in Java are-`,
         options: ["Object references", "Objects", "Primitive data type", "None"],
         answer: "Objects",
     }
@@ -100,112 +100,237 @@ let reStartBtn = document.querySelector("#restart");
 
 // Quiz's initial state
 let currentQuestionIndex = 0;
-// 🔥 MODIFIED: 10 minutes = 600 seconds
-let totalTime = 600; // 10 minutes
+let totalTime = 600;
 let time = totalTime;
 let timerId;
 let score = 0;
 let quizEnded = false;
+let shuffledQuestions = [];
+let isWaitingForNext = false;
 
-// 🔥 NEW: Function to format time as HH:MM:SS
+// 🔥🔥🔥 NEW: Question timer variables
+let questionTimerId = null;
+let questionTimeLeft = 60; // 1 minute per question
+const MAX_QUESTION_TIME = 60;
+
+// 🔥🔥🔥 NEW: Function to update question timer display
+function updateQuestionTimerDisplay() {
+    let questionTimerEl = document.getElementById("question-timer");
+    if (questionTimerEl) {
+        questionTimerEl.textContent = formatTime(questionTimeLeft);
+        // Change color when time is low
+        if (questionTimeLeft <= 10) {
+            questionTimerEl.style.color = "red";
+        } else {
+            questionTimerEl.style.color = "#2c3e50";
+        }
+    }
+}
+
+// 🔥🔥🔥 NEW: Function to start question timer
+function startQuestionTimer() {
+    // Clear any existing question timer
+    if (questionTimerId) {
+        clearInterval(questionTimerId);
+        questionTimerId = null;
+    }
+    
+    // Reset question time to 60 seconds
+    questionTimeLeft = MAX_QUESTION_TIME;
+    updateQuestionTimerDisplay();
+    
+    // Start the question timer
+    questionTimerId = setInterval(function() {
+        questionTimeLeft--;
+        updateQuestionTimerDisplay();
+        
+        // If time is up for this question
+        if (questionTimeLeft <= 0) {
+            // Auto move to next question
+            if (!quizEnded && !isWaitingForNext) {
+                // Show time's up for this question
+                feedbackEl.textContent = "⏰ Time's up for this question!";
+                feedbackEl.style.color = "orange";
+                feedbackEl.setAttribute("class", "feedback");
+                
+                // Auto move to next question
+                isWaitingForNext = true;
+                
+                // Disable all buttons
+                let allButtons = choicesEl.querySelectorAll('button');
+                allButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.cursor = 'not-allowed';
+                    btn.style.opacity = '0.6';
+                });
+                
+                // No points for unanswered question
+                setTimeout(function() {
+                    feedbackEl.setAttribute("class", "feedback hide");
+                    
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex === shuffledQuestions.length) {
+                        quizEnd();
+                    } else {
+                        getQuestion();
+                        // Restart question timer for next question
+                        startQuestionTimer();
+                    }
+                }, 1500);
+            }
+        }
+    }, 1000);
+}
+
+// Shuffle array function
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Get random questions
+function getRandomQuestions() {
+    let availableQuestions = [...questions];
+    shuffledQuestions = shuffleArray(availableQuestions);
+    currentQuestionIndex = 0;
+    return shuffledQuestions;
+}
+
+// Format time as MM:SS
 function formatTime(seconds) {
-    
-    const minutes = Math.floor((seconds % 3600) / 60);
+    const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    
-    // Format with leading zeros
-    //const formattedHours = String(hours).padStart(2, '0');
     const formattedMinutes = String(minutes).padStart(2, '0');
     const formattedSeconds = String(secs).padStart(2, '0');
-    
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-// 🔥 NEW: Function to update timer display
+// Update timer display
 function updateTimerDisplay() {
     timerEl.textContent = formatTime(time);
 }
 
-// Start quiz and hide frontpage
+// Start quiz
 function quizStart() {
-    // Reset quiz state
     currentQuestionIndex = 0;
-    time = totalTime; // Reset to 10 minutes
+    time = totalTime;
     score = 0;
     quizEnded = false;
+    isWaitingForNext = false;
+    
+    getRandomQuestions();
     
     timerId = setInterval(clockTick, 1000);
-    updateTimerDisplay(); // Show formatted time
+    updateTimerDisplay();
+    
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
     
-    // Hide any previous end screen
     let endScreenEl = document.getElementById("quiz-end");
     endScreenEl.setAttribute("class", "hide");
     
     getQuestion();
+    
+    // 🔥🔥🔥 NEW: Start question timer for first question
+    startQuestionTimer();
 }
 
-// Loop through questions and display properly formatted pseudocode
+// Display question
 function getQuestion() {
-    let currentQuestion = questions[currentQuestionIndex];
+    isWaitingForNext = false;
+    
+    let currentQuestion = shuffledQuestions[currentQuestionIndex];
     let promptEl = document.getElementById("question-words");
 
-    // Format the pseudocode properly
-    let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
+    let questionNumber = currentQuestionIndex + 1;
+    let totalQuestions = shuffledQuestions.length;
 
-    // Use <pre> and <code> to display properly formatted pseudocode
-    promptEl.innerHTML = `<pre><code>${formattedPrompt}</code></pre>`;
+    let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
+    
+    // 🔥🔥🔥 NEW: Added question timer display
+    promptEl.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <span style="background: #3498db; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px;">
+                📝 ${questionNumber}/${totalQuestions}
+            </span>
+           
+        </div>
+        <pre><code style="font-size: 16px; line-height: 1.6;">${formattedPrompt}</code></pre>
+    `;
 
     choicesEl.innerHTML = "";
     currentQuestion.options.forEach(function (choice, i) {
         let choiceBtn = document.createElement("button");
         choiceBtn.setAttribute("value", choice);
-        choiceBtn.innerHTML = `${i + 1}. ${choice}`;
-        
+        choiceBtn.innerHTML = `${String.fromCharCode(65 + i)}. ${choice}`;
         choiceBtn.onclick = questionClick;
         choicesEl.appendChild(choiceBtn);
     });
 }
 
-// Check for right answer and handle wrong answer (deduct time)
+// Question click handler
 function questionClick() {
-    // Prevent answering if quiz has ended
-    if (quizEnded) return;
+    if (quizEnded || isWaitingForNext) return;
     
-    if (this.value !== questions[currentQuestionIndex].answer) {
-        // Deduct time for wrong answers
+    isWaitingForNext = true;
+    
+    // 🔥🔥🔥 NEW: Stop question timer when user answers
+    if (questionTimerId) {
+        clearInterval(questionTimerId);
+        questionTimerId = null;
+    }
+    
+    let allButtons = choicesEl.querySelectorAll('button');
+    allButtons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.cursor = 'not-allowed';
+        btn.style.opacity = '0.6';
+    });
+    
+    if (this.value !== shuffledQuestions[currentQuestionIndex].answer) {
         time -= 10;
         if (time < 0) {
             time = 0;
         }
         updateTimerDisplay();
-        feedbackEl.textContent = `Wrong! The correct answer was ${questions[currentQuestionIndex].answer}.`;
+        feedbackEl.textContent = `❌ Wrong! Correct: ${shuffledQuestions[currentQuestionIndex].answer}`;
         feedbackEl.style.color = "red";
     } else {
         score += 5;
-        feedbackEl.textContent = "Correct!";
+        feedbackEl.textContent = "✅ Correct!";
         feedbackEl.style.color = "green";
     }
     feedbackEl.setAttribute("class", "feedback");
+    
     setTimeout(function () {
         feedbackEl.setAttribute("class", "feedback hide");
-    }, 2000);
-    
-    currentQuestionIndex++;
-    if (currentQuestionIndex === questions.length) {
-        quizEnd();
-    } else {
-        getQuestion();
-    }
+        
+        currentQuestionIndex++;
+        if (currentQuestionIndex === shuffledQuestions.length) {
+            quizEnd();
+        } else {
+            getQuestion();
+            // 🔥🔥🔥 NEW: Restart question timer for next question
+            startQuestionTimer();
+        }
+    }, 1000);
 }
 
-// End quiz by hiding questions and showing final score
+// End quiz
 function quizEnd() {
-    // Prevent multiple calls
     if (quizEnded) return;
     quizEnded = true;
+    isWaitingForNext = false;
+    
+    // 🔥🔥🔥 NEW: Clear question timer
+    if (questionTimerId) {
+        clearInterval(questionTimerId);
+        questionTimerId = null;
+    }
     
     clearInterval(timerId);
     
@@ -217,7 +342,6 @@ function quizEnd() {
 
     let passFailMessageEl = document.getElementById("pass-fail-message");
 
-    // Determine pass or fail message
     if (score >= 25) {
         passFailMessageEl.textContent = "🎉 You are Passed in Exam!";
         passFailMessageEl.style.color = "green";
@@ -232,43 +356,41 @@ function quizEnd() {
 
     questionsEl.setAttribute("class", "hide");
     
-    // Auto-redirect to home page after 5 seconds
     setTimeout(function() {
         redirectToHome();
     }, 5000);
 }
 
-// Function to redirect to home page
+// Redirect to home
 function redirectToHome() {
-    // Hide quiz-end screen
     let endScreenEl = document.getElementById("quiz-end");
     endScreenEl.setAttribute("class", "hide");
     
-    // Show start screen
     let landingScreenEl = document.getElementById("start-screen");
     landingScreenEl.removeAttribute("class");
     
-    // Reset timer display
     time = totalTime;
     updateTimerDisplay();
     
-    // Reset feedback
     feedbackEl.setAttribute("class", "feedback hide");
-    
-    // Reset quiz ended flag
     quizEnded = false;
+    isWaitingForNext = false;
+    
+    // 🔥🔥🔥 NEW: Clear question timer
+    if (questionTimerId) {
+        clearInterval(questionTimerId);
+        questionTimerId = null;
+    }
 }
 
-// End quiz if timer reaches 0
+// Timer tick
 function clockTick() {
     time--;
-    updateTimerDisplay(); // Update display with formatted time
+    updateTimerDisplay();
     
     if (time <= 0) {
-        timerEl.textContent = "00:00:00";
-        // If time runs out, automatically end the quiz
+        timerEl.textContent = "00:00";
         if (!quizEnded) {
-            // Show a message that time is up
             feedbackEl.textContent = "⏰ Time's Up!";
             feedbackEl.style.color = "red";
             feedbackEl.setAttribute("class", "feedback");
@@ -280,7 +402,7 @@ function clockTick() {
     }
 }
 
-// Save score in local storage
+// Save score
 function saveHighscore() {
     let name = nameEl.value.trim();
     if (name !== "") {
@@ -294,21 +416,15 @@ function saveHighscore() {
     }
 }
 
-// Save score after pressing enter
 function checkForEnter(event) {
     if (event.key === "Enter") {
         saveHighscore();
     }
 }
 nameEl.onkeyup = checkForEnter;
-
-// Save score after clicking submit
 submitBtn.onclick = saveHighscore;
-
-// Start quiz after clicking start
 startBtn.onclick = quizStart;
 
-// Restart button functionality
 if (reStartBtn) {
     reStartBtn.onclick = function() {
         redirectToHome();

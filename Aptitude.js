@@ -2,7 +2,7 @@
 
 let questions = [
 	{
-		prompt: `  Q.1. Which of the following is a prime number?`,
+		prompt: `  Which of the following is a prime number?`,
 		options: [
 			"517",
 			"559",
@@ -13,7 +13,7 @@ let questions = [
 	},
 
 	{
-		prompt: `Q.2. Find the sum of first 90 even natural numbers?`,
+		prompt: ` Find the sum of first 90 even natural numbers?`,
 		options: [
 			"8180",
 			"8190",
@@ -24,7 +24,7 @@ let questions = [
 	},
 
 	{
-		prompt: `Q.3. Find the sum two numbers, whose product is 200 and difference is minimum?`,
+		prompt: ` Find the sum two numbers, whose product is 200 and difference is minimum?`,
 		options: [
 			"30",
 			"27",
@@ -35,13 +35,13 @@ let questions = [
 	},
 
 	{
-		prompt: `Q.4. How many distinct prime factors are there in 9900?`,
+		prompt: ` How many distinct prime factors are there in 9900?`,
 		options: ["7", "4", "27", "54"],
 		answer: "4",
 	},
 
 	{
-		prompt: `Q.5. Find the value of 5358*54?`,
+		prompt: ` Find the value of 5358*54?`,
 		options: [
 			"283932",
 			"298332",
@@ -51,7 +51,7 @@ let questions = [
 		answer: "289332",
 	},
 	{
-		prompt: `Q.6. Find the HCF of 405, 585, 765 and 900?`,
+		prompt: ` Find the HCF of 405, 585, 765 and 900?`,
 		options: [
 			"35",
 			"15",
@@ -71,7 +71,7 @@ let questions = [
 		answer: "108",
 	},
 	{
-		prompt: ` Q.8.If a-b = 16 and a2.b2 = 544 , find the value of 2ab?`,
+		prompt: ` If a-b = 16 and a2.b2 = 544 , find the value of 2ab?`,
 		options: [
 			"450",
 			"500",
@@ -81,7 +81,7 @@ let questions = [
 		answer: "450",
 	},
 	{
-		prompt: `Q.9. Find the square root of 44521?`,
+		prompt: ` Find the square root of 44521?`,
 		options: [
 			"221",
 			"219",
@@ -91,7 +91,7 @@ let questions = [
 		answer: "211",
 	},
 	{
-		prompt: `Q.10. The speed of a boat upstream in 20 kmph find the speed of the boat downstream \n if the speed of the stream in 3 kmph?`,
+		prompt: ` The speed of a boat upstream in 20 kmph find the speed of the boat downstream \n if the speed of the stream in 3 kmph?`,
 		options: [
 			"26 kmph",
 			"25 kmph",
@@ -115,9 +115,9 @@ let reStartBtn = document.querySelector("#restart");
 
 // Quiz's initial state
 let currentQuestionIndex = 0;
-let time = questions.length * 60;
-let timerId;
-let score = 0;
+
+// Mod-1
+let tot
 
 // Flag to prevent multiple end calls
 let quizEnded = false;
