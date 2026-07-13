@@ -258,6 +258,9 @@ function saveHighscore() {
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores));
         alert("Your Score has been Submitted");
+    } else{
+        // alert if nam is empty
+        alert("Please enter your name before submitting");
     }
 }
 
