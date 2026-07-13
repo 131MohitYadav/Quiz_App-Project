@@ -113,206 +113,87 @@ let nameEl = document.querySelector("#name");
 let feedbackEl = document.querySelector("#feedback");
 let reStartBtn = document.querySelector("#restart");
 
-// Quiz's initial state
+
+// STEP 1 - > QUIZ TATE VARIABLES // 
+// Fixed 10 minutes (600 seconds) and quizEnded flag
+
 let currentQuestionIndex = 0;
-
-// Mod-1
-let tot
-
-// Flag to prevent multiple end calls
-let quizEnded = false;
-
-// Start quiz and hide front page
-function quizStart() {
-// Reset quiz state
-currentQuestionIndex = 0;
-time = questions.length * 60;
-score = 0;
-quizEnded
+let totalTime = 600; 
+let time = totalTime;
+let timerId;
+let score = 0;
+let quizEnded = false // prevent multiple quiz endings
 
 
-    timerId = setInterval(clockTick, 1000);
-    timerEl.textContent = time;
-    let landingScreenEl = document.getElementById("start-screen");
-    landingScreenEl.setAttribute("class", "hide");
-    questionsEl.removeAttribute("class");
+// STEP 2 -> RANDOM QUESTIONS SYSTEM
+// Shuffle functionality to randomize question order
 
-	// Hide any previous screen
-	let endScreenEl = document.getElementById("quiz-end");
-	endScreenEl.setAttribute("class","hide");
+let shuffledQuestions = [];
+let isWaitingForNext = false;
 
-    getQuestion();
+
+// STEP 3 -> QUESTION TIMER ( 1 MINUTE PER QUESTION)
+// Each questions gets 60 seconds, auto-moves when time expire
+
+let questionTimerId = null;
+let questionTimeLeft = 60;
+const MAX_QUESTION_TIME = 60; // maximum time per question
+
+
+// STEP 4 -> SHUFFLE FUNCTION
+// Fisher-Yates algorithm to randomize questions
+
+function shuffleArray(array){
+	for ( let i = array.length - 1; i > 0; i--){
+		const j = Math.floor(Math.random() * ( i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+	return array;
 }
 
-// Loop through questions and display properly formatted CSS code
-function getQuestion() {
-    let currentQuestion = questions[currentQuestionIndex];
-    let promptEl = document.getElementById("question-words");
 
-    // Format the CSS code properly
-    let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
+// STEP 5 -> GET RANDOM QUESTIONSS
+// Creates a shuffled copy of questions array
 
-    // Use <pre> and <code> to display properly formatted CSS code
-    promptEl.innerHTML = `<pre><code>${formattedPrompt}</code></pre>`;
-
-    choicesEl.innerHTML = "";
-    currentQuestion.options.forEach(function (choice, i) {
-        let choiceBtn = document.createElement("button");
-        choiceBtn.setAttribute("value", choice);
-        choiceBtn.innerHTML = `${i + 1}. ${choice}`;
-        
-        choiceBtn.onclick = questionClick;
-        choicesEl.appendChild(choiceBtn);
-    });
+function getRandomQuestions(){
+	let availableQuestions = [...questions];
+	shuffledQuestions = shuffleArray(availableQuestions);
+	currentQuestionIndex = 0;
+	return shuffledQuestions;
 }
 
-// Check for right answer and handle wrong answer (deduct time)
-function questionClick() {
+// STEP 6 -> FORMAT TIME (MM : SS)
+// show minutes and seconds only
 
-// Prevent answering if quiz has ended
-if (quizEnded) return;
-
-    if (this.value !== questions[currentQuestionIndex].answer) {
-        // Deduct time for wrong answers
-        time -= 10;
-        if (time < 0) {
-            time = 0;
-        }
-        timerEl.textContent = time;
-        feedbackEl.textContent = `Wrong! The correct answer was ${questions[currentQuestionIndex].answer}.`;
-        feedbackEl.style.color = "red";
-    } else {
-        score += 5;
-        feedbackEl.textContent = "Correct!";
-        feedbackEl.style.color = "green";
-    }
-    feedbackEl.setAttribute("class", "feedback");
-    setTimeout(function () {
-        feedbackEl.setAttribute("class", "feedback hide");
-    }, 2000);
-    currentQuestionIndex++;
-    if (currentQuestionIndex === questions.length) {
-        quizEnd();
-    } else {
-        getQuestion();
-    }
+function formatTime(seconds) {
+	const minutes = Math.floor(seconds / 60);
+	const secs = seconds % 60;
+	const formattedMinutes = String(minutes).padStart(2,'0');
+	const formattedSeconds = String(secs).padStart(2,'0');
+	return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-// End quiz by hiding questions and showing final score
-function quizEnd() {
-	// Prevent multiple calls
-	if (quizEnded) return;
-	quizEnded = true;
+function updateTimerDisplay(){
+	timerEl.textContent = formatTime(time);
 
-    clearInterval(timerId);
-    let endScreenEl = document.getElementById("quiz-end");
-    endScreenEl.removeAttribute("class");
-
-    let finalScoreEl = document.getElementById("score-final");
-    finalScoreEl.textContent = ` ${score}`;
-
-    let passFailMessageEl = document.getElementById("pass-fail-message");
-
-    // Determine pass or fail message
-    if (score >= 25) { // Adjust passing score if needed
-        passFailMessageEl.textContent = "🎉 You Passed the Exam!";
-        passFailMessageEl.style.color = "green";
-        passFailMessageEl.style.fontWeight = "bold";
-        passFailMessageEl.style.fontSize = "22px";
-    } else {
-        passFailMessageEl.textContent = "❌ You did not pass the exam.";
-        passFailMessageEl.style.color = "red";
-        passFailMessageEl.style.fontWeight = "bold";
-        passFailMessageEl.style.fontSize = "22px";
-    }
-
-    questionsEl.setAttribute("class", "hide");
-
-	// Auto- redirect to home page after 5 seconds
-	setTimeout(function(){
-		redirectToHome();
-	}, 5000);
 }
 
-// New function = Redirect to home page
-function redirectToHome(){
-	// Hide quiz-end screen
-	let endScreenEl = document.getElementById("quiz-end");
-	endScreenEl.setAttribute("class", "hide");
 
-	// show start screen
-	let landingScreenEl = document.getElementById("start-screen");
+// STEP 7 -> QUESTIONS TIMER DISPLAY
+// Show 1 - minutes countdown for each question with coloer change
 
-	// reset timer display
-	timerEl.textContent = questions.length * 60;
-
-	// Reset feedback
-	feedbackEl.setAttribute("class", "feedback hide");
-
-	// Reset quiz ended flag
-	quizEnded = false;
-
-
-	
-} 
-
-
-
-// End quiz if timer reaches 0
-function clockTick() {
-    time--;
-    timerEl.textContent = time;
-    if (time <= 0) {
-		// set timer to 0
-		timerEl.textContent = "0";
-		// check if quiz already ended
-		if(!quizEnded){
-			// show "time's UP!" message
-			feedbackEl.textContent =  "⏰ Time's Up!";
-			feedbackEl.style.color = "red";
-			feedbackEl.setAttribute("class" , "feedback");
-			setTimeout(function(){
-				feedbackEl.setAttribute("class", "feedback hide");
-			}, 2000);
-			quizEnd();
+function updateQuestionTimerDisplay(){
+	let questionTimerEl = document.getElementById("question-timer");
+	if(questionTimerEl){
+		questionTimerEl.textContent = formatTime(questionTimeLeft);
+		// changes color to red when 10 seconds left
+		if(questionTimeLeft <= 10){
+			questionTimerEl.style.color = "red";
 		}
-        
-    }
-}
-
-// Save score in local storage
-function saveHighscore() {
-    let name = nameEl.value.trim();
-    if (name !== "") {
-        let highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
-        let newScore = { score: score, name: name };
-        highscores.push(newScore);
-        window.localStorage.setItem("highscores", JSON.stringify(highscores));
-        alert("Your Score has been Submitted");
-    } else{
-		// alert if name is empty
-		alert("Please enter your name before submitting!");
+		else{
+			questionTimerEl.style.color = "#2c3e50";
+		}
 	}
 }
 
-// Save score after pressing enter
-function checkForEnter(event) {
-    if (event.key === "Enter") {
-        saveHighscore();
-        alert("Your Score has been Submitted");
-    }
-}
-nameEl.onkeyup = checkForEnter;
 
-// Save score after clicking submit
-submitBtn.onclick = saveHighscore;
-
-// Start quiz after clicking start
-startBtn.onclick = quizStart;
-
-// Restart button functionality
-if (reStartBtn){
-	reStartBtn.onclick = function() {
-		redirectToHome();
-	}
-}
