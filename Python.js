@@ -172,6 +172,10 @@ function questionClick() {
 
 // End quiz by hiding questions and showing final score
 function quizEnd() {
+    // prevent multiple calls
+    if(quizEnded) return;
+    quizEnded = true;
+
     clearInterval(timerId);
     let endScreenEl = document.getElementById("quiz-end");
     endScreenEl.removeAttribute("class");
@@ -195,6 +199,31 @@ function quizEnd() {
     }
 
     questionsEl.setAttribute("class", "hide");
+
+    // auto-redierect to home page after 5 seconds
+    setTimeout(function(){
+        redirectToHome();
+    },5000);
+}
+
+// New Function = redirect to home page
+function redirectToHome(){
+    // Hide quiz-end screen
+    let endScreenEl = document.getElementById("quiz-end");
+    endScreenEl.setAttribute("class", "hide");
+
+    // show start screen
+    let landingScreenEl = document.getElementById("start-screen");
+    landingScreenEl.removeAttribute("class");
+
+    // reset timer display
+    timerEl.textContent = questions.length * 60;
+
+    // reset feedback
+    feedbackEl.setAttribute("class", "feedback hide");
+
+    // reset quiz ended flag
+    quizEnded = false;
 }
 
 // End quiz if timer reaches 0
@@ -202,7 +231,21 @@ function clockTick() {
     time--;
     timerEl.textContent = time;
     if (time <= 0) {
-        quizEnd();
+        // set timer to 0
+        timerEl.textContent = "0";
+        // check if quiz already ended
+        if(!quizEnded){
+            // show timer's up messga
+            feedbackEl.textContent = "⏰ Time's Up!";
+            feedbackEl.style.color = "red";
+            feedbackEl.setAttribute("class", "feedback");
+            setTimeout(function() {
+                feedbackEl.setAttribute("class", "feedback hide");
+            
+            }, 2000);
+              quizEnd();
+        }
+      
     }
 }
 
