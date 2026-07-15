@@ -280,3 +280,29 @@ function quizStart(){
 	getQuestion();
 	startQuestionTimer(); // start 1-minute timer for first question
 }
+
+// STEP 10 -> GET QUESTION - DISPLAY PROGRESS & TIMER
+// shows question number, progress, and question timer
+
+function getQuestion() { 
+	isWaitingForNext = false;
+
+	let currentQuestion = shuffledQuestions(currentQuestionIndex);
+	let promptEl = document.getElementById("question-words");
+
+	let questionNumber = currentQuestionIndex + 1;
+	let totalQuestions = shuffledQuestions.length;
+
+	let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br");
+
+	// display with progress and question timer ( removed labels)
+	promptEl.innerHTML =`
+	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:15px;">
+	<span style="background: #3498db; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px;">
+	${questionNumber}/$(totalQuestions)
+	</span>
+	</div>
+	
+	<pre><code style = "font-size: 16px; line-height: 1.6`
+	
+}
