@@ -303,6 +303,16 @@ function getQuestion() {
 	</span>
 	</div>
 	
-	<pre><code style = "font-size: 16px; line-height: 1.6`
+	<pre><code style = "font-size: 16px; line-height: 1.6;">${formattedPrompt}</code></pre>
+	
+	`;
+
+	choicesEl.innerHTML = "";
+	currentQuestion.options.forEach(function (choice, i) {
+		let choiceBtn = document.createElement("button");
+		choiceBtn.setAttribute("value", choice);
+		choiceBtn.innerHTML = `${String.fromCharCode(65 + i)}. ${choice}`;
+		choiceBtn
+	})
 	
 }
