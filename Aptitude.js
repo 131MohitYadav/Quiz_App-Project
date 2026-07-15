@@ -371,3 +371,126 @@ function questionClick(){
 		}
 	}, 1000)
 }
+
+
+// STEP 12 ->  QUIZ END - PREVENT MULTIPLE CALLS
+// Prevents multiple endings, clears all timer, auto-redirects
+
+function quizEnd(){
+	if (quizEnded) return; // Prevent multiple calls
+	quizEnded = true;
+	isWaitingForNext = false;
+
+	// clear both timers
+	if (questionTimerId){
+		clearInterval(questionTimerId);
+		questionTimerId = null;
+	}
+	clearInterval(timerId);
+
+	let endScreenEl = document.getElementById("quiz-end");
+	endScreenEl.removeAttribute("class");
+
+	let finalScoreEl = document.getElementById("score-final");
+	finalScoreEl.textContent = `${score}`;
+
+	let passFailMessageEl = document.getElementById("pass-fail-message");
+
+	if (score >= 25){
+		passFailMessageEl.textContent = "You are Passed in Exam";
+		passFailMessageEl.style.color = "green";
+		passFailMessageEl.style.fontWeight = "bold";
+		passFailMessageEl.style.fontSize = "22px";
+
+	}
+	else{
+		passFailMessageEl.textContent = "You did not pass the exam.";
+		passFailMessageEl.style.color = "red";
+		passFailMessageEl.style.fontWeight = "bold";
+		passFailMessageEl.style.fontSize = "22px";
+	}
+	questionsEl.setAttribute("class", "hide");
+
+	// Auto-redirect to home after 5 seconds
+	setTimeout(function() {
+		redirectToHome();
+	}, 5000);
+}
+
+// STEP 13 -> Redirect To Home
+// New functions to reset and go back to home page
+function redirectToHome(){
+	let endScreenEl = document.getElementById("quiz-end");
+	endScreenEl.setAttribute("class", "hide");
+
+	let landingScreenEl = document.getElementById("star-screen");
+	landingScreenEl.removeAttribute("class");
+
+	time = totalTime;
+	updateTimerDisplay();
+
+	feedbackEl.setAttribute("class", "feedback hide");
+	quizEnded = false;
+	isWaitingForNext = false;
+
+	// clear question timer
+	if (questionTimerId){
+		clearInterval(questionTimerId);
+		questionTimerId = null;
+	}
+}
+
+// STEP 14 -> CLOCK TICK - TIMER ENDS
+//Shows "00:00" when timer ends and auto-ends quiz
+function clockTick(){
+	time--;
+	updateTimerDisplay();
+
+	if(time <= 0){
+		timerEl.textContent = "00:00" // show formatted zero
+		if(!quizEnded){
+			feedbackEl.textContent = "Time's Up!";
+			feedbackEl.style.color = "red";
+			feedbackEl.setAttribute("class", "feedback");
+			setTimeout(function(){
+				feedbackEl.setAttribute("class", "feedback hide");
+			}, 2000);
+			quizEnd();
+		}
+	}
+}
+
+// STEP 15 -> SAVE SCORE - VALIDATION
+// Added validation for empty name
+function saveHighscore(){
+	let name = nameEl.value.trim();
+	if (name !== ""){
+		let highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+		let newScore = {score: score, name: name};
+		highscores.push(newScore);
+		window.localStorage.setItem("highscores", JSON.stringify(highscores));
+		alert("Your Score has been Submitted");
+	} else{
+		alert("Please enter your name before submitting!")
+	}
+}
+
+
+// STEP 16 -> RESTART BUTTON
+// New functionality to go back to home page
+function checkForEnter(event){
+	if (event.key === "Enter"){
+		saveHighscore();
+	}
+}
+
+nameEl.onkeyup = checkForEnter;
+submitBtn.onclick = saveHighscore;
+startBtn.onclick  = quizStart;
+
+// Restat button handler
+if (reStartBtn){
+	reStartBtn.onclick = function(){
+		redirectToHome();
+	}
+}
