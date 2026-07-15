@@ -1,7 +1,7 @@
 
 let questions = [
 	{
-		prompt: `  Q.1. Find the Odd one out?`,
+		prompt: `   Find the Odd one out?`,
 		options: [
 			"BEK",
 			"CFL",
@@ -12,7 +12,7 @@ let questions = [
 	},
 
 	{
-		prompt: `Q.2. In certain code "CODE" is written as "DPEF".
+		prompt: `In certain code "CODE" is written as "DPEF".
          How is "DEFENCE" is written in that code?`,
 		options: [
 			"KWMCJFL",
@@ -24,7 +24,7 @@ let questions = [
 	},
 
 	{
-		prompt: `Q.3. If the letters of the word "PRODUCT" are arrange\n alphabetically, then which letter would be farthest from the second letter of word?`,
+		prompt: ` If the letters of the word "PRODUCT" are arrange\n alphabetically, then which letter would be farthest from the second letter of word?`,
 		options: [
 			"T",
 			"R",
@@ -35,13 +35,13 @@ let questions = [
 	},
 
 	{
-		prompt: `Q.4. BFNM: EIQP :: RBGJ: ?`,
+		prompt: ` BFNM: EIQP :: RBGJ: ?`,
 		options: ["GHJK", "WXYZ", "UEJM", "ABCD"],
 		answer: "4",
 	},
 
 	{
-		prompt: `Q.5. Hardworking: Determined :: Hapyy:?`,
+		prompt: ` Hardworking: Determined :: Hapyy:?`,
 		options: [
 			"Sad",
 			"Upbeat",
@@ -51,7 +51,7 @@ let questions = [
 		answer: "Upbeat",
 	},
 	{
-		prompt: `Q.6. Good: Ample :: Droll:?`,
+		prompt: ` Good: Ample :: Droll:?`,
 		options: [
 			"Corpulent",
 			"Quiet",
@@ -61,7 +61,7 @@ let questions = [
 		answer: "Humorous",
 	},
 	{
-		prompt: `Q.7. Find the next numbers in the series : 61,52,63,94,46,....?`,
+		prompt: ` Find the next numbers in the series : 61,52,63,94,46,....?`,
 		options: [
 			"81",
 			"18",
@@ -71,7 +71,7 @@ let questions = [
 		answer: "18",
 	},
 	{
-		prompt: ` Q.8.In a row of 26 girls, when Sakshi shifted four places towards the left, she \n become 10th from the left end. What wa her earlier position form the right end \n of the row?`,
+		prompt: ` In a row of 26 girls, when Sakshi shifted four places towards the left, she \n become 10th from the left end. What wa her earlier position form the right end \n of the row?`,
 		options: [
 			"10th",
 			"11th",
@@ -81,7 +81,7 @@ let questions = [
 		answer: "13th",
 	},
 	{
-		prompt: `Q.9. Identify the wrong number in the series. 0,1,1,2,3,5,8,13,20,34?`,
+		prompt: ` Identify the wrong number in the series. 0,1,1,2,3,5,8,13,20,34?`,
 		options: [
 			"8",
 			"20",
@@ -91,7 +91,7 @@ let questions = [
 		answer: "20",
 	},
 	{
-		prompt: `Q.10. A box had 17 bulbs. All but five are fused How many are actually fused?`,
+		prompt: ` A box had 17 bulbs. All but five are fused How many are actually fused?`,
 		options: [
 			"9",
 			"8",
@@ -114,207 +114,384 @@ let nameEl = document.querySelector("#name");
 let feedbackEl = document.querySelector("#feedback");
 let reStartBtn = document.querySelector("#restart");
 
-// Quiz's initial state
+
+// STEP 1 - > QUIZ TATE VARIABLES // 
+// Fixed 10 minutes (600 seconds) and quizEnded flag
+
 let currentQuestionIndex = 0;
-let time = questions.length * 60;
+let totalTime = 600; 
+let time = totalTime;
 let timerId;
 let score = 0;
-
-// Flag to prevent multiple end calls
-let quizEnded = false;
-
-// Start quiz and hide front page
-function quizStart() {
-// Reset quiz state
-currentQuestionIndex = 0;
-time = questions.length * 60;
-score = 0;
-quizEnded
+let quizEnded = false // prevent multiple quiz endings
 
 
-    timerId = setInterval(clockTick, 1000);
-    timerEl.textContent = time;
-    let landingScreenEl = document.getElementById("start-screen");
-    landingScreenEl.setAttribute("class", "hide");
-    questionsEl.removeAttribute("class");
+// STEP 2 -> RANDOM QUESTIONS SYSTEM
+// Shuffle functionality to randomize question order
 
-	// Hide any previous screen
+let shuffledQuestions = [];
+let isWaitingForNext = false;
+
+
+// STEP 3 -> QUESTION TIMER ( 1 MINUTE PER QUESTION)
+// Each questions gets 60 seconds, auto-moves when time expire
+
+let questionTimerId = null;
+let questionTimeLeft = 60;
+const MAX_QUESTION_TIME = 60; // maximum time per question
+
+
+// STEP 4 -> SHUFFLE FUNCTION
+// Fisher-Yates algorithm to randomize questions
+
+function shuffleArray(array){
+	for ( let i = array.length - 1; i > 0; i--){
+		const j = Math.floor(Math.random() * ( i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+	return array;
+}
+
+
+// STEP 5 -> GET RANDOM QUESTIONSS
+// Creates a shuffled copy of questions array
+
+function getRandomQuestions(){
+	let availableQuestions = [...questions];
+	shuffledQuestions = shuffleArray(availableQuestions);
+	currentQuestionIndex = 0;
+	return shuffledQuestions;
+}
+
+// STEP 6 -> FORMAT TIME (MM : SS)
+// show minutes and seconds only
+
+function formatTime(seconds) {
+	const minutes = Math.floor(seconds / 60);
+	const secs = seconds % 60;
+	const formattedMinutes = String(minutes).padStart(2,'0');
+	const formattedSeconds = String(secs).padStart(2,'0');
+	return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+function updateTimerDisplay(){
+	timerEl.textContent = formatTime(time);
+
+}
+
+
+// STEP 7 -> QUESTIONS TIMER DISPLAY
+// Show 1 - minutes countdown for each question with coloer change
+
+function updateQuestionTimerDisplay(){
+	let questionTimerEl = document.getElementById("question-timer");
+	if(questionTimerEl){
+		questionTimerEl.textContent = formatTime(questionTimeLeft);
+		// changes color to red when 10 seconds left
+		if(questionTimeLeft <= 10){
+			questionTimerEl.style.color = "red";
+		}
+		else{
+			questionTimerEl.style.color = "#2c3e50";
+		}
+	}
+}
+
+
+// STEP 8 -> START QUESTION TIMER
+// Starts 60 second countdown, auto-moves to next question when time expire
+
+function startQuestionTimer(){
+	// clear existing timer
+	if(questionTimerId){
+		clearInterval(questionTimerId);
+		questionTimerId = null;
+	}
+	questionTimeLeft = MAX_QUESTION_TIME;
+	updateQuestionTimerDisplay();
+
+	questionTimerId = setInterval(function() {
+		questionTimeLeft--;
+		updateQuestionTimerDisplay();
+
+		// Auto- move when 1 minute expire
+		if ( questionTimeLeft <= 0){
+			if (!quizEnded && !isWaitingForNext){
+				feedbackEl.textContent = "Time's up for this question!";
+				feedbackEl.style.color = "orange";
+				feedbackEl.setAttribute("class", "feedback");
+
+				isWaitingForNext = true;
+
+				// disable buttons
+				let allButtons = choicesEl.querySelectorAll('button');
+				allButtons.forEach(btn => {
+					btn.disabled = true;
+					btn.style.cursor = 'not-allowed';
+					btn.style.opacity = '0.6';
+				});
+
+				// No points for unanswered question
+				setTimeout(function(){
+					feedbackEl.setAttribute("class", "feedback hide");
+
+					currentQuestionIndex++;
+					if(currentQuestionIndex == shuffledQuestions.length){
+						
+
+						quizEnd();
+
+					}
+					else{
+						getQuestion();
+						startQuestionTimer(); // Restart timer for next question
+					}
+				}, 1500);
+				
+			}
+		}
+	}, 1000);
+}
+
+
+// STEP 9 -> QUIZ START - RESET STATE
+// Reset all variabls and hides previous end screen
+
+function quizStart(){
+	// reset all state
+	currentQuestionIndex = 0;
+	time = totalTime;
+	score = 0;
+	quizEnded = false;
+	isWaitingForNext = false;
+
+	getRandomQuestions(); // shuffle questions
+
+	timerId = setInterval(clockTick, 1000);
+	updateTimerDisplay();
+
+	let landingScreenEl = document.getElementById("start-screen");
+	landingScreenEl.setAttribute("class", "hide");
+	questionsEl.removeAttribute("class");
+
+	//Hide any previous end screen
 	let endScreenEl = document.getElementById("quiz-end");
-	endScreenEl.setAttribute("class","hide");
+	endScreenEl.setAttribute("class", "hide");
 
-    getQuestion();
+	getQuestion();
+	startQuestionTimer(); // start 1-minute timer for first question
 }
 
-// Loop through questions and display properly formatted CSS code
-function getQuestion() {
-    let currentQuestion = questions[currentQuestionIndex];
-    let promptEl = document.getElementById("question-words");
+// STEP 10 -> GET QUESTION - DISPLAY PROGRESS & TIMER
+// shows question number, progress, and question timer
 
-    // Format the CSS code properly
-    let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
+function getQuestion() { 
+	isWaitingForNext = false;
 
-    // Use <pre> and <code> to display properly formatted CSS code
-    promptEl.innerHTML = `<pre><code>${formattedPrompt}</code></pre>`;
+	let currentQuestion = shuffledQuestions(currentQuestionIndex);
+	let promptEl = document.getElementById("question-words");
 
-    choicesEl.innerHTML = "";
-    currentQuestion.options.forEach(function (choice, i) {
-        let choiceBtn = document.createElement("button");
-        choiceBtn.setAttribute("value", choice);
-        choiceBtn.innerHTML = `${i + 1}. ${choice}`;
-        
-        choiceBtn.onclick = questionClick;
-        choicesEl.appendChild(choiceBtn);
-    });
+	let questionNumber = currentQuestionIndex + 1;
+	let totalQuestions = shuffledQuestions.length;
+
+	let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br");
+
+	// display with progress and question timer ( removed labels)
+	promptEl.innerHTML =`
+	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:15px;">
+	<span style="background: #3498db; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px;">
+	${questionNumber}/$(totalQuestions)
+	</span>
+	</div>
+	
+	<pre><code style = "font-size: 16px; line-height: 1.6;">${formattedPrompt}</code></pre>
+	
+	`;
+
+	choicesEl.innerHTML = "";
+	currentQuestion.options.forEach(function (choice, i) {
+		let choiceBtn = document.createElement("button");
+		choiceBtn.setAttribute("value", choice);
+		choiceBtn.innerHTML = `${String.fromCharCode(65 + i)}. ${choice}`;
+		choiceBtn.onclick = questionClick;
+		choiceBtn.onclick = questionClick;
+		choicesEl.appendChild(choiceBtn);
+	});
+	
 }
 
-// Check for right answer and handle wrong answer (deduct time)
-function questionClick() {
+// STEP 11 -> QUESTION CLICK  - AUTO NEXT
+// Stops timer , shows feedback, auto-moves to next question in 1 second
 
-// Prevent answering if quiz has ended
-if (quizEnded) return;
+function questionClick(){
+	if (quizEnded || isWaitingForNext) return;
 
-    if (this.value !== questions[currentQuestionIndex].answer) {
-        // Deduct time for wrong answers
-        time -= 10;
-        if (time < 0) {
-            time = 0;
-        }
-        timerEl.textContent = time;
-        feedbackEl.textContent = `Wrong! The correct answer was ${questions[currentQuestionIndex].answer}.`;
-        feedbackEl.style.color = "red";
-    } else {
-        score += 5;
-        feedbackEl.textContent = "Correct!";
-        feedbackEl.style.color = "green";
-    }
-    feedbackEl.setAttribute("class", "feedback");
-    setTimeout(function () {
-        feedbackEl.setAttribute("class", "feedback hide");
-    }, 2000);
-    currentQuestionIndex++;
-    if (currentQuestionIndex === questions.length) {
-        quizEnd();
-    } else {
-        getQuestion();
-    }
+	isWaitingForNext = true;
+
+	// questions timer when user answers 
+	if(questionTimerId){
+		clearInterval(questionTimerId);
+		questionTimerId = null;
+	}
+
+	let allButtons = choicesEl.querySelectorAll('button');
+	allButtons.forEach(btn => {
+		btn.disabled = true;
+		btn.style.cursor = 'not-allowed';
+		btn.style.opacity = '0.6';
+	});
+
+	if(this.value != shuffledQuestions[currentQuestionIndex].answer){
+		time -= 10;
+		if (time < 0){
+			time = 0;
+		}
+		updateTimerDisplay();
+		feedbackEl.textContent = `Wrong! Correct: ${shuffledQuestions[currentQuestionIndex].answer}`;
+		feedbackEl.style.color = "red";
+
+	}
+	else{
+		score += 5;
+		feedbackEl.textContent = "Correct!";
+		feedbackEl.style.color = "green";
+	}
+	feedbackEl.setAttribute("class", "feedback");
+
+	//Auto-move to next question after 1 second (reduced from 1.5s)
+	setTimeout(function () {
+		feedbackEl.setAttribute("class", "feedback hide");
+
+		currentQuestionIndex++;
+		if(currentQuestionIndex === shuffledQuestions.length){
+			quizEnd();
+		}
+		else{
+			getQuestion();
+			startQuestionTimer(); // restart timer for next question
+		}
+	}, 1000)
 }
 
-// End quiz by hiding questions and showing final score
-function quizEnd() {
-	// Prevent multiple calls
-	if (quizEnded) return;
+
+// STEP 12 ->  QUIZ END - PREVENT MULTIPLE CALLS
+// Prevents multiple endings, clears all timer, auto-redirects
+
+function quizEnd(){
+	if (quizEnded) return; // Prevent multiple calls
 	quizEnded = true;
+	isWaitingForNext = false;
 
-    clearInterval(timerId);
-    let endScreenEl = document.getElementById("quiz-end");
-    endScreenEl.removeAttribute("class");
+	// clear both timers
+	if (questionTimerId){
+		clearInterval(questionTimerId);
+		questionTimerId = null;
+	}
+	clearInterval(timerId);
 
-    let finalScoreEl = document.getElementById("score-final");
-    finalScoreEl.textContent = ` ${score}`;
+	let endScreenEl = document.getElementById("quiz-end");
+	endScreenEl.removeAttribute("class");
 
-    let passFailMessageEl = document.getElementById("pass-fail-message");
+	let finalScoreEl = document.getElementById("score-final");
+	finalScoreEl.textContent = `${score}`;
 
-    // Determine pass or fail message
-    if (score >= 25) { // Adjust passing score if needed
-        passFailMessageEl.textContent = "🎉 You Passed the Exam!";
-        passFailMessageEl.style.color = "green";
-        passFailMessageEl.style.fontWeight = "bold";
-        passFailMessageEl.style.fontSize = "22px";
-    } else {
-        passFailMessageEl.textContent = "❌ You did not pass the exam.";
-        passFailMessageEl.style.color = "red";
-        passFailMessageEl.style.fontWeight = "bold";
-        passFailMessageEl.style.fontSize = "22px";
-    }
+	let passFailMessageEl = document.getElementById("pass-fail-message");
 
-    questionsEl.setAttribute("class", "hide");
+	if (score >= 25){
+		passFailMessageEl.textContent = "You are Passed in Exam";
+		passFailMessageEl.style.color = "green";
+		passFailMessageEl.style.fontWeight = "bold";
+		passFailMessageEl.style.fontSize = "22px";
 
-	// Auto- redirect to home page after 5 seconds
-	setTimeout(function(){
+	}
+	else{
+		passFailMessageEl.textContent = "You did not pass the exam.";
+		passFailMessageEl.style.color = "red";
+		passFailMessageEl.style.fontWeight = "bold";
+		passFailMessageEl.style.fontSize = "22px";
+	}
+	questionsEl.setAttribute("class", "hide");
+
+	// Auto-redirect to home after 5 seconds
+	setTimeout(function() {
 		redirectToHome();
 	}, 5000);
 }
 
-// New function = Redirect to home page
+// STEP 13 -> Redirect To Home
+// New functions to reset and go back to home page
 function redirectToHome(){
-	// Hide quiz-end screen
 	let endScreenEl = document.getElementById("quiz-end");
 	endScreenEl.setAttribute("class", "hide");
 
-	// show start screen
-	let landingScreenEl = document.getElementById("start-screen");
+	let landingScreenEl = document.getElementById("star-screen");
+	landingScreenEl.removeAttribute("class");
 
-	// reset timer display
-	timerEl.textContent = questions.length * 60;
+	time = totalTime;
+	updateTimerDisplay();
 
-	// Reset feedback
 	feedbackEl.setAttribute("class", "feedback hide");
-
-	// Reset quiz ended flag
 	quizEnded = false;
+	isWaitingForNext = false;
 
+	// clear question timer
+	if (questionTimerId){
+		clearInterval(questionTimerId);
+		questionTimerId = null;
+	}
+}
 
-	
-} 
+// STEP 14 -> CLOCK TICK - TIMER ENDS
+//Shows "00:00" when timer ends and auto-ends quiz
+function clockTick(){
+	time--;
+	updateTimerDisplay();
 
-
-
-// End quiz if timer reaches 0
-function clockTick() {
-    time--;
-    timerEl.textContent = time;
-    if (time <= 0) {
-		// set timer to 0
-		timerEl.textContent = "0";
-		// check if quiz already ended
+	if(time <= 0){
+		timerEl.textContent = "00:00" // show formatted zero
 		if(!quizEnded){
-			// show "time's UP!" message
-			feedbackEl.textContent =  "⏰ Time's Up!";
+			feedbackEl.textContent = "Time's Up!";
 			feedbackEl.style.color = "red";
-			feedbackEl.setAttribute("class" , "feedback");
+			feedbackEl.setAttribute("class", "feedback");
 			setTimeout(function(){
 				feedbackEl.setAttribute("class", "feedback hide");
 			}, 2000);
 			quizEnd();
 		}
-        
-    }
-}
-
-// Save score in local storage
-function saveHighscore() {
-    let name = nameEl.value.trim();
-    if (name !== "") {
-        let highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
-        let newScore = { score: score, name: name };
-        highscores.push(newScore);
-        window.localStorage.setItem("highscores", JSON.stringify(highscores));
-        alert("Your Score has been Submitted");
-    } else{
-		// alert if name is empty
-		alert("Please enter your name before submitting!");
 	}
 }
 
-// Save score after pressing enter
-function checkForEnter(event) {
-    if (event.key === "Enter") {
-        saveHighscore();
-        alert("Your Score has been Submitted");
-    }
+// STEP 15 -> SAVE SCORE - VALIDATION
+// Added validation for empty name
+function saveHighscore(){
+	let name = nameEl.value.trim();
+	if (name !== ""){
+		let highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+		let newScore = {score: score, name: name};
+		highscores.push(newScore);
+		window.localStorage.setItem("highscores", JSON.stringify(highscores));
+		alert("Your Score has been Submitted");
+	} else{
+		alert("Please enter your name before submitting!")
+	}
 }
+
+
+// STEP 16 -> RESTART BUTTON
+// New functionality to go back to home page
+function checkForEnter(event){
+	if (event.key === "Enter"){
+		saveHighscore();
+	}
+}
+
 nameEl.onkeyup = checkForEnter;
-
-// Save score after clicking submit
 submitBtn.onclick = saveHighscore;
+startBtn.onclick  = quizStart;
 
-// Start quiz after clicking start
-startBtn.onclick = quizStart;
-
-// Restart button functionality
+// Restat button handler
 if (reStartBtn){
-	reStartBtn.onclick = function() {
+	reStartBtn.onclick = function(){
 		redirectToHome();
 	}
 }
-
