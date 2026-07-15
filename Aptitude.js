@@ -114,7 +114,7 @@ let feedbackEl = document.querySelector("#feedback");
 let reStartBtn = document.querySelector("#restart");
 
 
-// STEP 1 - > QUIZ TATE VARIABLES // 
+// STEP 1 - > QUIZ STATE VARIABLES // 
 // Fixed 10 minutes (600 seconds) and quizEnded flag
 
 let currentQuestionIndex = 0;
@@ -122,7 +122,7 @@ let totalTime = 600;
 let time = totalTime;
 let timerId;
 let score = 0;
-let quizEnded = false // prevent multiple quiz endings
+let quizEnded = false; // prevent multiple quiz endings
 
 
 // STEP 2 -> RANDOM QUESTIONS SYSTEM
@@ -152,7 +152,7 @@ function shuffleArray(array){
 }
 
 
-// STEP 5 -> GET RANDOM QUESTIONSS
+// STEP 5 -> GET RANDOM QUESTIONS
 // Creates a shuffled copy of questions array
 
 function getRandomQuestions(){
@@ -175,12 +175,11 @@ function formatTime(seconds) {
 
 function updateTimerDisplay(){
 	timerEl.textContent = formatTime(time);
-
 }
 
 
-// STEP 7 -> QUESTIONS TIMER DISPLAY
-// Show 1 - minutes countdown for each question with coloer change
+// STEP 7 -> QUESTION TIMER DISPLAY
+// Show 1 - minutes countdown for each question with color change
 
 function updateQuestionTimerDisplay(){
 	let questionTimerEl = document.getElementById("question-timer");
@@ -216,7 +215,7 @@ function startQuestionTimer(){
 		// Auto- move when 1 minute expire
 		if ( questionTimeLeft <= 0){
 			if (!quizEnded && !isWaitingForNext){
-				feedbackEl.textContent = "Time's up for this question!";
+				feedbackEl.textContent = "⏰ Time's up for this question!";
 				feedbackEl.style.color = "orange";
 				feedbackEl.setAttribute("class", "feedback");
 
@@ -235,18 +234,15 @@ function startQuestionTimer(){
 					feedbackEl.setAttribute("class", "feedback hide");
 
 					currentQuestionIndex++;
-					if(currentQuestionIndex == shuffledQuestions.length){
-						
-
+					// 🔥 FIXED: Changed == to ===
+					if(currentQuestionIndex === shuffledQuestions.length){
 						quizEnd();
-
 					}
 					else{
 						getQuestion();
 						startQuestionTimer(); // Restart timer for next question
 					}
 				}, 1500);
-				
 			}
 		}
 	}, 1000);
@@ -254,7 +250,7 @@ function startQuestionTimer(){
 
 
 // STEP 9 -> QUIZ START - RESET STATE
-// Reset all variabls and hides previous end screen
+// Reset all variables and hides previous end screen
 
 function quizStart(){
 	// reset all state
@@ -287,24 +283,25 @@ function quizStart(){
 function getQuestion() { 
 	isWaitingForNext = false;
 
-	let currentQuestion = shuffledQuestions(currentQuestionIndex);
+	// 🔥 FIXED: Changed () to [] for array access
+	let currentQuestion = shuffledQuestions[currentQuestionIndex];
 	let promptEl = document.getElementById("question-words");
 
 	let questionNumber = currentQuestionIndex + 1;
 	let totalQuestions = shuffledQuestions.length;
 
-	let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br");
+	// 🔥 FIXED: Added missing / in <br>
+	let formattedPrompt = currentQuestion.prompt.replace(/\n/g, "<br>");
 
-	// display with progress and question timer ( removed labels)
-	promptEl.innerHTML =`
+	// 🔥 FIXED: Changed $ to { in template literal
+	promptEl.innerHTML = `
 	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:15px;">
-	<span style="background: #3498db; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px;">
-	${questionNumber}/$(totalQuestions)
-	</span>
+		<span style="background: #3498db; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px;">
+			${questionNumber}/${totalQuestions}
+		</span>
+		
 	</div>
-	
-	<pre><code style = "font-size: 16px; line-height: 1.6;">${formattedPrompt}</code></pre>
-	
+	<pre><code style="font-size: 16px; line-height: 1.6;">${formattedPrompt}</code></pre>
 	`;
 
 	choicesEl.innerHTML = "";
@@ -313,21 +310,20 @@ function getQuestion() {
 		choiceBtn.setAttribute("value", choice);
 		choiceBtn.innerHTML = `${String.fromCharCode(65 + i)}. ${choice}`;
 		choiceBtn.onclick = questionClick;
-		choiceBtn.onclick = questionClick;
+		// 🔥 FIXED: Removed duplicate line
 		choicesEl.appendChild(choiceBtn);
 	});
-	
 }
 
-// STEP 11 -> QUESTION CLICK  - AUTO NEXT
-// Stops timer , shows feedback, auto-moves to next question in 1 second
+// STEP 11 -> QUESTION CLICK - AUTO NEXT
+// Stops timer, shows feedback, auto-moves to next question in 1 second
 
 function questionClick(){
 	if (quizEnded || isWaitingForNext) return;
 
 	isWaitingForNext = true;
 
-	// questions timer when user answers 
+	// question timer when user answers 
 	if(questionTimerId){
 		clearInterval(questionTimerId);
 		questionTimerId = null;
@@ -340,24 +336,24 @@ function questionClick(){
 		btn.style.opacity = '0.6';
 	});
 
-	if(this.value != shuffledQuestions[currentQuestionIndex].answer){
+	// 🔥 FIXED: Changed != to !==
+	if(this.value !== shuffledQuestions[currentQuestionIndex].answer){
 		time -= 10;
 		if (time < 0){
 			time = 0;
 		}
 		updateTimerDisplay();
-		feedbackEl.textContent = `Wrong! Correct: ${shuffledQuestions[currentQuestionIndex].answer}`;
+		feedbackEl.textContent = `❌ Wrong! Correct: ${shuffledQuestions[currentQuestionIndex].answer}`;
 		feedbackEl.style.color = "red";
-
 	}
 	else{
 		score += 5;
-		feedbackEl.textContent = "Correct!";
+		feedbackEl.textContent = "✅ Correct!";
 		feedbackEl.style.color = "green";
 	}
 	feedbackEl.setAttribute("class", "feedback");
 
-	//Auto-move to next question after 1 second (reduced from 1.5s)
+	//Auto-move to next question after 1 second
 	setTimeout(function () {
 		feedbackEl.setAttribute("class", "feedback hide");
 
@@ -369,11 +365,11 @@ function questionClick(){
 			getQuestion();
 			startQuestionTimer(); // restart timer for next question
 		}
-	}, 1000)
+	}, 1000);
 }
 
 
-// STEP 12 ->  QUIZ END - PREVENT MULTIPLE CALLS
+// STEP 12 -> QUIZ END - PREVENT MULTIPLE CALLS
 // Prevents multiple endings, clears all timer, auto-redirects
 
 function quizEnd(){
@@ -397,14 +393,13 @@ function quizEnd(){
 	let passFailMessageEl = document.getElementById("pass-fail-message");
 
 	if (score >= 25){
-		passFailMessageEl.textContent = "You are Passed in Exam";
+		passFailMessageEl.textContent = "🎉 You are Passed in Exam!";
 		passFailMessageEl.style.color = "green";
 		passFailMessageEl.style.fontWeight = "bold";
 		passFailMessageEl.style.fontSize = "22px";
-
 	}
 	else{
-		passFailMessageEl.textContent = "You did not pass the exam.";
+		passFailMessageEl.textContent = "❌ You did not pass the exam.";
 		passFailMessageEl.style.color = "red";
 		passFailMessageEl.style.fontWeight = "bold";
 		passFailMessageEl.style.fontSize = "22px";
@@ -423,7 +418,8 @@ function redirectToHome(){
 	let endScreenEl = document.getElementById("quiz-end");
 	endScreenEl.setAttribute("class", "hide");
 
-	let landingScreenEl = document.getElementById("star-screen");
+	// 🔥 FIXED: Changed "star-screen" to "start-screen"
+	let landingScreenEl = document.getElementById("start-screen");
 	landingScreenEl.removeAttribute("class");
 
 	time = totalTime;
@@ -447,9 +443,9 @@ function clockTick(){
 	updateTimerDisplay();
 
 	if(time <= 0){
-		timerEl.textContent = "00:00" // show formatted zero
+		timerEl.textContent = "00:00"; // show formatted zero
 		if(!quizEnded){
-			feedbackEl.textContent = "Time's Up!";
+			feedbackEl.textContent = "⏰ Time's Up!";
 			feedbackEl.style.color = "red";
 			feedbackEl.setAttribute("class", "feedback");
 			setTimeout(function(){
@@ -471,7 +467,7 @@ function saveHighscore(){
 		window.localStorage.setItem("highscores", JSON.stringify(highscores));
 		alert("Your Score has been Submitted");
 	} else{
-		alert("Please enter your name before submitting!")
+		alert("Please enter your name before submitting!");
 	}
 }
 
@@ -486,11 +482,11 @@ function checkForEnter(event){
 
 nameEl.onkeyup = checkForEnter;
 submitBtn.onclick = saveHighscore;
-startBtn.onclick  = quizStart;
+startBtn.onclick = quizStart;
 
-// Restat button handler
+// Restart button handler
 if (reStartBtn){
 	reStartBtn.onclick = function(){
 		redirectToHome();
-	}
+	};
 }
