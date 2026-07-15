@@ -312,7 +312,62 @@ function getQuestion() {
 		let choiceBtn = document.createElement("button");
 		choiceBtn.setAttribute("value", choice);
 		choiceBtn.innerHTML = `${String.fromCharCode(65 + i)}. ${choice}`;
-		choiceBtn
-	})
+		choiceBtn.onclick = questionClick;
+		choiceBtn.onclick = questionClick;
+		choicesEl.appendChild(choiceBtn);
+	});
 	
+}
+
+// STEP 11 -> QUESTION CLICK  - AUTO NEXT
+// Stops timer , shows feedback, auto-moves to next question in 1 second
+
+function questionClick(){
+	if (quizEnded || isWaitingForNext) return;
+
+	isWaitingForNext = true;
+
+	// questions timer when user answers 
+	if(questionTimerId){
+		clearInterval(questionTimerId);
+		questionTimerId = null;
+	}
+
+	let allButtons = choicesEl.querySelectorAll('button');
+	allButtons.forEach(btn => {
+		btn.disabled = true;
+		btn.style.cursor = 'not-allowed';
+		btn.style.opacity = '0.6';
+	});
+
+	if(this.value != shuffledQuestions[currentQuestionIndex].answer){
+		time -= 10;
+		if (time < 0){
+			time = 0;
+		}
+		updateTimerDisplay();
+		feedbackEl.textContent = `Wrong! Correct: ${shuffledQuestions[currentQuestionIndex].answer}`;
+		feedbackEl.style.color = "red";
+
+	}
+	else{
+		score += 5;
+		feedbackEl.textContent = "Correct!";
+		feedbackEl.style.color = "green";
+	}
+	feedbackEl.setAttribute("class", "feedback");
+
+	//Auto-move to next question after 1 second (reduced from 1.5s)
+	setTimeout(function () {
+		feedbackEl.setAttribute("class", "feedback hide");
+
+		currentQuestionIndex++;
+		if(currentQuestionIndex === shuffledQuestions.length){
+			quizEnd();
+		}
+		else{
+			getQuestion();
+			startQuestionTimer(); // restart timer for next question
+		}
+	}, 1000)
 }
