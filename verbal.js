@@ -425,5 +425,5 @@ startBtn.onclick = quizStart;
 if (reStartBtn){
 	reStartBtn.onclick = function(){
 		redirectToHome();
-	};
+	}; redirecto HOme
 }
