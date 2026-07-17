@@ -1,145 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>User Profile</title>
-
+<title>Student Profile</title>
 <link rel="stylesheet" href="Profile.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
 
 <div class="container">
 
-<div class="left">
+  <!-- LEFT: Profile card -->
+  <div class="left">
+    <div class="top">
+      <img id="photo" src="https://api.dicebear.com/7.x/initials/svg?seed=Student" alt="Profile Photo">
+      <h2 id="studentName">Loading...</h2>
+      <span id="rank">--</span>
+    </div>
 
-<div class="top">
+    <div class="stats">
+      <div class="box">
+        <h2 id="totalScore">--</h2>
+        <p>Total Score</p>
+      </div>
+      <div class="box">
+        <h2 id="quizName">--</h2>
+        <p>Quiz</p>
+      </div>
+      <div class="box">
+        <h2 id="percentage">--</h2>
+        <p>Percentage</p>
+      </div>
+    </div>
 
-<img src="profile.png" id="photo">
+    <div class="details">
+      <h3>User Details</h3>
+      <table>
+        <tr>
+          <td>👤 Age</td>
+          <td id="userAge">--</td>
+        </tr>
+        <tr>
+          <td>📞 Mobile</td>
+          <td id="userMobile">--</td>
+        </tr>
+        <tr>
+          <td>📍 City</td>
+          <td id="userCity">--</td>
+        </tr>
+        <tr>
+          <td>🏅 Result</td>
+          <td id="userResult">--</td>
+        </tr>
+      </table>
+    </div>
 
-<h2 id="name">Loading...</h2>
+    <div class="progress-area">
+      <h3>Learning Progress</h3>
+      <div class="progress">
+        <div id="bar"></div>
+      </div>
+    </div>
 
-<p id="email"></p>
+    <div class="buttons">
+      <button id="editBtn">Edit Profile</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </div>
 
-<span id="rank"></span>
-
-</div>
-
-<div class="stats">
-
-<div class="box">
-
-<h2 id="score"></h2>
-
-<p>Total Score</p>
-
-</div>
-
-<div class="box">
-
-<h2 id="quiz"></h2>
-
-<p>Quiz</p>
-
-</div>
-
-<div class="box">
-
-<h2 id="percentage"></h2>
-
-<p>Percentage</p>
-
-</div>
-
-</div>
-
-<div class="details">
-
-<h3>User Details</h3>
-
-<table>
-
-<tr>
-
-<td><i class="fa-solid fa-user"></i> Age</td>
-
-<td id="age"></td>
-
-</tr>
-
-<tr>
-
-<td><i class="fa-solid fa-phone"></i> Mobile</td>
-
-<td id="mobile"></td>
-
-</tr>
-
-<tr>
-
-<td><i class="fa-solid fa-location-dot"></i> City</td>
-
-<td id="city"></td>
-
-</tr>
-
-<tr>
-
-<td><i class="fa-solid fa-award"></i> Result</td>
-
-<td id="result"></td>
-
-</tr>
-
-</table>
+  <!-- RIGHT: Recent activity -->
+  <div class="right">
+    <h3>Recent Activity</h3>
+    <div id="activityList">
+      <div class="activity">No recent activity yet.</div>
+    </div>
+  </div>
 
 </div>
-
-<div class="progress-area">
-
-<h3>Learning Progress</h3>
-
-<div class="progress">
-
-<div id="bar"></div>
-
-</div>
-
-<span id="progressText"></span>
-
-</div>
-
-<div class="buttons">
-
-<button onclick="editProfile()">
-
-Edit Profile
-
-</button>
-
-<button onclick="logout()">
-
-Logout
-
-</button>
-
-</div>
-
-</div>
-
-<div class="right">
-
-
 
 <script src="Profile.js"></script>
-
 </body>
 </html>
