@@ -54,7 +54,7 @@ function renderProfile(student) {
     }
     document.getElementById('percentage').textContent = percent + '%';
 
-    // User details table
+    // User details table form table
     document.getElementById('userAge').textContent = student.age || '--';
     document.getElementById('userMobile').textContent = student.contact || '--';
     document.getElementById('userCity').textContent = student.city || '--';
