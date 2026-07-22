@@ -10,8 +10,13 @@
     integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.css">
+
 </head>
-<body>
+<div>
+
+
 
     <input type="checkbox" id="check">
     
@@ -35,12 +40,16 @@
 
         <!-- Action Buttons & Icons -->
         <div class="actions">
-            <a href="index.html">
-                <button class="btnnn">Sign Up</button>
-            </a>
-            <a href="Admin.html">
-                <button class="btn">ADMIN LOGIN</button>
-            </a>
+            <a  href="index.html"
+            <button class="btnnn">Sign Up </button>
+    </a>
+    <a href="Admin.html">
+        <button class="btn">ADMIN LOGIN</button>
+            
+    </a>
+            <!-- <button class="btn">ADMIN LOGIN</button> -->
+            
+            
         </div>
 
         <!-- Mobile Menu Toggle -->
@@ -50,48 +59,63 @@
 
     </nav>
 
+
+
+
     <div class="container_45">
         <div class="image-container">
-            <div class="overlay_2">
+    <div class="overlay_2">
 
-                <form action="Home.html" onsubmit="return log()">
+        <form action="Home.html" onsubmit="return log()">
 
-                    <div class="imgcontainer">
-                        <img src="avatar.jpeg" alt="Avatar" class="avatar">
-                    </div>
-                    <div class="con">
-                        <header class="header-form">
-                            <h2>Log In</h2>
-                            <p>Login here by using Email/Username and Password</p>
-                        </header>
-                        <br>
-                        <div class="field-set">
+            <div class="imgcontainer">
+                <img src="avatar.jpeg" alt="Avatar" class="avatar">
+            </div>
+            <div class="con">
+                <header class="header-form">
+                    <h2>Log In</h2>
+                    <p>Login here by using Email/Username and Password</p>
+                </header>
+                <br>
+                <div class="field-set">
 
-                            <span class="input-item">
-                                <i class="fa fa-user-circle"></i>
+                    <!-- <span class="input-item">
+                        <i class = "fa fa-user-circle"></i>
+                        </span>
+
+                        <input type="text" class="form-input" id="name" placeholder=" enter your @username" required> <br> -->
+
+                        <span class="input-item">
+                            <i class = "fa fa-user-circle"></i>
                             </span>
+    
                             <input type="text" class="form-input" id="loginemail" placeholder="enter your email or username" required> <br>
 
-                            <span class="input-item">
-                                <i class="fa fa-key"></i>
-                            </span>
-                            <input class="form-input" type="password" id="loginpass" placeholder="enter your password" name="password" required>
-                            <span onclick="togglePassword()">
-                                <i class="fa fa-eye" id="eye"></i>
-                            </span>
-                            <br>
+                    <span class="input-item">
+                        <i class="fa fa-key"></i>
+                    </span>
+                    <input class="form-input" type="password" id="loginpass" placeholder="enter your password" name="password" required>
+                    <span>
+                        <i class="fa fa-eye" aria-hidden = "true" type = "button" id="eye"></i>
+                    </span>
+                    <br>
 
-                            <button class="sign-in frgt-pass" id="btn_50">Log In</button>
-                            <br>
-                        </div>
+                    <button class="sign-in frgt-pass" id="btn_50">Log In</button>
+                    <!-- <a href="index.html">
+                        <button class="sign-in frgt-pass" id="btn_50">Sign Up</button>
+                    </a> -->
+                    <br>
+                        <!-- <button class="btn submits frgt-pass" id="btn_51">Forgot Password</button> -->
+                </div>
 
-                    </div>
-
-                </form>
             </div>
-        </div>
-    </div>
 
+        </form>
+    </div>
+</div>
+</div>
+
+    
     <hr>
     <!-- FOOTER  -->
     
@@ -173,9 +197,19 @@
           </div>
         </div>
       </footer>
+      
+    
+    
+
+
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="form.js"></script>
 
+    <script src="form.js"></script>
+    
 </body>
 </html>
